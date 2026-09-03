@@ -1,0 +1,4 @@
+slides/node_modules/
+slides/*.pdf
+slides/slide-*.jpg
+data/online_retail_II.csv
