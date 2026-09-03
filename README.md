@@ -9,6 +9,7 @@ from the **Online Retail II** dataset (UCI ML Repository #502).
 | File | What it is |
 |---|---|
 | [`plan.md`](plan.md) | Full term assignment plan — Goal 1 + Goal 2 task breakdown, deadlines, team schedule |
+| [`brief/term-assignment-brief.md`](brief/term-assignment-brief.md) | Verbatim copy of the professor's actual brief (+ `.docx` original and the sample customer journey map image) — `plan.md` is checked against this |
 | [`g1-a-company-profile.md`](g1-a-company-profile.md) | G1-A deliverable: company profile, real numbers, Five Forces/TOWS/Value Chain strategy, retail vs wholesale segmentation |
 | [`g1-d1-d3-data-profiling.md`](g1-d1-d3-data-profiling.md) | Data loading, profiling, and data-quality issue inventory |
 | [`analysis/profile.py`](analysis/profile.py) | Reproducible pandas script that computes every number cited above |
