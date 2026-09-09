@@ -6,10 +6,15 @@ journey map (G1-B), and data profiling (G1-D1–D3) — all built from the
 **Online Retail II** dataset (UCI ML Repository #502). Every figure cited in the
 write-ups is computed by a script in `analysis/` and can be reproduced.
 
+**New to the team? Start with [`team-guide.md`](team-guide.md)** — a plain-language
+walkthrough (in Thai) of what the assignment is, what the dataset looks like column by
+column, the vocabulary the team uses, and the figures everyone should know by heart.
+
 ## Contents
 
 | File | What it is |
 |---|---|
+| [`team-guide.md`](team-guide.md) | Read-me-first orientation for teammates — no Python needed |
 | [`plan.md`](plan.md) | Full term assignment plan — Goal 1 + Goal 2 task breakdown, deadlines, team schedule |
 | [`brief/term-assignment-brief.md`](brief/term-assignment-brief.md) | Verbatim copy of the professor's actual brief (+ `.docx` original and the sample customer journey map image) — `plan.md` is checked against this |
 | [`brief/lecturer-verbal-brief.md`](brief/lecturer-verbal-brief.md) | Requirements the lecturer gave verbally in class that are not in the written brief — the four allowed project types, the three allowed data sources, and what actually has to be submitted |

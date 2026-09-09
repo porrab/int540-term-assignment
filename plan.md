@@ -5,6 +5,8 @@
 > **โจทย์ต้นฉบับจากอาจารย์ (3 ก.ย. 2569 ได้ไฟล์มาแล้ว):** [`brief/term-assignment-brief.md`](brief/term-assignment-brief.md) (verbatim) · [`brief/term-assignment-brief.docx`](brief/term-assignment-brief.docx) (ต้นฉบับ)
 > **สิ่งที่อาจารย์อธิบายด้วยปากในคาบ (ไม่มีในเอกสารโจทย์):** [`brief/lecturer-verbal-brief.md`](brief/lecturer-verbal-brief.md) — 4 แนวโจทย์, 3 แหล่งข้อมูล, ไม่ต้องเขียนรายงานฉบับเต็ม
 > เช็คแล้ว: Goal 1 ข้อ 1–4 ในโจทย์จริง แมป 1:1 กับกลุ่มงาน **A/B/C/D** ด้านล่างพอดี ไม่มีหัวข้อขาด/เกิน
+> 🆕 **คนในทีมที่เพิ่งเข้ามา อ่าน [`team-guide.md`](team-guide.md) ก่อน** — อธิบายว่าเรากำลังทำอะไร ข้อมูลหน้าตายังไง ศัพท์ที่ใช้กันแปลว่าอะไร และตัวเลขที่ทุกคนควรจำได้
+>
 > **งานนี้มี 3 ที่เก็บ (index) ที่ต้องอัปเดตให้ตรงกันเสมอ** — เปลี่ยนที่ไหน ต้องตามอีกสองที่:
 > 1. **Private repo (master)** — `porrab/studyWorkspace` → `courses/int540-data-analytics/term-assignment/` (ไฟล์ .md คือต้นฉบับ)
 > 2. **Public repo (สำหรับทีม)** — https://github.com/porrab/int540-term-assignment → mirror ของโฟลเดอร์นี้ (ไม่รวม transcript/notes ของคาบ)
