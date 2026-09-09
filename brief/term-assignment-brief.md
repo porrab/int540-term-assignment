@@ -3,6 +3,7 @@
 > ที่มา: `DSI121_INT540.2_2026_Term_assignment1.docx` แจกทาง SharePoint · บันทึกไว้ที่นี่
 > วันที่ 3 ก.ย. 2569 เพื่อไม่ให้หายอีกครั้ง (ต้นฉบับเก็บไว้ที่ [`term-assignment-brief.docx`](term-assignment-brief.docx))
 > ข้อความข้างล่างคือคำต่อคำจากไฟล์ ไม่มีการตีความเพิ่ม — การตีความ/แตกงานอยู่ใน [`../plan.md`](../plan.md)
+> สิ่งที่อาจารย์อธิบายเพิ่มด้วยปากในคาบ (ไม่มีในไฟล์นี้) อยู่ที่ [`lecturer-verbal-brief.md`](lecturer-verbal-brief.md)
 
 ## Term assignment
 

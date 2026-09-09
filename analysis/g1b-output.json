@@ -1,0 +1,218 @@
+{
+  "data_end": "2011-12-09 12:50:00",
+  "sales_rows": 1037007,
+  "sales_revenue_gbp": 20121372.19,
+  "known_customer_revenue_gbp": 17434464.73,
+  "known_customer_revenue_pct": 86.65,
+  "b3_n_customers": 5852,
+  "b3_one_time_customers": 1618,
+  "b3_one_time_pct": 27.65,
+  "b3_one_time_revenue_gbp": 563777.04,
+  "b3_one_time_revenue_pct": 3.23,
+  "b3_one_time_avg_revenue_gbp": 348.44,
+  "b3_repeat_avg_revenue_gbp": 3984.57,
+  "b3_order_count_distribution": [
+    {
+      "orders": "1",
+      "customers": 1618,
+      "pct_customers": 27.65,
+      "revenue_gbp": 563777.04,
+      "pct_revenue": 3.23
+    },
+    {
+      "orders": "2",
+      "customers": 945,
+      "pct_customers": 16.15,
+      "revenue_gbp": 818968.3,
+      "pct_revenue": 4.7
+    },
+    {
+      "orders": "3",
+      "customers": 659,
+      "pct_customers": 11.26,
+      "revenue_gbp": 832211.93,
+      "pct_revenue": 4.77
+    },
+    {
+      "orders": "4-5",
+      "customers": 844,
+      "pct_customers": 14.42,
+      "revenue_gbp": 1299503.29,
+      "pct_revenue": 7.45
+    },
+    {
+      "orders": "6-10",
+      "customers": 922,
+      "pct_customers": 15.76,
+      "revenue_gbp": 2645795.9,
+      "pct_revenue": 15.18
+    },
+    {
+      "orders": "11+",
+      "customers": 864,
+      "pct_customers": 14.76,
+      "revenue_gbp": 11274208.27,
+      "pct_revenue": 64.67
+    }
+  ],
+  "b3_cohort_cutoff": "2010-12-09 12:50:00",
+  "b3_cohort_n": 4284,
+  "b3_cohort_never_returned_12m": 1062,
+  "b3_cohort_never_returned_12m_pct": 24.79,
+  "b3_days_to_second_purchase": {
+    "median": 56.0,
+    "p25": 21.0,
+    "p75": 132.8,
+    "pct_within_90d": 63.84
+  },
+  "b3_silent_over_90d_customers": 2963,
+  "b3_silent_over_90d_pct": 50.63,
+  "b3_silent_over_90d_revenue_pct": 19.35,
+  "b3_silent_over_180d_customers": 2378,
+  "b3_silent_over_180d_pct": 40.64,
+  "b3_silent_over_180d_revenue_pct": 13.49,
+  "b3_silent_over_365d_customers": 1575,
+  "b3_silent_over_365d_pct": 26.91,
+  "b3_silent_over_365d_revenue_pct": 7.07,
+  "b4_cancel_rows": 19494,
+  "b4_cancel_invoices": 8292,
+  "b4_cancel_value_gbp": -1526667.86,
+  "b4_cancel_value_pct_of_sales": 7.59,
+  "b4_cancel_units": -490992,
+  "b4_cancel_rows_missing_customer": 750,
+  "b4_cancel_value_missing_customer_gbp": -431531.07,
+  "b4_negqty_not_cancel_rows": 3457,
+  "b4_negqty_not_cancel_value_gbp": 0.0,
+  "b4_negqty_not_cancel_missing_customer_pct": 100.0,
+  "b4_negqty_not_cancel_top_descriptions": {
+    "(blank)": 2689,
+    "check": 126,
+    "damaged": 96,
+    "damages": 89,
+    "?": 83,
+    "missing": 30,
+    "sold as set on dotcom": 20,
+    "dotcom": 11,
+    "smashed": 9,
+    "thrown away": 9
+  },
+  "b4_customers_who_ever_returned": 2496,
+  "b4_customers_who_ever_returned_pct": 42.65,
+  "b4_return_rate_among_one_time": 13.47,
+  "b4_return_rate_among_repeat": 53.8,
+  "b4_top10_return_lines_by_value": [
+    {
+      "stockcode": "M",
+      "description": "Manual",
+      "value_gbp": -423512.6
+    },
+    {
+      "stockcode": "AMAZONFEE",
+      "description": "AMAZON FEE",
+      "value_gbp": -294772.71
+    },
+    {
+      "stockcode": "23843",
+      "description": "PAPER CRAFT , LITTLE BIRDIE",
+      "value_gbp": -168469.6
+    },
+    {
+      "stockcode": "23166",
+      "description": "MEDIUM CERAMIC TOP STORAGE JAR",
+      "value_gbp": -77479.64
+    },
+    {
+      "stockcode": "BANK CHARGES",
+      "description": "Bank Charges",
+      "value_gbp": -33997.91
+    },
+    {
+      "stockcode": "22423",
+      "description": "REGENCY CAKESTAND 3 TIER",
+      "value_gbp": -16749.6
+    },
+    {
+      "stockcode": "POST",
+      "description": "POSTAGE",
+      "value_gbp": -15256.42
+    },
+    {
+      "stockcode": "D",
+      "description": "Discount",
+      "value_gbp": -13882.43
+    },
+    {
+      "stockcode": "85123A",
+      "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "value_gbp": -9389.65
+    },
+    {
+      "stockcode": "CRUK",
+      "description": "CRUK Commission",
+      "value_gbp": -7933.43
+    }
+  ],
+  "b4_return_value_product_gbp": -726588.95,
+  "b4_return_value_nonproduct_gbp": -800078.91,
+  "b4_return_value_nonproduct_pct": 52.41,
+  "b4_n_returning_customers": 2572,
+  "b4_top10_returning_customers_value": [
+    -168478.6,
+    -77621.14,
+    -39267.0,
+    -30408.23,
+    -26477.4,
+    -25724.1,
+    -25111.09,
+    -22998.4,
+    -21907.0,
+    -21047.67
+  ],
+  "b4_top10_returning_customers_share_pct": 41.92,
+  "b4_top1pct_returning_customers_share_pct": 58.12,
+  "b4_top_return_countries": {
+    "United Kingdom": -1329717.74,
+    "EIRE": -48912.23,
+    "France": -28752.8,
+    "Norway": -20866.59,
+    "Spain": -17319.05,
+    "Germany": -13273.9
+  },
+  "b4_return_rate_uk_pct": 7.71,
+  "b4_return_rate_nonuk_pct": 6.85,
+  "b6_stage_counts": {
+    "customers_with_id": 5852,
+    "bought_once_only": 1618,
+    "bought_2_or_more": 4234,
+    "bought_5_or_more": 2141,
+    "silent_over_180d": 2378,
+    "ever_returned": 2496
+  },
+  "b6_monthly_revenue_gbp": {
+    "2009-12-31": 801172.53,
+    "2010-01-31": 613850.81,
+    "2010-02-28": 539744.68,
+    "2010-03-31": 764333.85,
+    "2010-04-30": 648993.82,
+    "2010-05-31": 645645.39,
+    "2010-06-30": 699375.59,
+    "2010-07-31": 634896.99,
+    "2010-08-31": 676060.72,
+    "2010-09-30": 871878.34,
+    "2010-10-31": 1098017.67,
+    "2010-11-30": 1435680.12,
+    "2010-12-31": 1187158.33,
+    "2011-01-31": 671933.19,
+    "2011-02-28": 508886.2,
+    "2011-03-31": 691257.61,
+    "2011-04-30": 516218.12,
+    "2011-05-31": 741192.41,
+    "2011-06-30": 738751.87,
+    "2011-07-31": 689364.41,
+    "2011-08-31": 736575.56,
+    "2011-09-30": 1030475.36,
+    "2011-10-31": 1106669.82,
+    "2011-11-30": 1457745.53,
+    "2011-12-31": 615493.27
+  }
+}
