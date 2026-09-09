@@ -208,7 +208,7 @@ function tableOf(header, body, opts) {
     fill: { color: "FBE9E7" }, line: { color: RED, width: 1.5, dashType: "dash" },
   });
   s.addText([
-    { text: "❌ FEEDBACK LOOP ที่ขาด — ", options: { bold: true, color: RED } },
+    { text: "FEEDBACK LOOP ที่ขาด — ", options: { bold: true, color: RED } },
     { text: "ระบบวัดได้แค่ “ขายได้เท่าไร” แต่ไม่มีขั้นตอนใดป้อนกลับว่า ลูกค้าคนไหนกำลังเงียบ หรือ การคืนของกระจุกที่ใคร", options: { color: TEXT_DARK } },
   ], {
     x: 0.9, y: 4.55, w: 11.5, h: 0.95,
@@ -486,6 +486,9 @@ function tableOf(header, body, opts) {
 
 // =====================================================================
 // Slide 8 — B6 Customer Journey Map
+// No emoji anywhere: TH Sarabun New has no glyphs for them, so PowerPoint
+// falls back mid-run and the Thai around them renders broken. Emotions are
+// words plus a plain (+)/(0)/(-) marker instead.
 // =====================================================================
 {
   const s = pres.addSlide();
@@ -500,17 +503,23 @@ function tableOf(header, body, opts) {
     "5. เงียบหาย",
   ];
   const grid = [
-    ["STEPS", "เลือกสินค้า → สั่งซื้อ → ออกใบแจ้งหนี้", "รับของ → ตรวจของ", "สั่งรอบถัดไป (มัธยฐาน 56 วัน)", "แจ้งคืน → ออกใบ C → คืนเงิน", "ไม่มีคำสั่งซื้ออีก"],
-    ["THOUGHTS", "“ราคาโอเค ลองสั่งดูก่อน”", "“ของครบมั้ย ตรงรูปมั้ย”", "“เจ้านี้ใช้ได้ สั่งเพิ่มเลย”", "“ของไม่ครบ/พัง ต้องแจ้งใคร”", "(ไม่มีเสียง — ลูกค้าไม่บอกลา)"],
-    ["TOUCHPOINTS", "เว็บ / แคตตาล็อก · ใบสั่งซื้อ", "พัสดุ · POSTAGE", "ใบสั่งซื้อรอบใหม่", "ใบลดหนี้ (Invoice C)", "❌ ไม่มี touchpoint ใด ๆ"],
-    ["ACTORS", "ลูกค้า · ฝ่ายขาย", "ขนส่ง · คลัง", "ลูกค้า · ฝ่ายขาย", "ฝ่ายบริการ · บัญชี", "— ไม่มีใครรับผิดชอบ"],
-    ["EMOTIONS", "🙂 สนใจ", "😐 เฉย ๆ / 🙁 ถ้าของมีปัญหา", "🙂 พอใจ", "😠 หงุดหงิด → 🙂 ถ้าแก้ได้", "😶 เฉยชา แล้วหายไป"],
+    ["STEPS", "เลือกสินค้า → สั่งซื้อ", "รับของ → ตรวจของ", "สั่งรอบถัดไป\n(มัธยฐาน 56 วัน)", "แจ้งคืน → ออกใบ C", "ไม่มีคำสั่งซื้ออีก"],
+    ["THOUGHTS", "ราคาโอเค ลองสั่งดู", "ของครบมั้ย ตรงรูปมั้ย", "เจ้านี้ใช้ได้ สั่งเพิ่ม", "ของพัง ต้องแจ้งใคร", "ไม่มีเสียง — ลูกค้าไม่บอกลา"],
+    ["TOUCHPOINTS", "เว็บ · ใบสั่งซื้อ", "พัสดุ · POSTAGE", "ใบสั่งซื้อรอบใหม่", "ใบลดหนี้ (Invoice C)", "ไม่มีเลย"],
+    ["ACTORS", "ลูกค้า · ฝ่ายขาย", "ขนส่ง · คลัง", "ลูกค้า · ฝ่ายขาย", "ฝ่ายบริการ · บัญชี", "ไม่มีใครรับผิดชอบ"],
+    ["EMOTIONS", "สนใจ (+)", "เฉย ๆ (0)", "พอใจ (+)", "หงุดหงิด (-)", "เฉยชา แล้วหายไป (-)"],
   ];
 
-  const header = [{ text: "STAGE", options: { bold: true, color: WHITE, fill: { color: NAVY }, fontSize: 11.5 } }].concat(
+  const header = [{ text: "STAGE", options: { bold: true, color: WHITE, fill: { color: NAVY }, fontSize: 12.5 } }].concat(
     stages.map((t, i) => ({
       text: t,
-      options: { bold: true, color: i === 4 ? "FFD9D2" : WHITE, fill: { color: i === 4 ? "8A2E22" : NAVY }, fontSize: 11.5, align: "center" },
+      options: {
+        bold: true,
+        color: WHITE,
+        fill: { color: i === 4 ? "8A2E22" : NAVY },
+        fontSize: 12.5,
+        align: "center",
+      },
     }))
   );
   const body = grid.map((r, i) =>
@@ -518,33 +527,37 @@ function tableOf(header, body, opts) {
       text: cell,
       options: {
         bold: j === 0,
-        color: j === 0 ? NAVY : j === 5 ? RED : TEXT_MUTED,
+        color: j === 0 ? NAVY : j === 5 ? RED : TEXT_DARK,
         fill: { color: j === 0 ? "DCE6F8" : i % 2 === 0 ? WHITE : "EAF0FC" },
-        fontSize: j === 0 ? 11 : 10.5,
-        align: j === 0 ? "left" : "left",
+        fontSize: j === 0 ? 12 : 12.5,
+        align: "left",
       },
     }))
   );
   const dropRow = [
-    { text: "📉 ที่หลุด", options: { bold: true, color: NAVY, fill: { color: "DCE6F8" }, fontSize: 11 } },
-    { text: "ลูกค้าที่มี ID 5,852 ราย", options: { color: TEXT_MUTED, fill: { color: "FFF4E0" }, fontSize: 10.5 } },
-    { text: "—", options: { color: TEXT_MUTED, fill: { color: "FFF4E0" }, fontSize: 10.5, align: "center" } },
-    { text: "หลุด 1,618 ราย (27.65%) ไม่กลับมาเลย · cohort ยืนยัน 24.79%", options: { bold: true, color: RED, fill: { color: "FFF4E0" }, fontSize: 10.5 } },
-    { text: "2,496 ราย (42.65%) เคยคืนของ · คืนสินค้าจริง £726,589 (3.61%)", options: { color: TEXT_DARK, fill: { color: "FFF4E0" }, fontSize: 10.5 } },
-    { text: "2,378 ราย (40.64%) เงียบเกิน 180 วัน = 13.49% ของยอดขาย", options: { bold: true, color: RED, fill: { color: "FFE8E3" }, fontSize: 10.5 } },
+    { text: "ที่หลุด", options: { bold: true, color: NAVY, fill: { color: "DCE6F8" }, fontSize: 12 } },
+    { text: "ลูกค้าที่มี ID\n5,852 ราย", options: { color: TEXT_DARK, fill: { color: "FFF4E0" }, fontSize: 12.5 } },
+    { text: "—", options: { color: TEXT_MUTED, fill: { color: "FFF4E0" }, fontSize: 12.5, align: "center" } },
+    { text: "หลุด 1,618 ราย\n(27.65%)", options: { bold: true, color: RED, fill: { color: "FFF4E0" }, fontSize: 12.5 } },
+    { text: "2,496 ราย (42.65%)\nเคยคืนของ", options: { color: TEXT_DARK, fill: { color: "FFF4E0" }, fontSize: 12.5 } },
+    { text: "2,378 ราย (40.64%)\nเงียบเกิน 180 วัน", options: { bold: true, color: RED, fill: { color: "FFE8E3" }, fontSize: 12.5 } },
   ];
 
   s.addTable([header, ...body, dropRow], {
-    x: 0.45, y: 1.6, w: 12.45, h: 4.3,
-    fontFace: THAI_BODY, border: { type: "solid", color: "D7E1F5", pt: 0.75 },
-    autoPage: false, colW: [1.35, 2.22, 2.22, 2.22, 2.22, 2.22], valign: "middle",
+    x: 0.45, y: 1.6, w: 12.45, h: 4.35,
+    fontFace: THAI_BODY,
+    border: { type: "solid", color: "D7E1F5", pt: 0.75 },
+    autoPage: false,
+    colW: [1.45, 2.2, 2.2, 2.2, 2.2, 2.2],
+    rowH: 0.62,
+    valign: "middle",
   });
 
-  noteBar(s, 0.45, 6.05, 12.45, 0.85, [
-    { text: "จุดที่คนหลุดมากที่สุด: stage 2 → 3 ", options: { bold: true, color: RED } },
-    { text: "(รับของครั้งแรกแล้วไม่กลับมา 1,618 ราย)  ·  ", options: {} },
-    { text: "จุดที่แพงที่สุด: stage 5 ", options: { bold: true, color: RED } },
-    { text: "ซึ่งไม่มี touchpoint และไม่มี actor รับผิดชอบเลย — ตรงกับ feedback loop ที่ขาดใน B1", options: {} },
+  noteBar(s, 0.45, 6.1, 12.45, 0.8, [
+    { text: "หลุดมากที่สุด: stage 2 → 3 ", options: { bold: true, color: RED } },
+    { text: "(รับของครั้งแรกแล้วไม่กลับมา 1,618 ราย)   ·   ", options: {} },
+    { text: "แพงที่สุด: stage 5 ", options: { bold: true, color: RED } },
+    { text: "ซึ่งไม่มี touchpoint และไม่มีใครรับผิดชอบ — ตรงกับ feedback loop ที่ขาดใน B1", options: {} },
   ]);
 
   addFooter(s, "ฟอร์แมตตามภาพตัวอย่างในโจทย์: STAGE → STEPS → THOUGHTS → TOUCHPOINTS → ACTORS → EMOTIONS");
