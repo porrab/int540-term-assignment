@@ -21,8 +21,10 @@ write-ups is computed by a script in `analysis/` and can be reproduced.
 | [`analysis/g1b.py`](analysis/g1b.py) | Reproducible script behind every retention, returns, and journey-stage figure in G1-B |
 | [`analysis/g1b-output.json`](analysis/g1b-output.json) | Raw output of `g1b.py` |
 | [`data/online_retail_II.csv.zip`](data/online_retail_II.csv.zip) | Source dataset (UCI ML Repository #502, CC BY 4.0) |
-| [`slides/G1-A-slides.pptx`](slides/G1-A-slides.pptx) | G1-A slide deck |
-| [`slides/build.js`](slides/build.js) | pptxgenjs script that generates the deck |
+| [`slides/G1-A-slides.pptx`](slides/G1-A-slides.pptx) | G1-A slide deck (10 slides) |
+| [`slides/G1-B-slides.pptx`](slides/G1-B-slides.pptx) | G1-B slide deck (9 slides) |
+| [`slides/build.js`](slides/build.js) | pptxgenjs script that generates the G1-A deck |
+| [`slides/build-g1b.js`](slides/build-g1b.js) | pptxgenjs script that generates the G1-B deck |
 
 ## Reproducing the analysis
 
@@ -39,7 +41,8 @@ python3 g1b.py       # G1-B figures
 ```bash
 cd slides
 npm install
-node build.js
+node build.js       # G1-A-slides.pptx
+node build-g1b.js   # G1-B-slides.pptx
 ```
 
 ## Dataset citation

@@ -5,7 +5,10 @@
 > **โจทย์ต้นฉบับจากอาจารย์ (3 ก.ย. 2569 ได้ไฟล์มาแล้ว):** [`brief/term-assignment-brief.md`](brief/term-assignment-brief.md) (verbatim) · [`brief/term-assignment-brief.docx`](brief/term-assignment-brief.docx) (ต้นฉบับ)
 > **สิ่งที่อาจารย์อธิบายด้วยปากในคาบ (ไม่มีในเอกสารโจทย์):** [`brief/lecturer-verbal-brief.md`](brief/lecturer-verbal-brief.md) — 4 แนวโจทย์, 3 แหล่งข้อมูล, ไม่ต้องเขียนรายงานฉบับเต็ม
 > เช็คแล้ว: Goal 1 ข้อ 1–4 ในโจทย์จริง แมป 1:1 กับกลุ่มงาน **A/B/C/D** ด้านล่างพอดี ไม่มีหัวข้อขาด/เกิน
-> Notion: https://app.notion.com/p/3c9745d4993481a39152efbbde623aef
+> **งานนี้มี 3 ที่เก็บ (index) ที่ต้องอัปเดตให้ตรงกันเสมอ** — เปลี่ยนที่ไหน ต้องตามอีกสองที่:
+> 1. **Private repo (master)** — `porrab/studyWorkspace` → `courses/int540-data-analytics/term-assignment/` (ไฟล์ .md คือต้นฉบับ)
+> 2. **Public repo (สำหรับทีม)** — https://github.com/porrab/int540-term-assignment → mirror ของโฟลเดอร์นี้ (ไม่รวม transcript/notes ของคาบ)
+> 3. **Notion** — https://app.notion.com/p/3c9745d4993481a39152efbbde623aef · หน้าลูก: [สิ่งที่อาจารย์อธิบายเรื่อง Term Assignment](https://app.notion.com/p/3d6745d4993481c19d98d4b149627a1e)
 > **การอ่านรหัสงาน:** ทุกงานมี prefix บอก Goal — **G1-xx** = งานของ Goal 1 · **G2-xx** = งานของ Goal 2 ทั้งสอง Goal ใช้ตัวอักษร A–F เหมือนกันแต่คนละความหมาย — เช่น **G1-D1** = โหลดไฟล์ + รวม 2 ชีต ส่วน **G2-D1** = ทำ BI dashboard คนละงานคนละเดือน
 
 ## เส้นตาย
@@ -65,7 +68,8 @@ INVOICE_LINE (Invoice [FK], StockCode [FK], Quantity)
 ```
 
 ## G1-E · สไลด์และซ้อม
-- [ ] E1 ร่างโครงสไลด์ให้หัวข้อแมปกับเกณฑ์ทีละข้อ
+- [~] E1 ร่างโครงสไลด์ให้หัวข้อแมปกับเกณฑ์ทีละข้อ — เด็ค **G1-A (10 หน้า)** และ **G1-B (9 หน้า)** สร้างแล้ว ยังต้องรวมเป็นเด็คเดียวหลังได้ C กับ D
+      (`slides/build.js` → `G1-A-slides.pptx` · `slides/build-g1b.js` → `G1-B-slides.pptx`)
 - [ ] E2 ใส่ตัวเลขจริงทุกที่ที่อ้างอะไร
 - [ ] E3 สไลด์สรุป 1 หน้า: ปัญหา → วิธีแก้ → ตัววัด
 - [ ] E4 เตรียมคำตอบคำถามที่จะโดนถาม
