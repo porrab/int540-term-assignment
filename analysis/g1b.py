@@ -168,6 +168,30 @@ for label, mask_s, mask_c in (
     c = abs(canc.loc[mask_c, "LineTotal"].sum())
     out[f"b4_return_rate_{label}_pct"] = round(c / s * 100, 2)
 
+# ---------- B4b: what a C-invoice actually contains ----------
+# The C prefix sits on the INVOICE, not the row, so summing every C row also
+# picks up the fee/adjustment lines that share those credit notes.
+canc_lines = canc.groupby("Invoice")["is_product"].agg(["sum", "count"])
+out["b4b_c_invoices_total"] = int(len(canc_lines))
+out["b4b_c_invoices_products_only"] = int((canc_lines["sum"] == canc_lines["count"]).sum())
+out["b4b_c_invoices_no_product_at_all"] = int((canc_lines["sum"] == 0).sum())
+out["b4b_c_invoices_mixed"] = int(
+    len(canc_lines) - (canc_lines["sum"] == canc_lines["count"]).sum() - (canc_lines["sum"] == 0).sum())
+out["b4b_no_product_invoices_with_one_line"] = int(
+    (canc_lines.loc[canc_lines["sum"] == 0, "count"] == 1).sum())
+
+# the same non-product codes also appear on ordinary invoices as positive lines,
+# which shows they are line types, not "codes that belong to C invoices"
+out["b4b_code_split_c_vs_normal"] = {}
+for code in ("M", "AMAZONFEE", "BANK CHARGES", "D", "POST", "CRUK"):
+    m = df[df["code_upper"] == code]
+    in_c, in_n = m[m["is_cancel"]], m[~m["is_cancel"]]
+    out["b4b_code_split_c_vs_normal"][code] = {
+        "c_rows": int(len(in_c)), "c_value_gbp": round(float(in_c["LineTotal"].sum()), 2),
+        "normal_rows": int(len(in_n)), "normal_value_gbp": round(float(in_n["LineTotal"].sum()), 2),
+        "c_avg_line_gbp": round(float(in_c["LineTotal"].mean()), 2) if len(in_c) else None,
+    }
+
 # ---------- B6: journey-stage counts ----------
 out["b6_stage_counts"] = {
     "customers_with_id": int(len(cust)),

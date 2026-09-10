@@ -180,6 +180,55 @@
   },
   "b4_return_rate_uk_pct": 7.71,
   "b4_return_rate_nonuk_pct": 6.85,
+  "b4b_c_invoices_total": 8292,
+  "b4b_c_invoices_products_only": 7268,
+  "b4b_c_invoices_no_product_at_all": 886,
+  "b4b_c_invoices_mixed": 138,
+  "b4b_no_product_invoices_with_one_line": 798,
+  "b4b_code_split_c_vs_normal": {
+    "M": {
+      "c_rows": 538,
+      "c_value_gbp": -423512.6,
+      "normal_rows": 888,
+      "normal_value_gbp": 340731.33,
+      "c_avg_line_gbp": -787.2
+    },
+    "AMAZONFEE": {
+      "c_rows": 39,
+      "c_value_gbp": -294772.71,
+      "normal_rows": 4,
+      "normal_value_gbp": 34009.13,
+      "c_avg_line_gbp": -7558.27
+    },
+    "BANK CHARGES": {
+      "c_rows": 67,
+      "c_value_gbp": -36096.87,
+      "normal_rows": 35,
+      "normal_value_gbp": 534.24,
+      "c_avg_line_gbp": -538.76
+    },
+    "D": {
+      "c_rows": 172,
+      "c_value_gbp": -13882.43,
+      "normal_rows": 5,
+      "normal_value_gbp": 397.89,
+      "c_avg_line_gbp": -80.71
+    },
+    "POST": {
+      "c_rows": 229,
+      "c_value_gbp": -15256.42,
+      "normal_rows": 1893,
+      "normal_value_gbp": 127597.42,
+      "c_avg_line_gbp": -66.62
+    },
+    "CRUK": {
+      "c_rows": 16,
+      "c_value_gbp": -7933.43,
+      "normal_rows": 0,
+      "normal_value_gbp": 0.0,
+      "c_avg_line_gbp": -495.84
+    }
+  },
   "b6_stage_counts": {
     "customers_with_id": 5852,
     "bought_once_only": 1618,
