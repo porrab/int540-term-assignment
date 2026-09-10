@@ -45,7 +45,7 @@
 - [x] B6 **สร้าง customer journey map** (deliverable ที่โจทย์ระบุแยก — มีภาพตัวอย่างแนบมาด้วย) — ซื้อครั้งแรก → ซื้อซ้ำ → เงียบหาย → คืนของ พร้อมจุดที่คนหลุดมากที่สุด
       ทำตามฟอร์แมตตัวอย่างในโจทย์ ([`brief/sample-customer-journey-map.png`](brief/sample-customer-journey-map.png)): 6 แถว **STAGE → STEPS → THOUGHTS (คำพูดลูกค้า) → TOUCHPOINTS (ไอคอน) → ACTORS → EMOTIONS (กราฟอารมณ์)**
 
-## G1-C · Balanced Scorecard
+## G1-C · Balanced Scorecard — โครงร่างและปลายทางอยู่ใน [`solution-outline.md`](solution-outline.md) (ร่าง รอวงตรวจเคาะ)
 - [ ] C1 แปลง pain point เป็น objective
 - [ ] C2 กำหนด CSF (นามธรรม) → แปลงเป็น KPI ที่เป็นตัวเลข
 - [ ] C3 ตั้ง target ที่มี baseline จริงจากข้อมูล

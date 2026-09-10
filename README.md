@@ -21,10 +21,12 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 | [`g1-a-company-profile.md`](g1-a-company-profile.md) | G1-A deliverable: company profile, real numbers, Five Forces/TOWS/Value Chain strategy, retail vs wholesale segmentation |
 | [`g1-b-problem-statement.md`](g1-b-problem-statement.md) | G1-B deliverable: systems thinking model, two evidence-backed pain points, the problem statement, and the customer journey map |
 | [`g1-d1-d3-data-profiling.md`](g1-d1-d3-data-profiling.md) | Data loading, profiling, and data-quality issue inventory |
+| [`solution-outline.md`](solution-outline.md) | Draft shape of the solution — as-is vs to-be, the six components, the scorecard it implies, and what this dataset can and cannot prove |
 | [`analysis/profile.py`](analysis/profile.py) | Reproducible pandas script that computes every number cited above |
 | [`analysis/profile-output.json`](analysis/profile-output.json) | Raw output of `profile.py` |
 | [`analysis/g1b.py`](analysis/g1b.py) | Reproducible script behind every retention, returns, and journey-stage figure in G1-B |
 | [`analysis/g1b-output.json`](analysis/g1b-output.json) | Raw output of `g1b.py` |
+| [`analysis/churn-backtest.py`](analysis/churn-backtest.py) | Time-split feasibility check behind the backtest plan in the solution outline |
 | [`data/online_retail_II.csv.zip`](data/online_retail_II.csv.zip) | Source dataset (UCI ML Repository #502, CC BY 4.0) |
 | [`slides/G1-A-slides.pptx`](slides/G1-A-slides.pptx) | G1-A slide deck (10 slides) |
 | [`slides/G1-B-slides.pptx`](slides/G1-B-slides.pptx) | G1-B slide deck (9 slides) |
@@ -39,6 +41,7 @@ unzip -o ../data/online_retail_II.csv.zip -d ../data
 pip install pandas
 python3 profile.py   # G1-A and G1-D1-D3 figures
 python3 g1b.py       # G1-B figures
+python3 churn-backtest.py  # time-split churn feasibility
 ```
 
 ## Rebuilding the slides

@@ -1,0 +1,10 @@
+{
+  "cutoff": "2010-12-09 00:00:00",
+  "customers_in_observation_window": 4282,
+  "churned": 1581,
+  "churn_rate_pct": 36.92,
+  "churned_prior_revenue_gbp": 1245692.15,
+  "churned_heavy_buyers": 83,
+  "churned_heavy_buyers_revenue_gbp": 369525.12,
+  "customers_still_buying_next_year": 4271
+}
