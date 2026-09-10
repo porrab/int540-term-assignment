@@ -136,10 +136,19 @@ out["b4_return_rate_among_one_time"] = round(
 out["b4_return_rate_among_repeat"] = round(
     float(cust.loc[cust["orders"] > 1, "ever_returned"].mean() * 100), 2)
 
-# concentration of return value
-by_code = canc.groupby(["StockCode", "Description"])["LineTotal"].sum().sort_values().head(10)
-out["b4_top10_return_lines_by_value"] = [
-    {"stockcode": str(k[0]), "description": str(k[1]), "value_gbp": round(float(v), 2)}
+# Concentration of return value, grouped by StockCode alone. Grouping by
+# (StockCode, Description) instead splits a code across description variants
+# that differ only by whitespace -- "Bank Charges" vs " Bank Charges" -- and
+# under-reports it, so the code is the unit here and the description shown is
+# the most common spelling. (The whitespace variants themselves are a data
+# quality issue for G1-D4.)
+by_code = canc.groupby("StockCode")["LineTotal"].sum().sort_values().head(10)
+desc_of = canc.groupby("StockCode")["Description"].agg(
+    lambda x: x.dropna().mode().iloc[0] if len(x.dropna()) else "(blank)")
+rows_of = canc.groupby("StockCode")["LineTotal"].size()
+out["b4_top10_return_codes_by_value"] = [
+    {"stockcode": str(k), "description": str(desc_of[k]),
+     "rows": int(rows_of[k]), "value_gbp": round(float(v), 2)}
     for k, v in by_code.items()
 ]
 prod_ret = canc[canc["is_product"]]["LineTotal"].sum()

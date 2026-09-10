@@ -100,55 +100,65 @@
   "b4_customers_who_ever_returned_pct": 42.65,
   "b4_return_rate_among_one_time": 13.47,
   "b4_return_rate_among_repeat": 53.8,
-  "b4_top10_return_lines_by_value": [
+  "b4_top10_return_codes_by_value": [
     {
       "stockcode": "M",
       "description": "Manual",
+      "rows": 538,
       "value_gbp": -423512.6
     },
     {
       "stockcode": "AMAZONFEE",
       "description": "AMAZON FEE",
+      "rows": 39,
       "value_gbp": -294772.71
     },
     {
       "stockcode": "23843",
       "description": "PAPER CRAFT , LITTLE BIRDIE",
+      "rows": 1,
       "value_gbp": -168469.6
     },
     {
       "stockcode": "23166",
       "description": "MEDIUM CERAMIC TOP STORAGE JAR",
+      "rows": 10,
       "value_gbp": -77479.64
     },
     {
       "stockcode": "BANK CHARGES",
       "description": "Bank Charges",
-      "value_gbp": -33997.91
+      "rows": 67,
+      "value_gbp": -36096.87
     },
     {
       "stockcode": "22423",
       "description": "REGENCY CAKESTAND 3 TIER",
+      "rows": 347,
       "value_gbp": -16749.6
     },
     {
       "stockcode": "POST",
       "description": "POSTAGE",
+      "rows": 229,
       "value_gbp": -15256.42
     },
     {
       "stockcode": "D",
       "description": "Discount",
+      "rows": 172,
       "value_gbp": -13882.43
     },
     {
       "stockcode": "85123A",
       "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+      "rows": 135,
       "value_gbp": -9389.65
     },
     {
       "stockcode": "CRUK",
       "description": "CRUK Commission",
+      "rows": 16,
       "value_gbp": -7933.43
     }
   ],

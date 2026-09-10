@@ -369,7 +369,7 @@ function tableOf(header, body, opts) {
       ["Amazon Fee", "AMAZONFEE", "-£294,772.71", { text: "ไม่ใช่", color: RED, bold: true }],
       ["PAPER CRAFT , LITTLE BIRDIE", "23843", "-£168,469.60", { text: "ใช่", color: GREEN, bold: true }],
       ["MEDIUM CERAMIC TOP STORAGE JAR", "23166", "-£77,479.64", { text: "ใช่", color: GREEN, bold: true }],
-      ["Bank Charges", "BANK CHARGES", "-£33,997.91", { text: "ไม่ใช่", color: RED, bold: true }],
+      ["Bank Charges", "BANK CHARGES", "-£36,096.87", { text: "ไม่ใช่", color: RED, bold: true }],
     ]
   );
   s.addTable(rows, {
