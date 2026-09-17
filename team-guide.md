@@ -19,8 +19,8 @@
 ส่งเป็น **PowerPoint อย่างเดียว ไม่ต้องเขียนรายงานฉบับเต็ม** (อาจารย์ย้ำในคาบ 20 ส.ค. — ดู
 [`brief/lecturer-verbal-brief.md`](brief/lecturer-verbal-brief.md))
 
-**ตอนนี้อยู่ตรงไหน:** A (บริษัท+กลยุทธ์) และ B (ปัญหา) เสร็จแล้ว · กำลังจะเข้า C (Balanced Scorecard)
-และ D4–D8 (จัดการข้อมูล + data model) ในสัปดาห์ 10–17 ก.ย.
+**ตอนนี้อยู่ตรงไหน:** A, B, C (Balanced Scorecard), D1–D8 (จัดการข้อมูล + data model) เสร็จหมดแล้ว
+ณ 17 ก.ย. — เหลือทีมตรวจร่วมกันแล้วขึ้นโครงสไลด์ (G1-E) ในสัปดาห์ 17–24 ก.ย.
 
 ---
 
@@ -211,9 +211,9 @@ C489859  M  Manual   -1   69.57
 |---|---|---|---|
 | **G1-A** | เลือกบริษัท + วิจัยกลยุทธ์ (Five Forces / TOWS / Value Chain) | ✅ เสร็จ | [`g1-a-company-profile.md`](g1-a-company-profile.md) |
 | **G1-B** | Systems Thinking → ปัญหา → customer journey map | ✅ เสร็จ | [`g1-b-problem-statement.md`](g1-b-problem-statement.md) |
-| **G1-C** | Balanced Scorecard — objective / KPI / target | ⏳ 10–17 ก.ย. | — |
+| **G1-C** | Balanced Scorecard — objective / KPI / target | ✅ เสร็จ | [`g1-c-balanced-scorecard.md`](g1-c-balanced-scorecard.md) |
 | **G1-D1–D3** | โหลดข้อมูล + สำรวจ + ลิสต์ปัญหาคุณภาพข้อมูล | ✅ เสร็จ | [`g1-d1-d3-data-profiling.md`](g1-d1-d3-data-profiling.md) |
-| **G1-D4–D8** | ตัดสินใจวิธีจัดการข้อมูล + EDA + data model + SQL | ⏳ 10–17 ก.ย. | — |
+| **G1-D4–D8** | ตัดสินใจวิธีจัดการข้อมูล + EDA + data model + SQL | ✅ เสร็จ | [`g1-d4-d8-data-decisions.md`](g1-d4-d8-data-decisions.md) |
 | **G1-E** | สไลด์ + ซ้อม | ⏳ 17–30 ก.ย. | `slides/` |
 
 > **G2-xx = งานของ Goal 2** ใช้ตัวอักษร A–F ซ้ำกับ Goal 1 แต่คนละความหมาย — เช่น **G1-D1** = โหลดไฟล์
@@ -242,11 +242,12 @@ unzip -o data/online_retail_II.csv.zip -d data
 pip install pandas
 python3 analysis/profile.py   # ตัวเลขของ G1-A และ G1-D1–D3
 python3 analysis/g1b.py       # ตัวเลขของ G1-B
+python3 analysis/g1d.py       # ตัวเลขของ G1-C และ G1-D4–D8 (รวม SQL ที่รันจริงผ่าน SQLite)
 ```
 
 ผลลัพธ์จะออกมาเป็นไฟล์ `.json` ข้าง ๆ สคริปต์ เทียบกับตัวเลขในเอกสารได้ตรง ๆ
-ถ้าไม่อยากรันเอง เปิดไฟล์ [`analysis/profile-output.json`](analysis/profile-output.json) และ
-[`analysis/g1b-output.json`](analysis/g1b-output.json) ดูได้เลย
+ถ้าไม่อยากรันเอง เปิดไฟล์ [`analysis/profile-output.json`](analysis/profile-output.json),
+[`analysis/g1b-output.json`](analysis/g1b-output.json) และ [`analysis/g1d-output.json`](analysis/g1d-output.json) ดูได้เลย
 
 ---
 

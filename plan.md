@@ -45,22 +45,22 @@
 - [x] B6 **สร้าง customer journey map** (deliverable ที่โจทย์ระบุแยก — มีภาพตัวอย่างแนบมาด้วย) — ซื้อครั้งแรก → ซื้อซ้ำ → เงียบหาย → คืนของ พร้อมจุดที่คนหลุดมากที่สุด
       ทำตามฟอร์แมตตัวอย่างในโจทย์ ([`brief/sample-customer-journey-map.png`](brief/sample-customer-journey-map.png)): 6 แถว **STAGE → STEPS → THOUGHTS (คำพูดลูกค้า) → TOUCHPOINTS (ไอคอน) → ACTORS → EMOTIONS (กราฟอารมณ์)**
 
-## G1-C · Balanced Scorecard — โครงร่างและปลายทางอยู่ใน [`solution-outline.md`](solution-outline.md) (ร่าง รอวงตรวจเคาะ)
-- [ ] C1 แปลง pain point เป็น objective
-- [ ] C2 กำหนด CSF (นามธรรม) → แปลงเป็น KPI ที่เป็นตัวเลข
-- [ ] C3 ตั้ง target ที่มี baseline จริงจากข้อมูล
-- [ ] C4 กำหนด measure / expected outcome — วัดยังไง เมื่อไร ใครวัด
-- [ ] C5 วางลง BSC 4 มิติ + strategy map
+## G1-C · Balanced Scorecard — ✅ เสร็จ 2026-09-17, ดู [`g1-c-balanced-scorecard.md`](g1-c-balanced-scorecard.md) (โครง/ปลายทางเดิมอยู่ใน [`solution-outline.md`](solution-outline.md))
+- [x] C1 แปลง pain point เป็น objective
+- [x] C2 กำหนด CSF (นามธรรม) → แปลงเป็น KPI ที่เป็นตัวเลข
+- [x] C3 ตั้ง target ที่มี baseline จริงจากข้อมูล (2 มิติบนตั้งเลขได้ตรง ๆ, 2 มิติล่างระบุเป็นสมมติฐานรอ Goal 2)
+- [x] C4 กำหนด measure / expected outcome — วัดยังไง เมื่อไร ใครวัด
+- [x] C5 วางลง BSC 4 มิติ + strategy map
 
-## G1-D · EDA + data model — D1–D3 ✅ ทำคู่กับ A2 แล้ว, ดู [`g1-d1-d3-data-profiling.md`](g1-d1-d3-data-profiling.md)
+## G1-D · EDA + data model — D1–D3 ✅ ทำคู่กับ A2 แล้ว, D4–D8 ✅ เสร็จ 2026-09-17, ดู [`g1-d1-d3-data-profiling.md`](g1-d1-d3-data-profiling.md) และ [`g1-d4-d8-data-decisions.md`](g1-d4-d8-data-decisions.md)
 - [x] D1 โหลดไฟล์ .xlsx **รวม 2 ชีต** (2009-2010 + 2010-2011) — เก็บขั้นตอนไว้เป็นตัวอย่าง ETL
 - [x] D2 Data profiling — จำนวนแถว, ชนิดข้อมูล, ค่าที่หาย, ค่าซ้ำ, ช่วงค่า
 - [x] D3 ระบุปัญหาคุณภาพข้อมูล — Customer ID หาย, Quantity ติดลบ, Price = 0, Description ว่าง, StockCode ที่ไม่ใช่สินค้า (POST, M, BANK CHARGES)
-- [ ] D4 ตัดสินใจวิธีจัดการแต่ละปัญหา **พร้อมเหตุผล** — ห้ามลบเงียบ ๆ
-- [ ] D5 EDA — ยอดขายรายเดือน (เห็นฤดูกาลคริสต์มาส), สินค้าขายดี, การกระจายตามประเทศ, มูลค่าตะกร้า
-- [ ] D6 **Sketch data model** — แสดงว่าไฟล์ดิบคือ flat file แบบ traditional file environment แล้ว normalize เป็น 4 ตารางที่มี PK/FK
-- [ ] D7 เขียน SQL ที่ JOIN กลับมาตอบคำถามธุรกิจ 1 ข้อ
-- [ ] D8 ระบุ characteristics ของข้อมูลตามศัพท์ในคาบ
+- [x] D4 ตัดสินใจวิธีจัดการแต่ละปัญหา **พร้อมเหตุผล** — ห้ามลบเงียบ ๆ
+- [x] D5 EDA — ยอดขายรายเดือน (เห็นฤดูกาลคริสต์มาส), สินค้าขายดี, การกระจายตามประเทศ, มูลค่าตะกร้า
+- [x] D6 **Sketch data model** — แสดงว่าไฟล์ดิบคือ flat file แบบ traditional file environment แล้ว normalize เป็น 4 ตารางที่มี PK/FK
+- [x] D7 เขียน SQL ที่ JOIN กลับมาตอบคำถามธุรกิจ 1 ข้อ
+- [x] D8 ระบุ characteristics ของข้อมูลตามศัพท์ในคาบ (5V)
 
 ```
 CUSTOMER (Customer_ID [PK], Country)
@@ -146,7 +146,7 @@ INVOICE_LINE (Invoice [FK], StockCode [FK], Quantity)
 | **27 ส.ค. – 3 ก.ย.** (ช่วงทำงาน) | ทำ **G1-A1–G1-A4** ให้เสร็จ · ทำ **G1-D1–G1-D3** คู่ขนาน |
 | **3 ก.ย.** | 🚦 **ตรวจ A ร่วมกัน** ให้ปิดจบ · ส่งมอบผล profiling ให้ทุกคน · **แจกงาน B** (G1-B1–G1-B6) ไปทำระหว่าง 3–10 ก.ย. |
 | **10 ก.ย.** | ✅ **ผ่านประตูแล้ว** — ตรวจ G1-B1–G1-B6 ครบ · เคาะ 3 คำตัดสิน (นิยามการคืนของ = แยก 2 ตัวชี้วัด · แกนปัญหา = ลูกค้าเงียบทั้งฐาน เกณฑ์ 180 วัน · คืนของเป็นฟีเจอร์ไม่ใช่ข้อสรุป) · **แจกงาน C** (G1-C1–G1-C5) และ **G1-D4–G1-D8** ไปทำระหว่าง 10–17 ก.ย. |
-| **17 ก.ย.** | 🚦 **ตรวจ C + D ร่วมกัน** — ต้อง **เสร็จมาแล้ว** · เก็บตก · **ขึ้นโครงร่างสไลด์** (G1-E1) แล้วแบ่งกันเขียนระหว่าง 17–24 ก.ย. |
+| **17 ก.ย.** | ✅ **G1-C และ G1-D4–D8 ทำเสร็จแล้ว** (`g1-c-balanced-scorecard.md`, `g1-d4-d8-data-decisions.md`) — 🚦 นัดตรวจร่วมกับทีมยังต้องเกิด · หลังตรวจ: **ขึ้นโครงร่างสไลด์** (G1-E1) แล้วแบ่งกันเขียนระหว่าง 17–24 ก.ย. |
 | **24 ก.ย.** | 🚦 **ตรวจสไลด์ทั้งเด็คร่วมกัน** — ต้องเขียนมาแล้ว · เตรียมนำเสนอ (G1-E2–G1-E5) — เนื้อหาต้องนิ่งแล้ว |
 | **27 ก.ย.** | 🔒 **freeze สไลด์** — ห้ามแก้เนื้อหาหลังจุดนี้ |
 | **28–29 ก.ย.** | ซ้อมจับเวลา + เตรียมคำตอบคำถาม |
