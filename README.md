@@ -32,6 +32,8 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 | [`slides/G1-B-slides.pptx`](slides/G1-B-slides.pptx) | G1-B slide deck (9 slides) |
 | [`slides/build.js`](slides/build.js) | pptxgenjs script that generates the G1-A deck |
 | [`slides/build-g1b.js`](slides/build-g1b.js) | pptxgenjs script that generates the G1-B deck |
+| [`presentation-guide.md`](presentation-guide.md) | On-stage speaking script for the presenter covering slides 4–6 and 17 of the Goal 1 deck |
+| [`presentation-script-team.md`](presentation-script-team.md) | Full-team speaking script for all 5 presenters across the Goal 1 deck, plus Q&A appendix backups |
 
 ## Reproducing the analysis
 
