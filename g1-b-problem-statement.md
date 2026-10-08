@@ -1,5 +1,7 @@
 # G1-B · Systems Thinking → Problem Statement → Customer Journey Map
 
+> ⚠️ **ตัวเลขเงินในหน้านี้เป็นชุดก่อนตัดแถวซ้ำ (ตามที่ส่ง Goal 1)** — ตั้งแต่ 2026-10-08 ใช้ชุดใหม่ใน [`dedup-recheck.md`](dedup-recheck.md) · ตัวเลขระดับลูกค้า (27.65%, 72.35%, 40.64%, 56 วัน) ไม่เปลี่ยน
+
 > ตรงกับโจทย์ข้อ 2: *"By a System Thinking model, identify a problem statement: pain points (or opportunities) within the workflow of a selected business process or user journey map."*
 > ตัวเลขทุกตัวคำนวณจาก `data/online_retail_II.csv.zip` ผ่าน [`analysis/g1b.py`](analysis/g1b.py) → [`analysis/g1b-output.json`](analysis/g1b-output.json)
 > ฐานคำนวณเดียวกับ G1-A/G1-D3: **แถวขายจริง** = ไม่ใช่ใบยกเลิก (Invoice ไม่ขึ้นต้นด้วย C) + Quantity > 0 + Price > 0 + StockCode เป็นสินค้าจริง → 1,037,007 แถว, ยอดขาย £20,121,372.19

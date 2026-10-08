@@ -1,0 +1,223 @@
+{
+  "customers": 5852,
+  "inputs": [
+    "recency_days_log_z",
+    "frequency_log_z",
+    "monetary_gbp_log_z"
+  ],
+  "k_scan": [
+    {
+      "k": 2,
+      "sse": 8571.35,
+      "silhouette": 0.4385,
+      "seed_stability_min_ari": 0.9918,
+      "smallest_cluster_pct": 39.54
+    },
+    {
+      "k": 3,
+      "sse": 6357.46,
+      "silhouette": 0.3472,
+      "seed_stability_min_ari": 0.9966,
+      "smallest_cluster_pct": 20.22,
+      "sse_drop_pct_vs_previous_k": 25.83
+    },
+    {
+      "k": 4,
+      "sse": 4947.54,
+      "silhouette": 0.3652,
+      "seed_stability_min_ari": 0.9464,
+      "smallest_cluster_pct": 18.97,
+      "sse_drop_pct_vs_previous_k": 22.18
+    },
+    {
+      "k": 5,
+      "sse": 4127.55,
+      "silhouette": 0.3416,
+      "seed_stability_min_ari": 0.9279,
+      "smallest_cluster_pct": 7.64,
+      "sse_drop_pct_vs_previous_k": 16.57
+    },
+    {
+      "k": 6,
+      "sse": 3577.56,
+      "silhouette": 0.3361,
+      "seed_stability_min_ari": 0.9557,
+      "smallest_cluster_pct": 7.57,
+      "sse_drop_pct_vs_previous_k": 13.32
+    },
+    {
+      "k": 7,
+      "sse": 3203.92,
+      "silhouette": 0.3043,
+      "seed_stability_min_ari": 0.884,
+      "smallest_cluster_pct": 5.69,
+      "sse_drop_pct_vs_previous_k": 10.44
+    },
+    {
+      "k": 8,
+      "sse": 2915.14,
+      "silhouette": 0.2962,
+      "seed_stability_min_ari": 0.6713,
+      "smallest_cluster_pct": 5.88,
+      "sse_drop_pct_vs_previous_k": 9.01
+    }
+  ],
+  "k2_profile": [
+    {
+      "customers": 2314,
+      "centroid_log_z_RFM": [
+        -0.81,
+        0.94,
+        0.89
+      ],
+      "median_recency_days": 23.0,
+      "median_frequency": 8.0,
+      "median_monetary_gbp": 2840.67,
+      "silent_180_pct": 5.92
+    },
+    {
+      "customers": 3538,
+      "centroid_log_z_RFM": [
+        0.53,
+        -0.62,
+        -0.59
+      ],
+      "median_recency_days": 287.0,
+      "median_frequency": 2.0,
+      "median_monetary_gbp": 410.23,
+      "silent_180_pct": 63.34
+    }
+  ],
+  "k": 4,
+  "profile": [
+    {
+      "segment": "Recent, still small (ลูกค้าใหม่/ยังเล็ก)",
+      "customers": 1220,
+      "customers_pct": 20.85,
+      "median_recency_days": 23.0,
+      "median_frequency": 3.0,
+      "median_monetary_gbp": 707.66,
+      "revenue_gbp": 1002636.17,
+      "revenue_share_pct": 5.87,
+      "silent_180_pct": 0.0,
+      "silent_revenue_gbp": 0.0,
+      "has_returned_pct": 29.18,
+      "return_rate_pct": 1.82,
+      "one_order_pct": 18.93,
+      "sixplus_orders": 105,
+      "median_tenure_days": 212.0,
+      "median_avg_days_between": 111.0,
+      "uk_pct": 90.57
+    },
+    {
+      "segment": "Loyal wholesale (ลูกค้าประจำรายใหญ่)",
+      "customers": 1110,
+      "customers_pct": 18.97,
+      "median_recency_days": 15.0,
+      "median_frequency": 13.0,
+      "median_monetary_gbp": 5117.68,
+      "revenue_gbp": 12217512.16,
+      "revenue_share_pct": 71.58,
+      "silent_180_pct": 1.17,
+      "silent_revenue_gbp": 298760.05,
+      "has_returned_pct": 81.35,
+      "return_rate_pct": 3.92,
+      "one_order_pct": 0.0,
+      "sixplus_orders": 1095,
+      "median_tenure_days": 681.0,
+      "median_avg_days_between": 43.54,
+      "uk_pct": 90.99
+    },
+    {
+      "segment": "Lapsed one-off (ซื้อน้อยแล้วหาย)",
+      "customers": 2054,
+      "customers_pct": 35.1,
+      "median_recency_days": 398.0,
+      "median_frequency": 1.0,
+      "median_monetary_gbp": 291.43,
+      "revenue_gbp": 697806.21,
+      "revenue_share_pct": 4.09,
+      "silent_180_pct": 82.91,
+      "silent_revenue_gbp": 591915.41,
+      "has_returned_pct": 17.62,
+      "return_rate_pct": 2.44,
+      "one_order_pct": 66.75,
+      "sixplus_orders": 2,
+      "median_tenure_days": 444.0,
+      "median_avg_days_between": 101.0,
+      "uk_pct": 92.45
+    },
+    {
+      "segment": "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)",
+      "customers": 1468,
+      "customers_pct": 25.09,
+      "median_recency_days": 157.0,
+      "median_frequency": 5.0,
+      "median_monetary_gbp": 1580.42,
+      "revenue_gbp": 3150628.18,
+      "revenue_share_pct": 18.46,
+      "silent_180_pct": 45.1,
+      "silent_revenue_gbp": 1403372.47,
+      "has_returned_pct": 54.5,
+      "return_rate_pct": 6.15,
+      "one_order_pct": 1.09,
+      "sixplus_orders": 584,
+      "median_tenure_days": 621.0,
+      "median_avg_days_between": 87.0,
+      "uk_pct": 89.92
+    }
+  ],
+  "centroids_log_z": {
+    "Recent, still small (ลูกค้าใหม่/ยังเล็ก)": [
+      -0.88,
+      -0.31,
+      -0.24
+    ],
+    "Loyal wholesale (ลูกค้าประจำรายใหญ่)": [
+      -1.14,
+      1.54,
+      1.36
+    ],
+    "Lapsed one-off (ซื้อน้อยแล้วหาย)": [
+      0.86,
+      -0.86,
+      -0.9
+    ],
+    "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)": [
+      0.38,
+      0.29,
+      0.44
+    ]
+  },
+  "segment_by_R_score_pct": {
+    "Lapsed one-off (ซื้อน้อยแล้วหาย)": {
+      "1": 47.22,
+      "2": 34.86,
+      "3": 16.11,
+      "4": 1.8
+    },
+    "Loyal wholesale (ลูกค้าประจำรายใหญ่)": {
+      "1": 0.27,
+      "2": 0.9,
+      "3": 6.94,
+      "4": 31.8,
+      "5": 60.09
+    },
+    "Recent, still small (ลูกค้าใหม่/ยังเล็ก)": {
+      "3": 10.49,
+      "4": 48.2,
+      "5": 41.31
+    },
+    "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)": {
+      "1": 13.49,
+      "2": 30.25,
+      "3": 43.19,
+      "4": 13.08
+    }
+  },
+  "silent_regulars_6plus_by_segment": {
+    "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)": 190,
+    "Loyal wholesale (ลูกค้าประจำรายใหญ่)": 13,
+    "Lapsed one-off (ซื้อน้อยแล้วหาย)": 2
+  }
+}

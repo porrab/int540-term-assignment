@@ -67,6 +67,14 @@
 - **ยังไม่ต้องมีโมเดล, prototype หรือผลลัพธ์** — "ตั้งตุ๊กตา" ให้ชัด และอธิบายว่าข้อมูลต้นฉบับคืออะไร ดึง/แปลงเพราะอะไร (อาจารย์อยากฟังว่าเข้าใจ data treatment)
 - ทำ data treatment ด้วยภาษาโปรแกรม/Colab หรือให้ AI ช่วยได้ ไม่ห้าม
 
+## สิ่งที่ย้ำในคาบ 8 ต.ค. (Lecture 9 BI & Visualization — หลังนำเสนอครั้งที่ 1)
+
+- **Presentation 2 = solution** เลือก **Dashboard BI** หรือ **Machine Learning** (clustering, classification, forecast ฯลฯ) · เกือบทุกกลุ่มระบุ method แล้ว **ยกเว้นกลุ่ม 1 และ 2** ที่อาจารย์เรียกคุยหลังคาบ (ช่วงนั้นไม่อยู่ในคลิป)
+- **BI = เครื่องมือระดับเบื้องต้น** ให้ผู้ใช้สำรวจข้อมูลเอง · ข้อมูลลึก ตัวแปรเยอะ ความสัมพันธ์ซับซ้อน → ใช้ data mining / ML
+- **กลุ่มที่ทำ BI:** ออกแบบ dashboard ให้ดี — ไม่ใช่ "1 หน้า 6 กราฟต่างคนต่างเล่า" · ตอนนำเสนอบอกว่า**กราฟบนสุดคืออะไร** แล้วจะ **drill down / drill up / slice / dice / filter** อย่างไรจนตัดสินใจได้ · ตัวอย่างการเล่า: "6 เดือนแรกเป็นแบบนี้ ตัดสินใจแบบนี้ → อัปเดตเดือนที่ 7 กราฟเปลี่ยนอย่างไร การตัดสินใจเปลี่ยนอย่างไร"
+- **เครื่องมือ:** Excel (PivotTable/PivotChart, Power Query) หรือ **Power BI ออนไลน์ใน Microsoft 365 ของมหาวิทยาลัย** (ฟรี) — "แทบไม่ต่างกัน" ไม่บังคับ Power BI
+- **ความเห็นต่อ Presentation 1:** อาจารย์อยากเห็นกลุ่มใช้ scatter ดูความสัมพันธ์ระหว่างตัวแปรกับตัวเป้าหมายใน EDA "แต่ไม่มีกลุ่มไหนทำ" — ไม่นับเป็นข้อด้อย · ชมว่ากลุ่มต่าง ๆ ใช้ visualization ได้ดีอยู่แล้ว
+
 ## ❓ ยังไม่มีคำตอบ — ต้องถามอาจารย์เอง
 
 ทั้งเอกสารโจทย์และทุกคาบที่ผ่านมา **ไม่ได้ระบุ**:
@@ -80,4 +88,5 @@
 **ที่มา:** `sessions/2026-08-06_business-competitiveness/transcript.md` ·
 `sessions/2026-08-20_capital-budgeting-npv-irr/transcript.md` (ช่วงที่อาจารย์อธิบายยาวที่สุด) ·
 `sessions/2026-09-03_probability/transcript.md` ·
-`sessions/2026-09-24_data-treatment-transformation/transcript.md`
+`sessions/2026-09-24_data-treatment-transformation/transcript.md` ·
+`sessions/2026-10-08_bi-visualization/transcript.md`

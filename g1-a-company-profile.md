@@ -1,5 +1,7 @@
 # G1-A · เลือกบริษัทและวิจัยกลยุทธ์
 
+> ⚠️ **ตัวเลขเงินในหน้านี้เป็นชุดก่อนตัดแถวซ้ำ (ตามที่ส่ง Goal 1)** — ตั้งแต่ 2026-10-08 ใช้ชุดใหม่ใน [`dedup-recheck.md`](dedup-recheck.md) · ตัวเลขระดับลูกค้า (27.65%, 72.35%, 40.64%, 56 วัน) ไม่เปลี่ยน
+
 > Dataset: **Online Retail II** (UCI ML Repository #502) · ตัวเลขทั้งหมดคำนวณจาก `data/online_retail_II.csv.zip`
 > ผ่าน [`analysis/profile.py`](analysis/profile.py) → [`analysis/profile-output.json`](analysis/profile-output.json)
 > ฐานคำนวณ: ตัดแถวยกเลิก (Invoice ขึ้นต้นด้วย C) + Quantity ≤ 0 + Price ≤ 0 + StockCode ที่ไม่ใช่สินค้าจริงออก

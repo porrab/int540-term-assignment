@@ -26,6 +26,9 @@ NON_PRODUCT_CODES = {
 }
 
 df = pd.read_csv(CSV, dtype={"Customer ID": "Int64"}, parse_dates=["InvoiceDate"])
+# G1-D4 decided to drop exact duplicate rows; applied from 2026-10-08 (see ../dedup-recheck.md).
+# The pre-fix outputs are kept as *-output-g1-submitted.json.
+df = df.drop_duplicates()
 df["Invoice_str"] = df["Invoice"].astype(str)
 df["is_cancel"] = df["Invoice_str"].str.startswith("C")
 df["code_upper"] = df["StockCode"].astype(str).str.upper()

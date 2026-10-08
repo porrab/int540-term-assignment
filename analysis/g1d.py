@@ -25,6 +25,10 @@ NON_PRODUCT_CODES = {
 }
 
 df = pd.read_csv(CSV, dtype={"Customer ID": "Int64"}, parse_dates=["InvoiceDate"])
+# G1-D4 decided to drop exact duplicate rows; applied from 2026-10-08 (see ../dedup-recheck.md).
+# The pre-fix outputs are kept as *-output-g1-submitted.json.
+N_DUPLICATES_RAW = int(df.duplicated().sum())   # counted before dropping, so the size of the decision stays visible
+df = df.drop_duplicates()
 df["Invoice_str"] = df["Invoice"].astype(str)
 df["is_cancel"] = df["Invoice_str"].str.startswith("C")
 df["code_upper"] = df["StockCode"].astype(str).str.upper()
@@ -43,7 +47,7 @@ out["sales_revenue_gbp"] = round(float(sales["LineTotal"].sum()), 2)
 # ---------- D4: verify the size of each decision (counts that back the decision table) ----------
 d4 = {}
 d4["total_rows"] = int(len(df))
-d4["duplicate_rows"] = int(df.duplicated().sum())
+d4["duplicate_rows"] = N_DUPLICATES_RAW
 d4["missing_customer_id_rows"] = int(df["Customer ID"].isna().sum())
 d4["missing_customer_id_pct"] = round(df["Customer ID"].isna().mean() * 100, 2)
 d4["missing_customer_id_revenue_pct"] = round(

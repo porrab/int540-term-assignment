@@ -1,5 +1,7 @@
 # G1-D4–D8 · การตัดสินใจจัดการข้อมูล + EDA + Data Model + SQL
 
+> ⚠️ **ตัวเลขเงินในหน้านี้เป็นชุดก่อนตัดแถวซ้ำ (ตามที่ส่ง Goal 1)** — ตั้งแต่ 2026-10-08 ใช้ชุดใหม่ใน [`dedup-recheck.md`](dedup-recheck.md) · ตัวเลขระดับลูกค้า (27.65%, 72.35%, 40.64%, 56 วัน) ไม่เปลี่ยน
+
 > ต่อจาก [`g1-d1-d3-data-profiling.md`](g1-d1-d3-data-profiling.md) (D1–D3 ทำเสร็จแล้ว — แค่ลิสต์ว่ามีปัญหาอะไร ยังไม่ตัดสินใจ)
 > Script: [`analysis/g1d.py`](analysis/g1d.py) · ผลลัพธ์ดิบ: [`analysis/g1d-output.json`](analysis/g1d-output.json)
 > ใช้ฐานคำนวณเดียวกับทั้งทีม (ดู [`team-guide.md`](team-guide.md) หัวข้อ "แถวขายจริง"): ไม่ใช่ใบ C, Quantity > 0, Price > 0, StockCode เป็นสินค้าจริง → เหลือ **1,037,007 แถว (97.16% ของทั้งหมด) · £20,121,372.19**

@@ -32,6 +32,9 @@ NON_PRODUCT_CODES = {
 CUTOFF = pd.Timestamp("2010-12-09")
 
 df = pd.read_csv(CSV, dtype={"Customer ID": "Int64"}, parse_dates=["InvoiceDate"])
+# G1-D4 decided to drop exact duplicate rows; applied from 2026-10-08 (see ../dedup-recheck.md).
+# The pre-fix outputs are kept as *-output-g1-submitted.json.
+df = df.drop_duplicates()
 df["is_cancel"] = df["Invoice"].astype(str).str.startswith("C")
 df["is_product"] = ~df["StockCode"].astype(str).str.upper().isin(NON_PRODUCT_CODES)
 df["LineTotal"] = df["Quantity"] * df["Price"]

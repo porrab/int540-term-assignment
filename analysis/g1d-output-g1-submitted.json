@@ -1,0 +1,286 @@
+{
+  "data_end": "2011-12-09 12:50:00",
+  "sales_rows": 1037007,
+  "sales_revenue_gbp": 20121372.19,
+  "d4": {
+    "total_rows": 1067371,
+    "duplicate_rows": 34335,
+    "missing_customer_id_rows": 243007,
+    "missing_customer_id_pct": 22.77,
+    "missing_customer_id_revenue_pct": 12.68,
+    "cancel_rows": 19494,
+    "cancel_value_gbp": -1526667.86,
+    "negative_qty_not_cancel_rows": 3457,
+    "price_zero_rows": 6202,
+    "price_negative_rows": 5,
+    "description_blank_rows": 4382,
+    "non_product_rows": 5913,
+    "non_product_codes": [
+      "ADJUST",
+      "ADJUST2",
+      "AMAZONFEE",
+      "BANK CHARGES",
+      "C2",
+      "CRUK",
+      "D",
+      "DOT",
+      "GIFT_0001_10",
+      "GIFT_0001_20",
+      "GIFT_0001_30",
+      "GIFT_0001_40",
+      "GIFT_0001_50",
+      "M",
+      "PADS",
+      "POST",
+      "S",
+      "TEST001",
+      "TEST002"
+    ],
+    "clean_sales_rows_after_all_filters": 1037007,
+    "clean_sales_rows_pct_of_total": 97.16
+  },
+  "d5": {
+    "monthly_revenue_gbp": {
+      "2009-12-31": 801172.53,
+      "2010-01-31": 613850.81,
+      "2010-02-28": 539744.68,
+      "2010-03-31": 764333.85,
+      "2010-04-30": 648993.82,
+      "2010-05-31": 645645.39,
+      "2010-06-30": 699375.59,
+      "2010-07-31": 634896.99,
+      "2010-08-31": 676060.72,
+      "2010-09-30": 871878.34,
+      "2010-10-31": 1098017.67,
+      "2010-11-30": 1435680.12,
+      "2010-12-31": 1187158.33,
+      "2011-01-31": 671933.19,
+      "2011-02-28": 508886.2,
+      "2011-03-31": 691257.61,
+      "2011-04-30": 516218.12,
+      "2011-05-31": 741192.41,
+      "2011-06-30": 738751.87,
+      "2011-07-31": 689364.41,
+      "2011-08-31": 736575.56,
+      "2011-09-30": 1030475.36,
+      "2011-10-31": 1106669.82,
+      "2011-11-30": 1457745.53,
+      "2011-12-31": 615493.27
+    },
+    "nov_dec_share_of_revenue_pct": 27.32,
+    "avg_monthly_revenue_nov_dec_gbp": 1099449.96,
+    "avg_monthly_revenue_other_gbp": 731206.12,
+    "top10_products_by_revenue": [
+      {
+        "stockcode": "22423",
+        "description": "REGENCY CAKESTAND 3 TIER",
+        "revenue_gbp": 344563.25,
+        "units": 27577
+      },
+      {
+        "stockcode": "85123A",
+        "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+        "revenue_gbp": 263109.67,
+        "units": 96147
+      },
+      {
+        "stockcode": "85099B",
+        "description": "JUMBO BAG RED RETROSPOT",
+        "revenue_gbp": 183454.83,
+        "units": 98349
+      },
+      {
+        "stockcode": "23843",
+        "description": "PAPER CRAFT , LITTLE BIRDIE",
+        "revenue_gbp": 168469.6,
+        "units": 80995
+      },
+      {
+        "stockcode": "47566",
+        "description": "PARTY BUNTING",
+        "revenue_gbp": 149187.05,
+        "units": 28378
+      },
+      {
+        "stockcode": "84879",
+        "description": "ASSORTED COLOUR BIRD ORNAMENT",
+        "revenue_gbp": 132187.92,
+        "units": 81809
+      },
+      {
+        "stockcode": "22086",
+        "description": "PAPER CHAIN KIT 50'S CHRISTMAS ",
+        "revenue_gbp": 123141.54,
+        "units": 36581
+      },
+      {
+        "stockcode": "79321",
+        "description": "CHILLI LIGHTS",
+        "revenue_gbp": 85489.91,
+        "units": 16840
+      },
+      {
+        "stockcode": "23166",
+        "description": "MEDIUM CERAMIC TOP STORAGE JAR",
+        "revenue_gbp": 81700.92,
+        "units": 78033
+      },
+      {
+        "stockcode": "22197",
+        "description": "SMALL POPCORN HOLDER",
+        "revenue_gbp": 80920.64,
+        "units": 89898
+      }
+    ],
+    "top10_products_by_units": [
+      {
+        "stockcode": "84077",
+        "description": "WORLD WAR 2 GLIDERS ASSTD DESIGNS",
+        "units": 110138
+      },
+      {
+        "stockcode": "85099B",
+        "description": "JUMBO BAG RED RETROSPOT",
+        "units": 98349
+      },
+      {
+        "stockcode": "21212",
+        "description": "PACK OF 72 RETROSPOT CAKE CASES",
+        "units": 96560
+      },
+      {
+        "stockcode": "85123A",
+        "description": "WHITE HANGING HEART T-LIGHT HOLDER",
+        "units": 96147
+      },
+      {
+        "stockcode": "22197",
+        "description": "SMALL POPCORN HOLDER",
+        "units": 89898
+      },
+      {
+        "stockcode": "84879",
+        "description": "ASSORTED COLOUR BIRD ORNAMENT",
+        "units": 81809
+      },
+      {
+        "stockcode": "23843",
+        "description": "PAPER CRAFT , LITTLE BIRDIE",
+        "units": 80995
+      },
+      {
+        "stockcode": "23166",
+        "description": "MEDIUM CERAMIC TOP STORAGE JAR",
+        "units": 78033
+      },
+      {
+        "stockcode": "17003",
+        "description": "BROCADE RING PURSE ",
+        "units": 71430
+      },
+      {
+        "stockcode": "21977",
+        "description": "PACK OF 60 PINK PAISLEY CAKE CASES",
+        "units": 56794
+      }
+    ],
+    "top10_countries_by_revenue": {
+      "United Kingdom": 17245092.48,
+      "EIRE": 628928.63,
+      "Netherlands": 549952.66,
+      "Germany": 388829.75,
+      "France": 316948.8,
+      "Australia": 168484.66,
+      "Spain": 98612.79,
+      "Switzerland": 94270.29,
+      "Sweden": 86353.04,
+      "Denmark": 68560.19
+    },
+    "uk_share_pct": 85.71,
+    "n_countries": 43,
+    "basket_value_gbp": {
+      "mean": 509.18,
+      "median": 303.22,
+      "p25": 152.55,
+      "p75": 496.3,
+      "p95": 1450.64,
+      "max": 168469.6
+    },
+    "basket_distinct_products": {
+      "mean": 25.1,
+      "median": 15.0
+    },
+    "n_invoices": 39517
+  },
+  "d6_customers_with_ambiguous_country": 12,
+  "d7_sql": "SELECT c.Country,\n       COUNT(DISTINCT c.Customer_ID) AS n_customers,\n       COUNT(DISTINCT i.Invoice)     AS n_orders,\n       ROUND(SUM(il.Quantity * il.Price), 2) AS revenue_gbp\nFROM CUSTOMER c\nJOIN INVOICE i        ON i.Customer_ID = c.Customer_ID\nJOIN INVOICE_LINE il  ON il.Invoice = i.Invoice\nJOIN PRODUCT p        ON p.StockCode = il.StockCode\nWHERE c.Country != 'United Kingdom'\nGROUP BY c.Country\nORDER BY revenue_gbp DESC\nLIMIT 10;",
+  "d7_business_question": "นอกสหราชอาณาจักร ประเทศไหนสร้างรายได้ให้ธุรกิจมากที่สุด และมีลูกค้า/ออเดอร์กี่ราย",
+  "d7_result_top10_non_uk": [
+    {
+      "Country": "EIRE",
+      "n_customers": 3,
+      "n_orders": 528,
+      "revenue_gbp": 591536.65
+    },
+    {
+      "Country": "Netherlands",
+      "n_customers": 22,
+      "n_orders": 216,
+      "revenue_gbp": 549952.66
+    },
+    {
+      "Country": "Germany",
+      "n_customers": 106,
+      "n_orders": 752,
+      "revenue_gbp": 388732.7
+    },
+    {
+      "Country": "France",
+      "n_customers": 93,
+      "n_orders": 592,
+      "revenue_gbp": 315544.07
+    },
+    {
+      "Country": "Australia",
+      "n_customers": 14,
+      "n_orders": 87,
+      "revenue_gbp": 169137.44
+    },
+    {
+      "Country": "Spain",
+      "n_customers": 35,
+      "n_orders": 137,
+      "revenue_gbp": 97245.12
+    },
+    {
+      "Country": "Switzerland",
+      "n_customers": 22,
+      "n_orders": 90,
+      "revenue_gbp": 95766.69
+    },
+    {
+      "Country": "Sweden",
+      "n_customers": 19,
+      "n_orders": 98,
+      "revenue_gbp": 86079.04
+    },
+    {
+      "Country": "Denmark",
+      "n_customers": 9,
+      "n_orders": 40,
+      "revenue_gbp": 67271.37
+    },
+    {
+      "Country": "Belgium",
+      "n_customers": 28,
+      "n_orders": 144,
+      "revenue_gbp": 57117.5
+    }
+  ],
+  "d6_table_row_counts": {
+    "CUSTOMER": 5852,
+    "PRODUCT": 4898,
+    "INVOICE": 36594,
+    "INVOICE_LINE": 802634
+  }
+}

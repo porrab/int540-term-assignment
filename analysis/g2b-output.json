@@ -1,0 +1,299 @@
+{
+  "data_end_exclusive": "2011-12-10",
+  "silent_days": 180,
+  "b1_cleansing_log": [
+    {
+      "step": "0 raw file (2 sheets combined)",
+      "rows": 1067371,
+      "value_gbp": 19287250.57,
+      "note": "starting point",
+      "removed_vs_previous": 0
+    },
+    {
+      "step": "1 drop exact duplicate rows",
+      "rows": 1033036,
+      "value_gbp": 18855533.7,
+      "note": "export artefact, not two real transactions",
+      "removed_vs_previous": 34335
+    },
+    {
+      "step": "2 set aside C-invoices (kept in a returns table)",
+      "rows": 1013932,
+      "value_gbp": 20317584.31,
+      "note": "returns are analysed separately",
+      "removed_vs_previous": 19104
+    },
+    {
+      "step": "3 drop Quantity <= 0 outside C-invoices",
+      "rows": 1010539,
+      "value_gbp": 20317584.31,
+      "note": "money out cannot sit inside sales",
+      "removed_vs_previous": 3393
+    },
+    {
+      "step": "4 drop Price <= 0",
+      "rows": 1007913,
+      "value_gbp": 20476260.45,
+      "note": "free samples / accounting fixes, not revenue",
+      "removed_vs_previous": 2626
+    },
+    {
+      "step": "5 drop non-product StockCodes",
+      "rows": 1003343,
+      "value_gbp": 19655052.81,
+      "note": "postage, fees, discounts are not product sales",
+      "removed_vs_previous": 4570
+    },
+    {
+      "step": "6 customer-level base: Customer ID known",
+      "rows": 776579,
+      "value_gbp": 17068582.72,
+      "note": "sales total keeps step 5; every per-customer number uses this step",
+      "removed_vs_previous": 226764
+    }
+  ],
+  "b1_returns_table_rows": 19104,
+  "b1_returns_table_value_gbp": -1462050.61,
+  "b1_duplicate_effect": {
+    "goal1_base_with_duplicates": {
+      "sales_rows": 1037007,
+      "sales_revenue_gbp": 20121372.19,
+      "customers": 5852,
+      "repeat_rate_pct": 72.35,
+      "silent_180_pct": 40.64
+    },
+    "goal2_base_deduplicated": {
+      "sales_rows": 1003343,
+      "sales_revenue_gbp": 19655052.81,
+      "customers": 5852,
+      "repeat_rate_pct": 72.35,
+      "silent_180_pct": 40.64
+    }
+  },
+  "b2_features": {
+    "customers": 5852,
+    "summary": {
+      "recency_days": {
+        "median": 95.0,
+        "mean": 199.73,
+        "p95": 623.0,
+        "max": 738.0,
+        "missing": 0
+      },
+      "frequency": {
+        "median": 3.0,
+        "mean": 6.25,
+        "p95": 20.0,
+        "max": 373.0,
+        "missing": 0
+      },
+      "monetary_gbp": {
+        "median": 856.02,
+        "mean": 2916.71,
+        "p95": 9270.27,
+        "max": 580987.04,
+        "missing": 0
+      },
+      "avg_basket_gbp": {
+        "median": 277.87,
+        "mean": 384.4,
+        "p95": 871.21,
+        "max": 84236.25,
+        "missing": 0
+      },
+      "avg_lines_per_basket": {
+        "median": 17.0,
+        "mean": 21.27,
+        "p95": 54.17,
+        "max": 297.88,
+        "missing": 0
+      },
+      "avg_units_per_basket": {
+        "median": 155.0,
+        "mean": 254.75,
+        "p95": 551.0,
+        "max": 87167.0,
+        "missing": 0
+      },
+      "tenure_days": {
+        "median": 529.0,
+        "mean": 473.54,
+        "p95": 735.0,
+        "max": 738.0,
+        "missing": 0
+      },
+      "avg_days_between_orders": {
+        "median": 72.78,
+        "mean": 103.23,
+        "p95": 323.17,
+        "max": 714.0,
+        "missing": 1618
+      },
+      "return_value_gbp": {
+        "median": 0.0,
+        "mean": 121.08,
+        "p95": 241.54,
+        "max": 168469.6,
+        "missing": 0
+      },
+      "return_rate_pct": {
+        "median": 0.0,
+        "mean": 2.41,
+        "p95": 10.23,
+        "max": 285.84,
+        "missing": 0
+      }
+    },
+    "has_returned_pct": 41.37,
+    "is_uk_pct": 91.15,
+    "buyer_type_counts": {
+      "wholesale-sized": 5775,
+      "retail-sized": 77
+    },
+    "silent_180_customers": 2378,
+    "silent_180_pct": 40.64,
+    "silent_180_revenue_share_pct": 13.44,
+    "rfm_bin_edges": {
+      "recency_days": [
+        19.0,
+        58.0,
+        186.0,
+        408.0,
+        738.0
+      ],
+      "frequency": [
+        1,
+        2,
+        4,
+        8,
+        373
+      ],
+      "monetary_gbp": [
+        285.3,
+        603.42,
+        1207.24,
+        2885.11,
+        580987.04
+      ]
+    },
+    "silent_pct_by_F_score": {
+      "1": 69.6,
+      "2": 60.51,
+      "3": 41.03,
+      "4": 25.56,
+      "5": 6.49
+    },
+    "silent_pct_by_returned": {
+      "False": 49.58,
+      "True": 27.96
+    },
+    "silent_pct_by_F_and_returned": {
+      "F1_returned_False": 68.59,
+      "F1_returned_True": 75.76,
+      "F2_returned_False": 61.7,
+      "F2_returned_True": 56.18,
+      "F3_returned_False": 40.46,
+      "F3_returned_True": 42.0,
+      "F4_returned_False": 23.52,
+      "F4_returned_True": 27.41,
+      "F5_returned_False": 6.67,
+      "F5_returned_True": 6.45
+    },
+    "retail_sized_revenue_share_pct": 0.05,
+    "silent_regulars": {
+      "6plus": {
+        "customers": 1786,
+        "revenue_share_pct": 79.71,
+        "silent": 205,
+        "silent_pct": 11.48,
+        "silent_revenue_gbp": 781670.7,
+        "silent_revenue_share_pct": 4.58
+      },
+      "11plus": {
+        "customers": 864,
+        "revenue_share_pct": 64.55,
+        "silent": 52,
+        "silent_pct": 6.02,
+        "silent_revenue_gbp": 457706.51,
+        "silent_revenue_share_pct": 2.68
+      },
+      "6plus_goal1_base_with_duplicates": {
+        "silent": 205,
+        "silent_revenue_gbp": 813004.09,
+        "silent_revenue_share_pct": 4.66
+      }
+    }
+  },
+  "b3_transformation": {
+    "recency_days": {
+      "raw": {
+        "skewness": 0.89,
+        "excess_kurtosis": -0.46
+      },
+      "log1p": {
+        "skewness": -0.55,
+        "excess_kurtosis": -0.6
+      },
+      "iqr_upper_fence": 910.0,
+      "outliers_above_fence": 0,
+      "outlier_share_of_revenue_pct": 0.0,
+      "mean": 199.73,
+      "median": 95.0
+    },
+    "frequency": {
+      "raw": {
+        "skewness": 12.04,
+        "excess_kurtosis": 240.2
+      },
+      "log1p": {
+        "skewness": 1.0,
+        "excess_kurtosis": 0.97
+      },
+      "iqr_upper_fence": 16.0,
+      "outliers_above_fence": 424,
+      "outlier_share_of_revenue_pct": 51.33,
+      "mean": 6.25,
+      "median": 3.0
+    },
+    "monetary_gbp": {
+      "raw": {
+        "skewness": 25.33,
+        "excess_kurtosis": 849.49
+      },
+      "log1p": {
+        "skewness": 0.27,
+        "excess_kurtosis": 0.45
+      },
+      "iqr_upper_fence": 5093.21,
+      "outliers_above_fence": 619,
+      "outlier_share_of_revenue_pct": 64.91,
+      "mean": 2916.71,
+      "median": 856.02
+    },
+    "avg_basket_gbp": {
+      "raw": {
+        "skewness": 53.38,
+        "excess_kurtosis": 3446.38
+      },
+      "log1p": {
+        "skewness": 0.06,
+        "excess_kurtosis": 3.48
+      },
+      "iqr_upper_fence": 762.18,
+      "outliers_above_fence": 384,
+      "outlier_share_of_revenue_pct": 36.55,
+      "mean": 384.4,
+      "median": 277.87
+    },
+    "top1pct_customers": 59,
+    "top1pct_revenue_share_pct": 32.09,
+    "negative_or_zero_monetary": 0
+  },
+  "backtest_table": {
+    "cutoff": "2010-12-09",
+    "customers": 4282,
+    "churned": 1581,
+    "churn_rate_pct": 36.92,
+    "churned_prior_revenue_gbp": 1216628.06
+  }
+}

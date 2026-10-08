@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Goal 2 Progress</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1f;--muted:#5f6368;--card:#fff;--line:#e3e1dc;--accent:#2f5d8a;--warn-bg:#fff4e0;--warn-line:#e0a030;--ok:#2e7d4f;--tag:#eef3f8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181a;--fg:#ececec;--muted:#a0a4a8;--card:#202225;--line:#34373b;--accent:#8ab4e0;--warn-bg:#3a2f1c;--warn-line:#c08a2a;--ok:#6cc08f;--tag:#26303a}}
+:root[data-theme="dark"]{--bg:#17181a;--fg:#ececec;--muted:#a0a4a8;--card:#202225;--line:#34373b;--accent:#8ab4e0;--warn-bg:#3a2f1c;--warn-line:#c08a2a;--ok:#6cc08f;--tag:#26303a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 "Sarabun","Noto Sans Thai",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.6rem;margin:0 0 4px}
+h2{font-size:1.25rem;margin:40px 0 8px;padding-top:8px;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:22px 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px}
+nav a{background:var(--tag);color:var(--accent);text-decoration:none;padding:4px 10px;border-radius:999px;font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+.warn{background:var(--warn-bg);border-left:4px solid var(--warn-line);border-radius:6px;padding:12px 14px;margin:14px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kpi b{display:block;font-size:1.3rem}
+.kpi span{color:var(--muted);font-size:.85rem}
+.tbl{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--tag)}
+td.n{text-align:right;white-space:nowrap}
+.badge{display:inline-block;font-size:.78rem;padding:1px 8px;border-radius:999px;background:var(--tag);color:var(--accent)}
+.done{color:var(--ok);font-weight:600}
+code{font-size:.85em;background:var(--tag);padding:1px 5px;border-radius:4px}
+ul{padding-left:1.2em}
+.foot{color:var(--muted);font-size:.85rem;margin-top:40px}
+</style>
+</head>
+<body>
+<main>
+<h1>INT540 Term Assignment — ความคืบหน้า Goal 2</h1>
+<p class="sub">อัปเดต 8 ต.ค. 2569 · ร่างแรก ทีมยังไม่ได้ตรวจ · ส่ง 25 พ.ย. / นำเสนอ 26 พ.ย.</p>
+<nav>
+<a href="#status">สถานะ</a><a href="#dedup">แถวซ้ำ</a><a href="#g2a">G2-A ระบบ</a><a href="#g2b">G2-B ข้อมูล</a><a href="#g2d2">G2-D2 Clustering</a><a href="#todo">ยังค้าง</a>
+</nav>
+
+<section id="status">
+<h2>สถานะรวม</h2>
+<div class="tbl"><table>
+<tr><th>งาน</th><th>โจทย์ข้อ</th><th>สถานะ</th></tr>
+<tr><td>G2-A องค์ประกอบของระบบ</td><td>5</td><td class="done">ร่างแรกเสร็จ</td></tr>
+<tr><td>G2-B Data treatment + ตีความ</td><td>6</td><td class="done">ร่างแรกเสร็จ</td></tr>
+<tr><td>G2-C UX/UI</td><td>7</td><td>ยังไม่เริ่ม</td></tr>
+<tr><td>G2-D1 BI dashboard</td><td>8</td><td>ข้อมูลพร้อม · รอ ingest สไลด์คาบ 8 ต.ค.</td></tr>
+<tr><td>G2-D2 Clustering</td><td>8</td><td class="done">ทำล่วงหน้าเสร็จ · ต้องเช็กกับคาบ 15 ต.ค.</td></tr>
+<tr><td>G2-D3–D6, G2-E, G2-F</td><td>8–9</td><td>ตามปฏิทินหลังสอบกลางภาค</td></tr>
+</table></div>
+</section>
+
+<section id="dedup">
+<h2>⚠️ ตัดแถวซ้ำแล้ว — ตัวเลขเงินเปลี่ยน</h2>
+<p>G1-D4 ตัดสินใจไว้ว่าจะตัดแถวซ้ำ 34,335 แถว แต่สคริปต์ Goal 1 ไม่ได้ตัดจริง ตอนนี้ทุกสคริปต์ตัดแล้วและรันใหม่หมด</p>
+<div class="warn"><b>สาเหตุหลัก:</b> 22,844 จาก 34,335 แถว (66.5%) อยู่ในวันที่ 1–9 ธ.ค. 2010 เพราะ Excel 2 ชีตมีช่วงนี้ซ้ำกัน
+ยอดขาย ธ.ค. 2010 จึงลดจาก £1,187,158 เหลือ £775,638 (ลดลง 35% หรือพูดอีกแบบคือเดิมสูงเกินจริง 53%)</div>
+<h3>ไม่เปลี่ยน — ข้อสรุป Goal 1 ยังยืน</h3>
+<div class="kpis">
+<div class="kpi"><b>27.65%</b><span>ลูกค้าซื้อครั้งเดียว</span></div>
+<div class="kpi"><b>72.35%</b><span>อัตราซื้อซ้ำ</span></div>
+<div class="kpi"><b>40.64%</b><span>ลูกค้าเงียบ &gt;180 วัน (2,378 ราย)</span></div>
+<div class="kpi"><b>56 วัน</b><span>มัธยฐานถึงการซื้อครั้งที่ 2</span></div>
+<div class="kpi"><b>36.92%</b><span>อัตราหายใน backtest</span></div>
+</div>
+<h3>เปลี่ยน — ใช้ชุดใหม่ใน Goal 2</h3>
+<div class="tbl"><table>
+<tr><th>ตัวเลข</th><th>Goal 1 (เดิม)</th><th>ใหม่</th></tr>
+<tr><td>ยอดขายสินค้า</td><td class="n">£20,121,372</td><td class="n"><b>£19,655,053</b></td></tr>
+<tr><td>มูลค่าที่เสี่ยง (ลูกค้า 6+ ครั้งที่เงียบ 205 ราย)</td><td class="n">£813,004</td><td class="n"><b>£781,671</b></td></tr>
+<tr><td>คืนสินค้าจริง</td><td class="n">3.61%</td><td class="n"><b>3.65%</b></td></tr>
+<tr><td>ยอดขายที่ทำระดับลูกค้าได้</td><td class="n">86.65%</td><td class="n"><b>86.84%</b></td></tr>
+<tr><td>พ.ย.–ธ.ค. สูงกว่าเดือนอื่น</td><td class="n">~50%</td><td class="n"><b>~39%</b></td></tr>
+<tr><td>UK ส่วนแบ่งยอดขาย</td><td class="n">85.71%</td><td class="n"><b>85.54%</b></td></tr>
+</table></div>
+<p>ยอดเงินรวมลดราว 1–4% ยกเว้นเดือน ธ.ค. 2010 ตารางเทียบครบทุกตัวอยู่ใน <code>dedup-recheck.md</code></p>
+</section>
+
+<section id="g2a">
+<h2>G2-A · องค์ประกอบของระบบ <span class="badge">โจทย์ข้อ 5</span></h2>
+<div class="card"><b>ข้อเสนอ:</b> Business Decision Improvement เป็นตัวหลัก — ช่วยตัดสินใจว่า "สัปดาห์นี้ควรโทรหาลูกค้าคนไหนก่อน"
++ เพิ่มขั้นตอนเดียวในกระบวนการ: ทบทวนรายชื่อลูกค้าเสี่ยงทุกสัปดาห์และบันทึกผลการติดต่อ (คือ feedback loop ที่ Goal 1 บอกว่าขาด) <span class="badge">รอทีมเคาะ</span></div>
+<div class="tbl"><table>
+<tr><th>จุด</th><th>โมเดล</th><th>ใครใช้</th><th>ตัดสินใจอะไร</th></tr>
+<tr><td>ทุกสัปดาห์</td><td>Classification (G2-D3) — โอกาสที่จะเงียบ</td><td>ระบบ</td><td>—</td></tr>
+<tr><td>จัดลำดับ</td><td>มูลค่าที่เสี่ยง = P(เงียบ) × มูลค่าลูกค้า</td><td>พนักงานขาย</td><td>โทรหาใครก่อน</td></tr>
+<tr><td>บน worklist</td><td>Clustering (G2-D2) — กลุ่มลูกค้า</td><td>พนักงานขาย</td><td>คุยแบบไหน</td></tr>
+<tr><td>รายเดือน</td><td>BI dashboard (G2-D1)</td><td>หัวหน้า/ผู้บริหาร</td><td>ปัญหาดีขึ้นหรือแย่ลง</td></tr>
+</table></div>
+<p>ระบบเสนอรายชื่อพร้อมเหตุผล คนเป็นคนตัดสินใจ · input ที่คนกรอกมีแค่ผลการติดต่อ</p>
+</section>
+
+<section id="g2b">
+<h2>G2-B · Data treatment <span class="badge">โจทย์ข้อ 6</span></h2>
+<h3>B1 · Cleansing 7 ขั้น</h3>
+<div class="tbl"><table>
+<tr><th>ขั้น</th><th>ทำอะไร</th><th>เหลือ (แถว)</th><th>ตัดออก</th></tr>
+<tr><td>0</td><td>ไฟล์ดิบ (รวม 2 ชีต)</td><td class="n">1,067,371</td><td class="n">—</td></tr>
+<tr><td>1</td><td>ตัดแถวซ้ำ</td><td class="n">1,033,036</td><td class="n">34,335</td></tr>
+<tr><td>2</td><td>แยกใบ C ไปตารางคืนของ</td><td class="n">1,013,932</td><td class="n">19,104</td></tr>
+<tr><td>3</td><td>ตัด Quantity ≤ 0</td><td class="n">1,010,539</td><td class="n">3,393</td></tr>
+<tr><td>4</td><td>ตัด Price ≤ 0</td><td class="n">1,007,913</td><td class="n">2,626</td></tr>
+<tr><td>5</td><td>ตัดรหัสที่ไม่ใช่สินค้า → ฐานยอดขาย</td><td class="n"><b>1,003,343</b></td><td class="n">4,570</td></tr>
+<tr><td>6</td><td>เฉพาะแถวที่มี Customer ID</td><td class="n"><b>776,579</b></td><td class="n">226,764</td></tr>
+</table></div>
+<h3>B2 · ฟีเจอร์ระดับลูกค้า (5,852 ราย)</h3>
+<p>RFM + ตะกร้า + การคืนของ + อายุความสัมพันธ์ + ระยะห่างเฉลี่ยระหว่างออเดอร์ · คะแนน RFM 1–5 ทำด้วย equal-frequency binning (คาบ 24 ก.ย.)</p>
+<div class="kpis">
+<div class="kpi"><b>95 วัน</b><span>Recency มัธยฐาน</span></div>
+<div class="kpi"><b>3 ใบ</b><span>Frequency มัธยฐาน</span></div>
+<div class="kpi"><b>£856</b><span>Monetary มัธยฐาน (เฉลี่ย £2,917)</span></div>
+</div>
+<p>ลูกค้า F = 1 เงียบไปแล้ว 69.60% · F = 5 เงียบแค่ 6.49% → ความถี่เป็นสัญญาณที่แรง</p>
+<h3>B3 · Transformation</h3>
+<ul>
+<li><b>ไม่ตัด outlier</b> — 619 รายที่เกินเกณฑ์ IQR ถือยอดขาย 64.91% เป็นลูกค้ารายใหญ่ที่ต้องเฝ้าที่สุด ไม่ใช่ข้อมูลเสีย</li>
+<li><b>log(1+x)</b> — Monetary เบ้ 25.33 → 0.27</li>
+<li><b>z-score</b> — ให้ R, F, M หน่วยเท่ากันก่อนเข้า k-means</li>
+<li>dashboard ใช้ค่าดิบและมัธยฐาน เพราะคนอ่านคือฝ่ายขาย</li>
+</ul>
+<h3>B4 · กับดักที่เจอ</h3>
+<div class="card">ดูผ่าน ๆ คนเคยคืนของเงียบน้อยกว่า (27.96% vs 49.58%) แต่พอเทียบในกลุ่มที่ซื้อบ่อยเท่ากัน ช่องว่าง 21.6 จุดหายไป เหลือต่างไม่เกิน ~7 จุด และ 3 ใน 5 กลุ่มกลับทิศ
+→ เป็นข้อสังเกตให้โมเดล G2-D3 ทดสอบ ไม่ใช่ข้อสรุป</div>
+</section>
+
+<section id="g2d2">
+<h2>G2-D2 · Clustering <span class="badge">โจทย์ข้อ 8</span></h2>
+<p>k-means บน R, F, M (log + z-score) · <b>k = 4</b> เลือกจาก elbow (SSE ลด &gt;20% จนถึง k = 4), silhouette สูงสุดในช่วง k ≥ 3 (0.3652) และนิ่งพอข้าม 10 seed</p>
+<div class="tbl"><table>
+<tr><th>กลุ่ม</th><th>ลูกค้า</th><th>ส่วนแบ่งยอดขาย</th><th>เงียบ &gt;180 วัน</th><th>ควรทำ</th></tr>
+<tr><td><b>Loyal wholesale</b><br>ลูกค้าประจำรายใหญ่</td><td class="n">1,110 (18.97%)</td><td class="n"><b>71.58%</b></td><td class="n">1.17%</td><td>ปกป้อง</td></tr>
+<tr><td><b>Slipping regulars</b><br>ลูกค้าประจำที่เริ่มห่าง</td><td class="n">1,468 (25.09%)</td><td class="n">18.46%</td><td class="n">45.10%</td><td><b>เป้าหลักของ worklist</b> · ยอดของคนที่เงียบ £1.40M</td></tr>
+<tr><td><b>Recent, still small</b><br>ลูกค้าใหม่/ยังเล็ก</td><td class="n">1,220 (20.85%)</td><td class="n">5.87%</td><td class="n">0%</td><td>ดันให้ซื้อครั้งต่อไป</td></tr>
+<tr><td><b>Lapsed one-off</b><br>ซื้อน้อยแล้วหาย</td><td class="n">2,054 (35.10%)</td><td class="n">4.09%</td><td class="n">82.91%</td><td>ไม่ใช้คนโทร</td></tr>
+</table></div>
+<p>ลูกค้าประจำที่เงียบ 205 รายจาก Goal 1 อยู่ใน Slipping regulars 190 ราย — <b>สอดคล้องกับ</b> problem statement</p>
+<div class="warn"><b>ห้ามพูดบนเวที:</b> "k-means หาเจอเอง" — 205 รายนี้นิยามด้วย F และ Recency ซึ่งเป็น input ของ k-means อยู่แล้ว
+และ % เงียบของแต่ละกลุ่มวนกลับมาที่ตัวเอง (Recency เป็นทั้ง input และนิยาม) · silhouette 0.37 = แบ่งได้ปานกลาง</div>
+</section>
+
+<section id="todo">
+<h2>ยังค้าง</h2>
+<ul>
+<li>Ingest สไลด์คาบ 8 ต.ค. (L9a BI, L9b Visualization) → แล้วทำ dashboard G2-D1 ตามเครื่องมือที่สอน</li>
+<li>เช็ก G2-D2 กับคาบ 15 ต.ค. + ทำกราฟสำหรับสไลด์</li>
+<li>ทีมเคาะ: Decision Improvement เป็นตัวหลัก · ไม่ตัด outlier · ชื่อ 4 กลุ่ม · ตัวเลขเงินชุดใหม่ · รายละเอียดที่ติดดาวใน G2-A</li>
+<li>ยังไม่ได้ลง Notion และ public repo · งานอยู่บน branch <code>ccr-5abab564-26vq0o</code> ยังไม่ merge เข้า main</li>
+<li>feedback จากการนำเสนอ 1 ต.ค. ยังไม่มีบันทึก</li>
+</ul>
+</section>
+
+<p class="foot">หน้านี้ไว้อ่านอย่างเดียว · ต้นฉบับคือไฟล์ .md ในโฟลเดอร์เดียวกัน (<code>g2-a-system-components.md</code>, <code>g2-b-data-treatment.md</code>, <code>g2-d2-clustering.md</code>, <code>dedup-recheck.md</code>) — ถ้าตัวเลขไม่ตรงกัน ให้ยึด .md</p>
+</main>
+</body>
+</html>
