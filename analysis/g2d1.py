@@ -9,8 +9,13 @@ Writes to ../data/bi/ :
   dim_customer.csv          one row per customer: country, segment (G2-D2), RFM, churn score (G2-D3)
   dim_product.csv           StockCode -> most common description
   dim_date.csv              day -> week, month, quarter, year (the Time dimension G2-D1 asked for)
-  customer_month_status.csv one row per month-end x customer status, for the top chart:
+  customer_month_status.csv one row per month-end, for the top chart:
                             "% of customers silent >180 days" over time vs the BSC target
+  fact_customer_month.csv.zip
+                            one row per customer x month-end: that customer's status AS OF that
+                            month (days since last order, active/silent, newly silent), so a
+                            drill-down from a month on the top chart lists the customers as they
+                            were then, not as they are at the data end
 and g2d1-output.json with the row counts and the monthly series.
 
 Sales lines without a Customer ID stay in fact_sales (customer_key = 0, "Unknown") so revenue
@@ -23,6 +28,7 @@ import runpy
 import zipfile
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
@@ -42,7 +48,14 @@ def r2(x):
 
 def write_zip(frame, name):
     buf = frame.to_csv(index=False)
-    with zipfile.ZipFile(BI / f"{name}.zip", "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+    path = BI / f"{name}.zip"
+    # A zip stamps the write time, so rewriting identical data would still change the file
+    # (and add megabytes to git history). Only rewrite when the CSV inside differs.
+    if path.exists():
+        with zipfile.ZipFile(path) as z:
+            if z.namelist() == [name] and z.read(name).decode() == buf:
+                return
+    with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         z.writestr(name, buf)
 
 
@@ -119,7 +132,7 @@ out["dim_date"] = {"rows": int(len(dd)), "from": str(dd["date"].min()), "to": st
 # "% silent >180 days" as a time series, so the dashboard can show "first N months -> decide
 # -> next month the chart moves" (lecturer, 8 Oct).
 known = g2b["known"]
-rows = []
+rows, snaps = [], []
 points = [(me, me + pd.Timedelta(days=1), me.strftime("%Y-%m"))
           for me in pd.date_range("2010-06-30", DATA_END - pd.Timedelta(days=1), freq="ME")]
 points.append((DATA_END - pd.Timedelta(days=1), DATA_END, "2011-12 (to 9 Dec)"))
@@ -135,7 +148,29 @@ for me, asof, label in points:
                  "silent_regulars_6plus": int((silent & reg).sum()),
                  "active_customers": int((~silent).sum()),
                  "revenue_last_12m_gbp": r2(m12.sum())})
+    snaps.append(pd.DataFrame({
+        "customer_key": g.index.astype(int), "year_month": label, "month_end": me.date(),
+        "days_since_last_order": (asof - g["last"]).dt.days.to_numpy(),
+        "orders_so_far": g["orders"].to_numpy(),
+        "spend_last_12m_gbp": m12.reindex(g.index).fillna(0.0).round(2).to_numpy(),
+        "status": np.where(silent, "Silent >180d", "Active"),
+        "regular_6plus": reg.to_numpy()}))
 ms = pd.DataFrame(rows)
+fcm = pd.concat(snaps, ignore_index=True)
+# Newly silent = silent at this point but not at the previous one (the drill behind section 2
+# of ../g2-d1-dashboard.md: who tipped over between two month-ends).
+prev = fcm.groupby("customer_key")["status"].shift()
+fcm["newly_silent"] = (fcm["status"] == "Silent >180d") & (prev == "Active")
+write_zip(fcm, "fact_customer_month.csv")
+# The snapshot table must reproduce the top-chart series exactly.
+check = fcm.groupby("year_month", sort=False).agg(seen=("customer_key", "size"),
+                                                  silent=("status", lambda x: (x == "Silent >180d").sum()))
+assert (check["seen"].to_numpy() == ms["customers_seen"].to_numpy()).all()
+assert (check["silent"].to_numpy() == ms["silent_180"].to_numpy()).all()
+out["fact_customer_month"] = {
+    "rows": int(len(fcm)), "month_points": int(fcm["year_month"].nunique()),
+    "newly_silent_by_month": {k: int(v) for k, v in
+                              fcm[fcm["newly_silent"]].groupby("year_month", sort=False).size().items()}}
 ms.to_csv(BI / "customer_month_status.csv", index=False)
 out["customer_month_status"] = rows
 out["note"] = ("The last point is the data end (9 Dec 2011), the same snapshot as G1-B and G2-B. "

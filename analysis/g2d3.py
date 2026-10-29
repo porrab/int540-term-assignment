@@ -259,7 +259,7 @@ def policy(flag, label):
            "flagged_precision_pct": r2(y[idx].mean() * 100),
            "flagged_recall_pct": r2(y[idx].sum() / y.sum() * 100),
            "flagged_lost_value_captured_pct": r2(value[idx][y[idx] == 1].sum() / lost_total * 100)}
-    for k in (100, 250):
+    for k in (50, 100, 250):   # 50 = the list size Goal 1 promised (solution-outline.md section 6)
         top = idx[:k]
         res[f"top{k}_by_value_precision_pct"] = r2(y[top].mean() * 100)
         res[f"top{k}_by_value_lost_value_gbp"] = r2(value[top][y[top] == 1].sum())
@@ -276,6 +276,15 @@ out["worklist_policy_model"] = policy(flag_model, f"{best}: P >= 50%, then by 12
 out["worklist_policy_unweighted_logistic"] = policy(scores["logistic_regression"] >= .5,
                                                     "logistic_regression (no weight): P >= 50%, then by 12-month value")
 out["worklist_policy_baseline"] = policy(rec >= x_days, f"rule: no order for {int(x_days)}+ days, then by 12-month value")
+
+# Goal 1 described the ranking as "risk x customer value". Kept for comparison: the same
+# list sizes, ranked by P x 12-month value over all active customers (no 50% flag).
+ev_rank = np.argsort(-(scores[best] * value))
+yv = yte.to_numpy()
+out["ranking_p_times_value"] = {
+    f"top{k}_{m}": (r2(yv[ev_rank[:k]].mean() * 100) if m == "precision_pct" else
+                    r2(value[ev_rank[:k]][yv[ev_rank[:k]] == 1].sum()))
+    for k in (50, 100, 250) for m in ("precision_pct", "lost_value_gbp")}
 
 # What drives the prediction? Tree rules are what can be explained on stage.
 tree = models["decision_tree_depth4"]

@@ -4,7 +4,7 @@
 > Script: [`analysis/g2d1.py`](analysis/g2d1.py) · ผลลัพธ์ดิบ: [`analysis/g2d1-output.json`](analysis/g2d1-output.json) ·
 > ตาราง star schema: [`data/bi/`](data/bi/) · ภาพตัวอย่างกราฟบนสุด: [`figures/g2d1-top-chart-preview.png`](figures/g2d1-top-chart-preview.png)
 > สิ่งที่อาจารย์ขอ (คาบ 8 ต.ค.): [`brief/lecturer-verbal-brief.md`](brief/lecturer-verbal-brief.md) หัวข้อ "สิ่งที่ย้ำในคาบ 8 ต.ค."
-> สถานะ: ร่างแรก 2026-10-29 · **ข้อมูลและแบบพร้อมแล้ว ตัว dashboard ต้องมีคนในทีมสร้างใน Power BI** (Claude สร้างไฟล์ .pbix ไม่ได้) · ยังไม่ผ่านการตรวจของทีม
+> สถานะ: ร่างแรก 2026-10-29 · เพิ่ม `fact_customer_month` 2026-10-29 (drill ตามเดือนใช้สถานะ ณ เดือนนั้นได้) · **ข้อมูลและแบบพร้อมแล้ว ตัว dashboard ต้องมีคนในทีมสร้างใน Power BI** (Claude สร้างไฟล์ .pbix ไม่ได้) · ยังไม่ผ่านการตรวจของทีม
 
 ---
 
@@ -41,7 +41,8 @@
 
 ```
 [กราฟบนสุด] % เงียบ >180 วัน รายเดือน (เทียบเส้น baseline 40.64%)
-     │ drill down: ปี → ไตรมาส → เดือน (dim_date)
+     │ คลิกเดือน → ทุกระดับข้างล่างใช้สถานะลูกค้า "ณ สิ้นเดือนนั้น" จาก fact_customer_month
+     │ (ไม่ใช่สถานะ ณ 9 ธ.ค. 2011) · filter newly_silent = เฉพาะคนที่เพิ่งเงียบเดือนนั้น
      ▼
 [ระดับ 2] แยกตามกลุ่มลูกค้า G2-D2 — ส่วนแบ่งลูกค้า vs ส่วนแบ่งรายได้ + มูลค่าที่เสี่ยง
      │ slice: เลือก "Slipping regulars"
@@ -63,7 +64,8 @@ dim_customer ── fact_sales ── dim_product
 (customer_key)  (1 แถว = 1 รายการในใบเสร็จ)  (product_key)
         │
         └──── fact_returns (ใช้ dim เดียวกัน)
-customer_month_status  (ตารางสรุป ไม่ผูกความสัมพันธ์ ใช้กับกราฟบนสุดอย่างเดียว)
+fact_customer_month (ลูกค้า × สิ้นเดือน) ── dim_customer   (สถานะลูกค้า ณ แต่ละเดือน ใช้ drill จากกราฟบนสุด)
+customer_month_status  (ตารางสรุปรายเดือน ไม่ผูกความสัมพันธ์ ใช้วาดกราฟบนสุด)
 ```
 
 | ไฟล์ใน `data/bi/` | แถว | หมายเหตุ |
@@ -74,6 +76,7 @@ customer_month_status  (ตารางสรุป ไม่ผูกควา�
 | `dim_product.csv` | 4,898 | StockCode → ชื่อสินค้าที่ใช้บ่อยสุด |
 | `dim_date.csv` | 739 | วัน → สัปดาห์ → เดือน → ไตรมาส → ปี (มิติ Time ที่แผนบอกว่าต้องเพิ่ม) |
 | `customer_month_status.csv` | 19 | กราฟบนสุด |
+| `fact_customer_month.csv.zip` | 86,764 | ลูกค้า × 19 จุดเวลา: ไม่ได้ซื้อมากี่วัน, จำนวนใบถึงตอนนั้น, ยอด 12 เดือนย้อนหลัง, `status` (Active / Silent >180d), `newly_silent`, `regular_6plus` · สคริปต์ตรวจแล้วว่ารวมกลับได้ตัวเลขเดียวกับ `customer_month_status` ทุกเดือน |
 
 `risk_band` ใน dim_customer: High (P ≥ 50%) 966 ราย · Medium (30–50%) 603 · Low (< 30%) 1,905 · Already silent 2,378
 (ใช้เป็นระดับ ไม่โชว์เป็นเปอร์เซ็นต์ เพราะ P สูงกว่าความจริง — ดู [`g2-d3-classification.md`](g2-d3-classification.md) ข้อ 5)
@@ -83,9 +86,9 @@ customer_month_status  (ตารางสรุป ไม่ผูกควา�
 
 ## 5. วิธีสร้างใน Power BI (ทำตามได้ ไม่ต้องเขียนโค้ด)
 
-1. แตก zip ทั้งสองไฟล์ใน `data/bi/` → Power BI Desktop หรือ Power BI ออนไลน์ใน M365 ของมหาวิทยาลัย → **Get data → Text/CSV** โหลดทั้ง 6 ไฟล์
+1. แตก zip ทั้งสามไฟล์ใน `data/bi/` → Power BI Desktop หรือ Power BI ออนไลน์ใน M365 ของมหาวิทยาลัย → **Get data → Text/CSV** โหลดทั้ง 7 ไฟล์
 2. **Model view** ลากความสัมพันธ์ (ทุกเส้นเป็น many-to-one จาก fact ไป dim):
-   `fact_sales[customer_key] → dim_customer[customer_key]` · `fact_sales[product_key] → dim_product[product_key]` · `fact_sales[date_key] → dim_date[date_key]` · ทำแบบเดียวกันกับ `fact_returns`
+   `fact_sales[customer_key] → dim_customer[customer_key]` · `fact_sales[product_key] → dim_product[product_key]` · `fact_sales[date_key] → dim_date[date_key]` · ทำแบบเดียวกันกับ `fact_returns` · `fact_customer_month[customer_key] → dim_customer[customer_key]`
 3. **สร้าง hierarchy** ใน dim_date: year → year_quarter → year_month → date
 4. **Measures (DAX)** ที่ต้องมี:
    ```
@@ -95,8 +98,11 @@ customer_month_status  (ตารางสรุป ไม่ผูกควา�
                      COUNTROWS(FILTER(dim_customer, dim_customer[customer_key] <> 0)))
    Flagged customers = CALCULATE(COUNTROWS(dim_customer), dim_customer[risk_band] = "High")
    Return rate % = DIVIDE(-SUM(fact_returns[line_total_gbp]), [Revenue])
+   Silent % (as of month) = DIVIDE(CALCULATE(COUNTROWS(fact_customer_month), fact_customer_month[status] = "Silent >180d"),
+                                   COUNTROWS(fact_customer_month))
+   Newly silent = CALCULATE(COUNTROWS(fact_customer_month), fact_customer_month[newly_silent] = TRUE())
    ```
-5. **หน้า 1 — Overview:** กราฟเส้นบนสุดจาก `customer_month_status` (`silent_180_pct` ตาม `year_month`) + เส้นคงที่ 40.64% · ด้านล่าง: กราฟแท่งส่วนแบ่งลูกค้า vs รายได้ตาม `segment` · แผนที่หรือแท่งตาม `country` · slicer: segment, risk_band, country, ปี
+5. **หน้า 1 — Overview:** กราฟเส้นบนสุด = measure `Silent % (as of month)` ตาม `fact_customer_month[year_month]` (ตัวเลขเท่ากับ `customer_month_status.silent_180_pct`) — ใช้ตารางนี้แทน เพื่อให้คลิกเดือนแล้วกราฟอื่นกรองตาม + เส้นคงที่ 40.64% · ด้านล่าง: กราฟแท่งส่วนแบ่งลูกค้า vs รายได้ตาม `segment` · แผนที่หรือแท่งตาม `country` · slicer: segment, risk_band, country, ปี
 6. **หน้า 2 — Worklist:** ตารางจาก dim_customer กรอง `risk_band = High` เรียงตาม `worklist_rank` · ใส่ drill-through จากหน้า 1 (คลิกขวาที่กลุ่ม/ประเทศ → ไปหน้ารายชื่อ)
 7. ตรวจว่า Revenue รวม = £19,655,052.81 และ Silent % = 40.64% ถ้าไม่ตรง แปลว่าความสัมพันธ์หรือ filter ผิด
 
@@ -109,5 +115,5 @@ customer_month_status  (ตารางสรุป ไม่ผูกควา�
 ## ยังไม่ได้ทำ
 
 - [ ] สร้าง dashboard จริงใน Power BI ตามข้อ 5 (ต้องเป็นคนในทีม) แล้วเก็บภาพหน้าจอไว้ใน `figures/`
-- [ ] drill ใน Power BI ให้ได้ตัวเลขข้อ 2.2 (987 / 396 / 563 / 440) ตรงกับสคริปต์
+- [ ] drill ใน Power BI ให้ได้ตัวเลขข้อ 2.2 ตรงกับสคริปต์ — ระวังนิยาม: "เงียบ ณ สิ้น พ.ค. แต่ยัง active ณ สิ้น มี.ค." = **987** ราย ส่วนผลรวม `newly_silent` ของ เม.ย. + พ.ค. = 432 + 591 = **1,023** ราย (มากกว่าเพราะนับคนที่เพิ่งเงียบเดือน เม.ย. แล้วกลับมาซื้อก่อนสิ้น พ.ค. ด้วย) · เลือกนิยามเดียวแล้วพูดให้ตรง
 - [ ] ทีมตัดสินใจ: Power BI หรือ Excel
