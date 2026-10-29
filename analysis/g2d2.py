@@ -133,5 +133,44 @@ reg = feat[(feat["frequency"] >= 6) & feat["is_silent_180"]]
 out["silent_regulars_6plus_by_segment"] = reg["segment"].value_counts().to_dict()
 
 feat[["cluster", "segment"]].to_csv(DATA / "customer_segments.csv")
+
+# ------------------------------------------------------------ charts for the slides
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+FIG = HERE / "../figures"
+FIG.mkdir(exist_ok=True)
+ks = [d["k"] for d in scan]
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(10, 4))
+a1.plot(ks, [d["sse"] for d in scan], "o-")
+a1.axvline(K, color="grey", ls=":")
+a1.set_xlabel("k")
+a1.set_ylabel("Within-cluster SSE (RSS)")
+a1.set_title("Elbow")
+a2.plot(ks, [d["silhouette"] for d in scan], "o-", color="tab:orange")
+a2.axvline(K, color="grey", ls=":")
+a2.set_xlabel("k")
+a2.set_ylabel("Silhouette")
+a2.set_title("Silhouette (higher = better separated)")
+fig.tight_layout()
+fig.savefig(FIG / "g2d2-elbow-silhouette.png", dpi=150)
+plt.close(fig)
+
+order = prof.sort_values("revenue_share_pct", ascending=False)
+labels = [s.split(" (")[0] for s in order["segment"]]
+x = np.arange(len(order))
+fig, ax = plt.subplots(figsize=(8, 4))
+b1 = ax.bar(x - .2, order["customers_pct"], .4, label="% of customers", color="#9aa5b1")
+b2 = ax.bar(x + .2, order["revenue_share_pct"], .4, label="% of revenue", color="#1f77b4")
+ax.bar_label(b1, fmt="%.1f")
+ax.bar_label(b2, fmt="%.1f")
+ax.set_xticks(x, labels)
+ax.set_ylabel("%")
+ax.set_title("Four customer segments: share of customers vs share of revenue")
+ax.legend()
+fig.tight_layout()
+fig.savefig(FIG / "g2d2-segments-share.png", dpi=150)
+plt.close(fig)
 (HERE / "g2d2-output.json").write_text(json.dumps(out, indent=2, ensure_ascii=False, default=str))
 print(json.dumps(out, indent=2, ensure_ascii=False, default=str))

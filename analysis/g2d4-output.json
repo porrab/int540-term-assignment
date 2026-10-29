@@ -1,0 +1,71 @@
+{
+  "target": "net spend in the 180 days after the cut-off (GBP)",
+  "train": {
+    "customers": 3477,
+    "mean_gbp": 702.32,
+    "median_gbp": 97.7,
+    "zero_pct": 48.38,
+    "total_gbp": 2441961.61
+  },
+  "test": {
+    "customers": 2634,
+    "mean_gbp": 1399.57,
+    "median_gbp": 405.24,
+    "zero_pct": 30.22,
+    "total_gbp": 3686465.62
+  },
+  "test_results": {
+    "naive_half_of_last_12m": {
+      "mae_gbp": 742.36,
+      "r2_log_scale": 0.0526,
+      "spearman_rank": 0.6543,
+      "predicted_total_gbp": 3350474.17,
+      "top250_share_of_actual_spend_pct": 58.18
+    },
+    "linear_regression": {
+      "mae_gbp": 1384.81,
+      "r2_log_scale": 0.2639,
+      "spearman_rank": 0.6269,
+      "predicted_total_gbp": 2964399.02,
+      "top250_share_of_actual_spend_pct": 56.46
+    },
+    "random_forest": {
+      "mae_gbp": 1115.65,
+      "r2_log_scale": 0.2319,
+      "spearman_rank": 0.6404,
+      "predicted_total_gbp": 857130.96,
+      "top250_share_of_actual_spend_pct": 57.76
+    }
+  },
+  "linear_coefficients_std_log": {
+    "avg_days_between_orders": -1.8476,
+    "gap_ratio": -1.3593,
+    "tenure_days": 1.2294,
+    "recency_days": 0.4302,
+    "monetary_gbp": 0.3602,
+    "avg_basket_gbp": 0.2813,
+    "has_returned": 0.2604,
+    "is_uk": -0.1657,
+    "return_rate_pct": -0.1472,
+    "frequency": 0.0966,
+    "avg_lines_per_basket": -0.0402,
+    "avg_units_per_basket": 0.0242,
+    "value_12m_gbp": -0.0165
+  },
+  "random_forest_importance": {
+    "value_12m_gbp": 0.3876,
+    "monetary_gbp": 0.1795,
+    "avg_units_per_basket": 0.0583,
+    "frequency": 0.0576,
+    "gap_ratio": 0.0541,
+    "avg_basket_gbp": 0.0534,
+    "avg_lines_per_basket": 0.05,
+    "recency_days": 0.0476,
+    "avg_days_between_orders": 0.0456,
+    "tenure_days": 0.0386,
+    "return_rate_pct": 0.0222,
+    "is_uk": 0.0036,
+    "has_returned": 0.0019
+  },
+  "chosen": "naive_half_of_last_12m"
+}

@@ -1,0 +1,231 @@
+{
+  "fact_sales": {
+    "rows": 1003343,
+    "revenue_gbp": 19655052.81,
+    "rows_unknown_customer": 226764
+  },
+  "fact_returns": {
+    "rows": 17915,
+    "value_gbp": -716495.53
+  },
+  "dim_customer": {
+    "rows": 5853,
+    "risk_band_counts": {
+      "Already silent": 2378,
+      "Low": 1905,
+      "High": 966,
+      "Medium": 603,
+      "Unknown": 1
+    }
+  },
+  "dim_product": {
+    "rows": 4898
+  },
+  "dim_date": {
+    "rows": 739,
+    "from": "2009-12-01",
+    "to": "2011-12-09"
+  },
+  "customer_month_status": [
+    {
+      "month_end": "2010-06-30",
+      "year_month": "2010-06",
+      "customers_seen": 2951,
+      "silent_180": 214,
+      "silent_180_pct": 7.25,
+      "silent_regulars_6plus": 0,
+      "active_customers": 2737,
+      "revenue_last_12m_gbp": 4182211.25
+    },
+    {
+      "month_end": "2010-07-31",
+      "year_month": "2010-07",
+      "customers_seen": 3136,
+      "silent_180": 313,
+      "silent_180_pct": 9.98,
+      "silent_regulars_6plus": 2,
+      "active_customers": 2823,
+      "revenue_last_12m_gbp": 4763699.21
+    },
+    {
+      "month_end": "2010-08-31",
+      "year_month": "2010-08",
+      "customers_seen": 3299,
+      "silent_180": 468,
+      "silent_180_pct": 14.19,
+      "silent_regulars_6plus": 3,
+      "active_customers": 2831,
+      "revenue_last_12m_gbp": 5358260.38
+    },
+    {
+      "month_end": "2010-09-30",
+      "year_month": "2010-09",
+      "customers_seen": 3538,
+      "silent_180": 639,
+      "silent_180_pct": 18.06,
+      "silent_regulars_6plus": 6,
+      "active_customers": 2899,
+      "revenue_last_12m_gbp": 6163805.19
+    },
+    {
+      "month_end": "2010-10-31",
+      "year_month": "2010-10",
+      "customers_seen": 3913,
+      "silent_180": 708,
+      "silent_180_pct": 18.09,
+      "silent_regulars_6plus": 9,
+      "active_customers": 3205,
+      "revenue_last_12m_gbp": 7175376.69
+    },
+    {
+      "month_end": "2010-11-30",
+      "year_month": "2010-11",
+      "customers_seen": 4239,
+      "silent_180": 768,
+      "silent_180_pct": 18.12,
+      "silent_regulars_6plus": 13,
+      "active_customers": 3471,
+      "revenue_last_12m_gbp": 8331355.08
+    },
+    {
+      "month_end": "2010-12-31",
+      "year_month": "2010-12",
+      "customers_seen": 4315,
+      "silent_180": 909,
+      "silent_180_pct": 21.07,
+      "silent_regulars_6plus": 18,
+      "active_customers": 3406,
+      "revenue_last_12m_gbp": 8218638.57
+    },
+    {
+      "month_end": "2011-01-31",
+      "year_month": "2011-01",
+      "customers_seen": 4387,
+      "silent_180": 1030,
+      "silent_180_pct": 23.48,
+      "silent_regulars_6plus": 24,
+      "active_customers": 3357,
+      "revenue_last_12m_gbp": 8247608.5
+    },
+    {
+      "month_end": "2011-02-28",
+      "year_month": "2011-02",
+      "customers_seen": 4512,
+      "silent_180": 1164,
+      "silent_180_pct": 25.8,
+      "silent_regulars_6plus": 34,
+      "active_customers": 3348,
+      "revenue_last_12m_gbp": 8191964.52
+    },
+    {
+      "month_end": "2011-03-31",
+      "year_month": "2011-03",
+      "customers_seen": 4691,
+      "silent_180": 1392,
+      "silent_180_pct": 29.67,
+      "silent_regulars_6plus": 53,
+      "active_customers": 3299,
+      "revenue_last_12m_gbp": 8109134.7
+    },
+    {
+      "month_end": "2011-04-30",
+      "year_month": "2011-04",
+      "customers_seen": 4797,
+      "silent_180": 1739,
+      "silent_180_pct": 36.25,
+      "silent_regulars_6plus": 73,
+      "active_customers": 3058,
+      "revenue_last_12m_gbp": 7978448.15
+    },
+    {
+      "month_end": "2011-05-31",
+      "year_month": "2011-05",
+      "customers_seen": 4908,
+      "silent_180": 2220,
+      "silent_180_pct": 45.23,
+      "silent_regulars_6plus": 125,
+      "active_customers": 2688,
+      "revenue_last_12m_gbp": 8044956.51
+    },
+    {
+      "month_end": "2011-06-30",
+      "year_month": "2011-06",
+      "customers_seen": 5016,
+      "silent_180": 2294,
+      "silent_180_pct": 45.73,
+      "silent_regulars_6plus": 158,
+      "active_customers": 2722,
+      "revenue_last_12m_gbp": 8069412.03
+    },
+    {
+      "month_end": "2011-07-31",
+      "year_month": "2011-07",
+      "customers_seen": 5117,
+      "silent_180": 2339,
+      "silent_180_pct": 45.71,
+      "silent_regulars_6plus": 179,
+      "active_customers": 2778,
+      "revenue_last_12m_gbp": 8079527.86
+    },
+    {
+      "month_end": "2011-08-31",
+      "year_month": "2011-08",
+      "customers_seen": 5224,
+      "silent_180": 2444,
+      "silent_180_pct": 46.78,
+      "silent_regulars_6plus": 201,
+      "active_customers": 2780,
+      "revenue_last_12m_gbp": 8120481.07
+    },
+    {
+      "month_end": "2011-09-30",
+      "year_month": "2011-09",
+      "customers_seen": 5412,
+      "silent_180": 2490,
+      "silent_180_pct": 46.01,
+      "silent_regulars_6plus": 202,
+      "active_customers": 2922,
+      "revenue_last_12m_gbp": 8253688.89
+    },
+    {
+      "month_end": "2011-10-31",
+      "year_month": "2011-10",
+      "customers_seen": 5633,
+      "silent_180": 2436,
+      "silent_180_pct": 43.25,
+      "silent_regulars_6plus": 193,
+      "active_customers": 3197,
+      "revenue_last_12m_gbp": 8244443.95
+    },
+    {
+      "month_end": "2011-11-30",
+      "year_month": "2011-11",
+      "customers_seen": 5824,
+      "silent_180": 2371,
+      "silent_180_pct": 40.71,
+      "silent_regulars_6plus": 199,
+      "active_customers": 3453,
+      "revenue_last_12m_gbp": 8224999.56
+    },
+    {
+      "month_end": "2011-12-09",
+      "year_month": "2011-12 (to 9 Dec)",
+      "customers_seen": 5852,
+      "silent_180": 2378,
+      "silent_180_pct": 40.64,
+      "silent_regulars_6plus": 205,
+      "active_customers": 3474,
+      "revenue_last_12m_gbp": 8428925.52
+    }
+  ],
+  "note": "The last point is the data end (9 Dec 2011), the same snapshot as G1-B and G2-B. Points before Dec 2010 have under 12 months of history, so % silent climbs partly because the data starts on 1 Dec 2009, not only because customers left.",
+  "jump_mar_to_may_2011": {
+    "newly_silent": 987,
+    "by_last_purchase_month": {
+      "2010-10": 396,
+      "2010-11": 563,
+      "2010-12": 28
+    },
+    "first_purchase_in_oct_nov_2010": 440
+  }
+}

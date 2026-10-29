@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Health Mockup</title>
+<!-- G2-C mockup. Static: numbers are copied from data/worklist_scored.csv and
+     analysis/g2d1-output.json (run of 2026-10-29). See ../g2-c-ux-ui.md. -->
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #1d2433; --muted: #5d6778; --line: #dde1e7;
+    --accent: #1f6fb2; --high: #c0392b; --high-bg: #fdecea; --med: #b9770e; --med-bg: #fef5e7;
+    --low: #1e8449; --low-bg: #e9f7ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #9aa5b5; --line: #2c3442;
+      --accent: #5aa5e6; --high: #ff8a7a; --high-bg: #3a1f1c; --med: #f3c26b; --med-bg: #3a2f17;
+      --low: #7ad39a; --low-bg: #17301f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 "Sarabun", "Noto Sans Thai", system-ui, sans-serif; }
+  header { padding: 20px 16px 8px; max-width: 1100px; margin: auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; }
+  nav { display: flex; gap: 8px; flex-wrap: wrap; max-width: 1100px; margin: 8px auto 0; padding: 0 16px; }
+  nav a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink);
+          text-decoration: none; background: var(--card); font-size: 14px; }
+  main { max-width: 1100px; margin: auto; padding: 8px 16px 40px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+            padding: 16px; margin: 16px 0; }
+  h2 { font-size: 17px; margin: 0 0 4px; }
+  .who { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; font-size: 13px; }
+  .chip b { color: var(--accent); }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 14px; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .band { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .High { color: var(--high); background: var(--high-bg); }
+  .note { color: var(--muted); font-size: 12px; }
+  .late { color: var(--high); font-weight: 600; }
+  .btn { display: inline-block; padding: 4px 10px; border-radius: 6px; background: var(--accent);
+         color: #fff; font-size: 13px; text-decoration: none; }
+  form { display: grid; gap: 12px; max-width: 520px; }
+  label { font-size: 14px; font-weight: 600; }
+  select, input, textarea { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 8px;
+                            background: var(--bg); color: var(--ink); font: inherit; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px; }
+  .kpi { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .kpi .v { font-size: 22px; font-weight: 700; }
+  .kpi .t { font-size: 12px; color: var(--muted); }
+  .bars { display: grid; gap: 6px; }
+  .bar { display: grid; grid-template-columns: 150px 1fr 60px; gap: 8px; align-items: center; font-size: 13px; }
+  .track { height: 12px; background: var(--bg); border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
+  .fill { height: 100%; background: var(--accent); }
+  @media (max-width: 560px) { .bar { grid-template-columns: 110px 1fr 50px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>ระบบเตือนลูกค้าเงียบ — mockup (G2-C)</h1>
+  <div class="sub">ร้านขายส่งของขวัญออนไลน์ (Online Retail II) · ข้อมูลถึง 9 ธ.ค. 2011 · ตัวเลขจริงจากสคริปต์ G2-D1/G2-D3</div>
+</header>
+<nav>
+  <a href="#worklist">① Worklist (พนักงานขาย)</a>
+  <a href="#log">② บันทึกผลการติดต่อ</a>
+  <a href="#overview">③ ภาพรวม (หัวหน้า/ผู้บริหาร)</a>
+</nav>
+<main>
+
+<section id="worklist">
+  <h2>① Worklist ประจำสัปดาห์ — output + interaction</h2>
+  <div class="who">ผู้ใช้: พนักงานขาย · เปิดทุกจันทร์เช้า · ตัดสินใจ: โทรหาใครก่อน และคุยเรื่องอะไร</div>
+  <div class="filters">
+    <span class="chip">ความเสี่ยง: <b>สูง</b> (966 ราย)</span>
+    <span class="chip">กลุ่ม: <b>ทั้งหมด</b></span>
+    <span class="chip">ประเทศ: <b>ทั้งหมด</b></span>
+    <span class="chip">เรียงตาม: <b>ยอดซื้อ 12 เดือน</b></span>
+    <span class="chip">แสดง: <b>50 รายแรก</b></span>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr>
+      <th>#</th><th>ลูกค้า</th><th>ความเสี่ยง</th><th>ยอดซื้อ 12 เดือน</th><th>กลุ่ม (G2-D2)</th>
+      <th>ไม่ได้ซื้อมา</th><th>จังหวะปกติ</th><th>เรื่องที่ใช้คุย (G2-D5)</th><th></th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1</td><td>18139 · UK</td><td><span class="band High">สูง</span></td><td class="num">£8,438</td><td>Loyal wholesale</td>
+          <td class="num">17 วัน</td><td>สั่ง 6 ใบในวันเดียว ยังไม่มีจังหวะ</td><td class="note">—</td><td><a class="btn" href="#log">บันทึก</a></td></tr>
+      <tr><td>2</td><td>12357 · Switzerland</td><td><span class="band High">สูง</span></td><td class="num">£6,208</td><td>Slipping regulars</td>
+          <td class="num">33 วัน</td><td>ทุก ~355 วัน</td><td class="note">—</td><td><a class="btn" href="#log">บันทึก</a></td></tr>
+      <tr><td>3</td><td>17509 · UK</td><td><span class="band High">สูง</span></td><td class="num">£6,069</td><td>Loyal wholesale</td>
+          <td class="num late">57 วัน</td><td>ทุก ~1 วัน (สั่งถี่ช่วงสั้น)</td><td class="note">—</td><td><a class="btn" href="#log">บันทึก</a></td></tr>
+      <tr><td>4</td><td>16553 · UK</td><td><span class="band High">สูง</span></td><td class="num">£5,669</td><td>Loyal wholesale</td>
+          <td class="num late">163 วัน</td><td>ทุก ~16 วัน · 33 ใบ</td><td class="note">—</td><td><a class="btn" href="#log">บันทึก</a></td></tr>
+      <tr><td>5</td><td>12688 · Israel</td><td><span class="band High">สูง</span></td><td class="num">£4,874</td><td>Slipping regulars</td>
+          <td class="num">113 วัน</td><td>ซื้อครั้งเดียว</td><td class="note">—</td><td><a class="btn" href="#log">บันทึก</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">
+    ความเสี่ยงแสดงเป็นระดับ (สูง ≥ 50% · กลาง 30–50% · ต่ำ &lt; 30%) ไม่โชว์เปอร์เซ็นต์ เพราะความน่าจะเป็นของโมเดลสูงกว่าความจริง (G2-D3 ข้อ 5) ·
+    "ไม่ได้ซื้อมา" เป็นสีแดงเมื่อเกิน 3 เท่าของจังหวะปกติ · คอลัมน์ "เรื่องที่ใช้คุย" ดึงจากกฎ association เมื่อลูกค้าเคยซื้อสินค้าที่มีคู่
+    (5 รายนี้ยังไม่ได้ match กับกฎ — ใน mockup จึงเว้นไว้) · คลิกชื่อลูกค้า = drill-through ไปประวัติการซื้อ
+  </p>
+</section>
+
+<section id="log">
+  <h2>② บันทึกผลการติดต่อ — input (ที่คนกรอก มีแค่ส่วนนี้)</h2>
+  <div class="who">ผู้ใช้: พนักงานขาย · หลังโทร/อีเมลแต่ละราย · ข้อมูลนี้ป้อนกลับเข้ารอบถัดไป (feedback loop ที่ G1-B1 บอกว่าขาด)</div>
+  <form onsubmit="return false">
+    <div><label for="c">ลูกค้า</label><input id="c" value="16553 · UK · Loyal wholesale" readonly></div>
+    <div><label for="d">วันที่ติดต่อ</label><input id="d" type="date" value="2011-12-12"></div>
+    <div><label for="r">ผลการติดต่อ</label>
+      <select id="r"><option>ติดต่อได้ — จะสั่งเร็ว ๆ นี้</option><option>ติดต่อได้ — ยังไม่สั่ง</option>
+        <option>ติดต่อไม่ได้</option><option>ลูกค้าเลิกกิจการ/ไม่ต้องติดต่ออีก</option></select></div>
+    <div><label for="w">เหตุผลที่หยุดซื้อ (ถ้ารู้)</label>
+      <select id="w"><option>— ไม่ระบุ —</option><option>ราคา</option><option>หาสินค้าที่ต้องการไม่เจอ</option>
+        <option>ปัญหาการจัดส่ง/คืนของ</option><option>ย้ายไปซื้อร้านอื่น</option><option>ช่วงนอกฤดูขาย</option></select></div>
+    <div><label for="n">หมายเหตุ (ไม่บังคับ)</label><textarea id="n" rows="2"></textarea></div>
+    <div><a class="btn" href="#worklist">บันทึก</a></div>
+  </form>
+  <p class="note">ระบบไม่ส่งอีเมลหรือให้ส่วนลดเอง — คนเป็นคนตัดสินใจ (กฎของระบบใน G2-A3)</p>
+</section>
+
+<section id="overview">
+  <h2>③ ภาพรวมรายเดือน — output สำหรับหัวหน้าฝ่ายขาย/ผู้บริหาร</h2>
+  <div class="who">เปิดรายเดือน · ตัดสินใจ: ปัญหาดีขึ้นไหม ต้องเพิ่มคนโทรไหม · ตัวจริงสร้างใน Power BI ตาม G2-D1</div>
+  <div class="kpis">
+    <div class="kpi"><div class="v">40.64%</div><div class="t">ลูกค้าเงียบ &gt;180 วัน (BSC baseline)</div></div>
+    <div class="kpi"><div class="v">205</div><div class="t">ลูกค้าประจำ 6+ ครั้งที่เงียบ</div></div>
+    <div class="kpi"><div class="v">966</div><div class="t">ลูกค้า active ที่ความเสี่ยงสูง</div></div>
+    <div class="kpi"><div class="v">0%</div><div class="t">สัปดาห์ที่ทบทวนรายชื่อ (L&amp;G baseline — ยังไม่มีขั้นตอนนี้)</div></div>
+  </div>
+  <div class="bars" aria-label="% ลูกค้าเงียบเกิน 180 วัน รายเดือน">
+    <div class="bar"><span>ธ.ค. 2010</span><div class="track"><div class="fill" style="width:21.07%"></div></div><span>21.07%</span></div>
+    <div class="bar"><span>มี.ค. 2011</span><div class="track"><div class="fill" style="width:29.67%"></div></div><span>29.67%</span></div>
+    <div class="bar"><span>พ.ค. 2011</span><div class="track"><div class="fill" style="width:45.23%"></div></div><span>45.23%</span></div>
+    <div class="bar"><span>ส.ค. 2011</span><div class="track"><div class="fill" style="width:46.78%"></div></div><span>46.78%</span></div>
+    <div class="bar"><span>9 ธ.ค. 2011</span><div class="track"><div class="fill" style="width:40.64%"></div></div><span>40.64%</span></div>
+  </div>
+  <p class="note">กราฟบนสุด = % เงียบ &gt;180 วัน · คลิกเดือน → drill down เป็นกลุ่มลูกค้า → ประเทศ → รายชื่อ (หน้า ①)</p>
+</section>
+
+</main>
+</body>
+</html>

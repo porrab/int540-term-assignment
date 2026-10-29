@@ -1,0 +1,426 @@
+{
+  "window_days": 180,
+  "silent_days": 180,
+  "data_end_exclusive": "2011-12-10",
+  "features": [
+    "recency_days",
+    "frequency",
+    "monetary_gbp",
+    "value_12m_gbp",
+    "avg_basket_gbp",
+    "avg_lines_per_basket",
+    "avg_units_per_basket",
+    "tenure_days",
+    "avg_days_between_orders",
+    "gap_ratio",
+    "return_rate_pct",
+    "has_returned",
+    "is_uk"
+  ],
+  "train_cutoff_A": {
+    "cutoff": "2010-12-09",
+    "label_window": "2010-12-09 to 2011-06-06",
+    "active_customers": 3477,
+    "went_silent": 1673,
+    "silent_rate_pct": 48.12,
+    "value_12m_of_those_who_went_silent_gbp": 1479033.5
+  },
+  "test_cutoff_B": {
+    "cutoff": "2011-06-09",
+    "label_window": "2011-06-09 to 2011-12-05",
+    "active_customers": 2634,
+    "went_silent": 791,
+    "silent_rate_pct": 30.03,
+    "value_12m_of_those_who_went_silent_gbp": 668624.52
+  },
+  "scored_now": {
+    "cutoff": "2011-12-10",
+    "active_customers": 3474
+  },
+  "eda_median_by_label_train": {
+    "recency_days": {
+      "median_stayed": 24.0,
+      "median_went_silent": 49.0
+    },
+    "frequency": {
+      "median_stayed": 5.0,
+      "median_went_silent": 2.0
+    },
+    "monetary_gbp": {
+      "median_stayed": 1537.47,
+      "median_went_silent": 524.65
+    },
+    "value_12m_gbp": {
+      "median_stayed": 1463.82,
+      "median_went_silent": 496.0
+    },
+    "avg_basket_gbp": {
+      "median_stayed": 319.83,
+      "median_went_silent": 259.17
+    },
+    "avg_lines_per_basket": {
+      "median_stayed": 18.5,
+      "median_went_silent": 17.5
+    },
+    "avg_units_per_basket": {
+      "median_stayed": 180.17,
+      "median_went_silent": 142.0
+    },
+    "tenure_days": {
+      "median_stayed": 281.0,
+      "median_went_silent": 155.0
+    },
+    "avg_days_between_orders": {
+      "median_stayed": 46.23,
+      "median_went_silent": 65.0
+    },
+    "gap_ratio": {
+      "median_stayed": 0.54,
+      "median_went_silent": 0.97
+    },
+    "return_rate_pct": {
+      "median_stayed": 0.33,
+      "median_went_silent": 0.0
+    },
+    "has_returned": {
+      "median_stayed": 1.0,
+      "median_went_silent": 0.0
+    },
+    "is_uk": {
+      "median_stayed": 1.0,
+      "median_went_silent": 1.0
+    }
+  },
+  "silent_rate_by_frequency_train": {
+    "1": 75.78,
+    "2": 64.19,
+    "3": 50.33,
+    "4": 42.31,
+    "5": 31.88,
+    "6": 24.29,
+    "7": 23.53,
+    "8": 16.83,
+    "9": 12.05,
+    "10": 8.44
+  },
+  "silent_rate_by_has_returned_train": {
+    "0": 59.84,
+    "1": 32.3
+  },
+  "test_base_rate_pct": 30.03,
+  "models": {
+    "baseline_recency_rule": {
+      "cv_auc_train": null,
+      "test_auc": 0.6678,
+      "test_pr_auc": 0.435,
+      "top100_precision_pct": 45.0,
+      "top250_precision_pct": 49.6,
+      "top500_precision_pct": 48.6,
+      "top10pct_customers": 263,
+      "top10pct_precision_pct": 49.05,
+      "top10pct_recall_pct": 16.31,
+      "top10pct_lost_value_captured_pct": 14.49
+    },
+    "logistic_regression": {
+      "cv_auc_train": 0.7817,
+      "cv_auc_sd": 0.0166,
+      "test_confusion_at_0.5": {
+        "tn": 1388,
+        "fp": 455,
+        "fn": 290,
+        "tp": 501
+      },
+      "test_accuracy_pct": 71.72,
+      "test_precision_pct": 52.41,
+      "test_recall_pct": 63.34,
+      "test_auc": 0.7783,
+      "test_pr_auc": 0.5743,
+      "top100_precision_pct": 73.0,
+      "top250_precision_pct": 69.2,
+      "top500_precision_pct": 61.4,
+      "top10pct_customers": 263,
+      "top10pct_precision_pct": 69.2,
+      "top10pct_recall_pct": 23.01,
+      "top10pct_lost_value_captured_pct": 5.44
+    },
+    "decision_tree_depth4": {
+      "cv_auc_train": 0.7561,
+      "cv_auc_sd": 0.0177,
+      "test_confusion_at_0.5": {
+        "tn": 1153,
+        "fp": 690,
+        "fn": 254,
+        "tp": 537
+      },
+      "test_accuracy_pct": 64.16,
+      "test_precision_pct": 43.77,
+      "test_recall_pct": 67.89,
+      "test_auc": 0.7552,
+      "test_pr_auc": 0.5238,
+      "top100_precision_pct": 75.0,
+      "top250_precision_pct": 63.2,
+      "top500_precision_pct": 57.4,
+      "top10pct_customers": 263,
+      "top10pct_precision_pct": 63.5,
+      "top10pct_recall_pct": 21.11,
+      "top10pct_lost_value_captured_pct": 6.65
+    },
+    "random_forest": {
+      "cv_auc_train": 0.7746,
+      "cv_auc_sd": 0.0181,
+      "test_confusion_at_0.5": {
+        "tn": 1338,
+        "fp": 505,
+        "fn": 235,
+        "tp": 556
+      },
+      "test_accuracy_pct": 71.91,
+      "test_precision_pct": 52.4,
+      "test_recall_pct": 70.29,
+      "test_auc": 0.7835,
+      "test_pr_auc": 0.5627,
+      "top100_precision_pct": 71.0,
+      "top250_precision_pct": 62.0,
+      "top500_precision_pct": 58.4,
+      "top10pct_customers": 263,
+      "top10pct_precision_pct": 62.36,
+      "top10pct_recall_pct": 20.73,
+      "top10pct_lost_value_captured_pct": 5.6
+    },
+    "logistic_regression_weight_value": {
+      "test_auc": 0.7774,
+      "test_pr_auc": 0.5655,
+      "top100_precision_pct": 68.0,
+      "top250_precision_pct": 68.0,
+      "top500_precision_pct": 61.0,
+      "top10pct_customers": 263,
+      "top10pct_precision_pct": 67.3,
+      "top10pct_recall_pct": 22.38,
+      "top10pct_lost_value_captured_pct": 4.82
+    }
+  },
+  "weighting_choice_cv_train": {
+    "none": {
+      "cv_top10pct_precision_pct": 60.57,
+      "cv_top10pct_lost_value_captured_pct": 16.01
+    },
+    "sqrt_value": {
+      "cv_top10pct_precision_pct": 61.14,
+      "cv_top10pct_lost_value_captured_pct": 18.96
+    },
+    "value": {
+      "cv_top10pct_precision_pct": 59.14,
+      "cv_top10pct_lost_value_captured_pct": 19.06
+    }
+  },
+  "weighting_chosen": "value",
+  "chosen_model": "logistic_regression_weight_value",
+  "test_lost_value_total_gbp": 668624.52,
+  "worklist_policy_model": {
+    "policy": "logistic_regression_weight_value: P >= 50%, then by 12-month value",
+    "flagged": 1194,
+    "flagged_precision_pct": 49.75,
+    "flagged_recall_pct": 75.09,
+    "flagged_lost_value_captured_pct": 54.05,
+    "top100_by_value_precision_pct": 32.0,
+    "top100_by_value_lost_value_gbp": 139243.79,
+    "top100_by_value_lost_value_captured_pct": 20.83,
+    "top250_by_value_precision_pct": 38.0,
+    "top250_by_value_lost_value_gbp": 202871.23,
+    "top250_by_value_lost_value_captured_pct": 30.34
+  },
+  "worklist_policy_unweighted_logistic": {
+    "policy": "logistic_regression (no weight): P >= 50%, then by 12-month value",
+    "flagged": 956,
+    "flagged_precision_pct": 52.41,
+    "flagged_recall_pct": 63.34,
+    "flagged_lost_value_captured_pct": 30.34,
+    "top100_by_value_precision_pct": 43.0,
+    "top100_by_value_lost_value_gbp": 56656.31,
+    "top100_by_value_lost_value_captured_pct": 8.47,
+    "top250_by_value_precision_pct": 42.8,
+    "top250_by_value_lost_value_gbp": 100710.39,
+    "top250_by_value_lost_value_captured_pct": 15.06
+  },
+  "worklist_policy_baseline": {
+    "policy": "rule: no order for 54+ days, then by 12-month value",
+    "flagged": 1200,
+    "flagged_precision_pct": 42.42,
+    "flagged_recall_pct": 64.35,
+    "flagged_lost_value_captured_pct": 59.88,
+    "top100_by_value_precision_pct": 16.0,
+    "top100_by_value_lost_value_gbp": 122606.35,
+    "top100_by_value_lost_value_captured_pct": 18.34,
+    "top250_by_value_precision_pct": 16.4,
+    "top250_by_value_lost_value_gbp": 172217.05,
+    "top250_by_value_lost_value_captured_pct": 25.76
+  },
+  "decision_tree_rules": "|--- frequency <= 3.5\n|   |--- frequency <= 2.5\n|   |   |--- frequency <= 1.5\n|   |   |   |--- monetary_gbp <= 154.0\n|   |   |   |   |--- class: 1\n|   |   |   |--- monetary_gbp >  154.0\n|   |   |   |   |--- class: 1\n|   |   |--- frequency >  1.5\n|   |   |   |--- tenure_days <= 77.5\n|   |   |   |   |--- class: 1\n|   |   |   |--- tenure_days >  77.5\n|   |   |   |   |--- class: 1\n|   |--- frequency >  2.5\n|   |   |--- avg_units_per_basket <= 393.7\n|   |   |   |--- gap_ratio <= 0.1\n|   |   |   |   |--- class: 1\n|   |   |   |--- gap_ratio >  0.1\n|   |   |   |   |--- class: 0\n|   |   |--- avg_units_per_basket >  393.7\n|   |   |   |--- class: 0\n|--- frequency >  3.5\n|   |--- value_12m_gbp <= 1269.1\n|   |   |--- return_rate_pct <= 1.2\n|   |   |   |--- avg_days_between_orders <= 41.5\n|   |   |   |   |--- class: 0\n|   |   |   |--- avg_days_between_orders >  41.5\n|   |   |   |   |--- class: 1\n|   |   |--- return_rate_pct >  1.2\n|   |   |   |--- value_12m_gbp <= 910.1\n|   |   |   |   |--- class: 0\n|   |   |   |--- value_12m_gbp >  910.1\n|   |   |   |   |--- class: 0\n|   |--- value_12m_gbp >  1269.1\n|   |   |--- recency_days <= 63.5\n|   |   |   |--- frequency <= 8.5\n|   |   |   |   |--- class: 0\n|   |   |   |--- frequency >  8.5\n|   |   |   |   |--- class: 0\n|   |   |--- recency_days >  63.5\n|   |   |   |--- avg_units_per_basket <= 248.1\n|   |   |   |   |--- class: 1\n|   |   |   |--- avg_units_per_basket >  248.1\n|   |   |   |   |--- class: 0\n",
+  "decision_tree_importance": {
+    "frequency": 0.7832,
+    "value_12m_gbp": 0.1096,
+    "recency_days": 0.0377,
+    "avg_units_per_basket": 0.0188,
+    "tenure_days": 0.0171,
+    "monetary_gbp": 0.0117,
+    "return_rate_pct": 0.0089,
+    "avg_days_between_orders": 0.0071,
+    "gap_ratio": 0.0059
+  },
+  "logistic_coefficients_std": {
+    "frequency": 2.4619,
+    "avg_days_between_orders": 2.3685,
+    "value_12m_gbp": -2.242,
+    "tenure_days": -1.8828,
+    "gap_ratio": 1.5358,
+    "avg_basket_gbp": 1.1274,
+    "recency_days": -0.4317,
+    "has_returned": -0.4158,
+    "monetary_gbp": -0.3974,
+    "return_rate_pct": 0.2523,
+    "avg_units_per_basket": 0.1936,
+    "avg_lines_per_basket": -0.1027,
+    "is_uk": 0.0924
+  },
+  "random_forest_importance": {
+    "frequency": 0.188,
+    "monetary_gbp": 0.1787,
+    "value_12m_gbp": 0.1768,
+    "tenure_days": 0.08,
+    "gap_ratio": 0.0673,
+    "recency_days": 0.064,
+    "avg_days_between_orders": 0.0599,
+    "avg_basket_gbp": 0.0466,
+    "avg_units_per_basket": 0.0445,
+    "return_rate_pct": 0.038,
+    "avg_lines_per_basket": 0.0315,
+    "has_returned": 0.0231,
+    "is_uk": 0.0018
+  },
+  "chosen_calibration_by_decile": [
+    {
+      "decile": 1,
+      "mean_predicted_pct": 7.51,
+      "actual_silent_pct": 1.89
+    },
+    {
+      "decile": 2,
+      "mean_predicted_pct": 15.1,
+      "actual_silent_pct": 6.84
+    },
+    {
+      "decile": 3,
+      "mean_predicted_pct": 22.74,
+      "actual_silent_pct": 10.65
+    },
+    {
+      "decile": 4,
+      "mean_predicted_pct": 31.44,
+      "actual_silent_pct": 19.32
+    },
+    {
+      "decile": 5,
+      "mean_predicted_pct": 40.76,
+      "actual_silent_pct": 23.95
+    },
+    {
+      "decile": 6,
+      "mean_predicted_pct": 50.66,
+      "actual_silent_pct": 33.46
+    },
+    {
+      "decile": 7,
+      "mean_predicted_pct": 61.52,
+      "actual_silent_pct": 39.77
+    },
+    {
+      "decile": 8,
+      "mean_predicted_pct": 72.48,
+      "actual_silent_pct": 43.35
+    },
+    {
+      "decile": 9,
+      "mean_predicted_pct": 83.32,
+      "actual_silent_pct": 53.99
+    },
+    {
+      "decile": 10,
+      "mean_predicted_pct": 90.5,
+      "actual_silent_pct": 67.05
+    }
+  ],
+  "worklist_now": {
+    "active_customers_scored": 3474,
+    "flagged_p_ge_50pct": 966,
+    "flagged_value_12m_gbp": 421470.95,
+    "flagged_expected_loss_gbp": 281338.13,
+    "top50_value_12m_gbp": 116303.26,
+    "top50_expected_loss_gbp": 70654.22,
+    "top50_median_p_pct": 61.02,
+    "top50_by_segment": {
+      "Recent, still small (ลูกค้าใหม่/ยังเล็ก)": 25,
+      "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)": 18,
+      "Loyal wholesale (ลูกค้าประจำรายใหญ่)": 4,
+      "Lapsed one-off (ซื้อน้อยแล้วหาย)": 3
+    },
+    "flagged_by_segment": {
+      "Recent, still small (ลูกค้าใหม่/ยังเล็ก)": 566,
+      "Lapsed one-off (ซื้อน้อยแล้วหาย)": 342,
+      "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)": 52,
+      "Loyal wholesale (ลูกค้าประจำรายใหญ่)": 6
+    },
+    "all_by_segment_mean_p_pct": {
+      "Lapsed one-off (ซื้อน้อยแล้วหาย)": 75.81,
+      "Loyal wholesale (ลูกค้าประจำรายใหญ่)": 7.82,
+      "Recent, still small (ลูกค้าใหม่/ยังเล็ก)": 48.3,
+      "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)": 28.14
+    },
+    "top5": [
+      {
+        "customer_id": 18139,
+        "p_pct": 64.28,
+        "value_12m_gbp": 8438.34,
+        "segment": "Loyal wholesale (ลูกค้าประจำรายใหญ่)",
+        "frequency": 6,
+        "recency_days": 17,
+        "usual_gap_days": 0.0
+      },
+      {
+        "customer_id": 12357,
+        "p_pct": 51.96,
+        "value_12m_gbp": 6207.67,
+        "segment": "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)",
+        "frequency": 2,
+        "recency_days": 33,
+        "usual_gap_days": 355.0
+      },
+      {
+        "customer_id": 17509,
+        "p_pct": 62.63,
+        "value_12m_gbp": 6069.24,
+        "segment": "Loyal wholesale (ลูกค้าประจำรายใหญ่)",
+        "frequency": 8,
+        "recency_days": 57,
+        "usual_gap_days": 0.71
+      },
+      {
+        "customer_id": 16553,
+        "p_pct": 54.36,
+        "value_12m_gbp": 5668.82,
+        "segment": "Loyal wholesale (ลูกค้าประจำรายใหญ่)",
+        "frequency": 33,
+        "recency_days": 163,
+        "usual_gap_days": 15.69
+      },
+      {
+        "customer_id": 12688,
+        "p_pct": 61.43,
+        "value_12m_gbp": 4873.81,
+        "segment": "Slipping regulars (ลูกค้าประจำที่เริ่มห่าง)",
+        "frequency": 1,
+        "recency_days": 113,
+        "usual_gap_days": 113.0
+      }
+    ]
+  }
+}
