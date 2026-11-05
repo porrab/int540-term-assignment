@@ -78,6 +78,7 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 | [`analysis/g2d1.py`](analysis/g2d1.py) | G2-D1 star-schema tables in `data/bi/` (needs g2d3 output) |
 | [`analysis/g2d4.py`](analysis/g2d4.py) | G2-D4 regression |
 | [`analysis/g2d5.py`](analysis/g2d5.py) | G2-D5 association rules and `data/association_rules.csv` (needs g2d3 output) |
+| [`analysis/g2-class-check.py`](analysis/g2-class-check.py) | G2-D3 and G2-D4 checks against the 29 Oct and 5 Nov classes |
 | `analysis/*-output.json` | Raw output of each script |
 | [`data/online_retail_II.csv.zip`](data/online_retail_II.csv.zip) | Source dataset (UCI ML Repository #502, CC BY 4.0) |
 | `slides/build*.js` | pptxgenjs scripts that generate the decks |
@@ -86,7 +87,7 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 
 ```bash
 unzip -o data/online_retail_II.csv.zip -d data
-pip install pandas scikit-learn matplotlib mlxtend
+pip install pandas scikit-learn matplotlib mlxtend statsmodels
 cd analysis
 python3 profile.py          # G1-A and G1-D1-D3
 python3 g1b.py              # G1-B
@@ -98,6 +99,7 @@ python3 g2d3.py             # G2-D3 classification -> data/worklist_scored.csv
 python3 g2d1.py             # G2-D1 star schema -> data/bi/
 python3 g2d4.py             # G2-D4 regression
 python3 g2d5.py             # G2-D5 association -> data/association_rules.csv
+python3 g2-class-check.py   # G2-D3 and G2-D4 checks against the classes
 ```
 
 ## Rebuilding the slides
