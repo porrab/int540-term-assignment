@@ -4,6 +4,12 @@
     "revenue_gbp": 19655052.81,
     "rows_unknown_customer": 226764
   },
+  "returns_without_a_sales_customer": {
+    "rows": 87,
+    "value_gbp": -1406.13,
+    "rows_without_customer_id": 329,
+    "value_without_customer_id_gbp": -6542.1
+  },
   "fact_returns": {
     "rows": 17915,
     "value_gbp": -716495.53
@@ -19,7 +25,11 @@
     }
   },
   "dim_product": {
-    "rows": 4898
+    "rows": 4741,
+    "raw_stock_codes_in_sales": 4898,
+    "keys_merged_by_case_or_space": 171,
+    "returns_only_products": 14,
+    "returns_only_rows": 21
   },
   "dim_date": {
     "rows": 739,
@@ -251,5 +261,147 @@
       "2010-12": 28
     },
     "first_purchase_in_oct_nov_2010": 440
+  },
+  "kpi_active_to_silent": [
+    {
+      "cutoff_date": "2010-07-01",
+      "date_key": 20100701,
+      "kind": "month_end",
+      "active_customers": 2737,
+      "became_silent": 789,
+      "pct": 28.83,
+      "history_under_12m": true
+    },
+    {
+      "cutoff_date": "2010-08-01",
+      "date_key": 20100801,
+      "kind": "month_end",
+      "active_customers": 2823,
+      "became_silent": 851,
+      "pct": 30.15,
+      "history_under_12m": true
+    },
+    {
+      "cutoff_date": "2010-09-01",
+      "date_key": 20100901,
+      "kind": "month_end",
+      "active_customers": 2831,
+      "became_silent": 897,
+      "pct": 31.68,
+      "history_under_12m": true
+    },
+    {
+      "cutoff_date": "2010-10-01",
+      "date_key": 20101001,
+      "kind": "month_end",
+      "active_customers": 2899,
+      "became_silent": 1006,
+      "pct": 34.7,
+      "history_under_12m": true
+    },
+    {
+      "cutoff_date": "2010-11-01",
+      "date_key": 20101101,
+      "kind": "month_end",
+      "active_customers": 3205,
+      "became_silent": 1258,
+      "pct": 39.25,
+      "history_under_12m": true
+    },
+    {
+      "cutoff_date": "2010-12-01",
+      "date_key": 20101201,
+      "kind": "month_end",
+      "active_customers": 3471,
+      "became_silent": 1605,
+      "pct": 46.24,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2010-12-09",
+      "date_key": 20101209,
+      "kind": "G2-D3 train",
+      "active_customers": 3477,
+      "became_silent": 1673,
+      "pct": 48.12,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-01-01",
+      "date_key": 20110101,
+      "kind": "month_end",
+      "active_customers": 3406,
+      "became_silent": 1590,
+      "pct": 46.68,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-02-01",
+      "date_key": 20110201,
+      "kind": "month_end",
+      "active_customers": 3357,
+      "became_silent": 1542,
+      "pct": 45.93,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-03-01",
+      "date_key": 20110301,
+      "kind": "month_end",
+      "active_customers": 3348,
+      "became_silent": 1518,
+      "pct": 45.34,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-04-01",
+      "date_key": 20110401,
+      "kind": "month_end",
+      "active_customers": 3299,
+      "became_silent": 1439,
+      "pct": 43.62,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-05-01",
+      "date_key": 20110501,
+      "kind": "month_end",
+      "active_customers": 3058,
+      "became_silent": 1161,
+      "pct": 37.97,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-06-01",
+      "date_key": 20110601,
+      "kind": "month_end",
+      "active_customers": 2688,
+      "became_silent": 822,
+      "pct": 30.58,
+      "history_under_12m": false
+    },
+    {
+      "cutoff_date": "2011-06-09",
+      "date_key": 20110609,
+      "kind": "G2-D3 test (baseline)",
+      "active_customers": 2634,
+      "became_silent": 791,
+      "pct": 30.03,
+      "history_under_12m": false
+    }
+  ],
+  "powerbi_checks": {
+    "Revenue": 19655052.81,
+    "Returns": -716495.53,
+    "Customers": 5852,
+    "Silent %": 40.64,
+    "Flagged customers": 966,
+    "Silent % (as of month), 2011-05": 45.23,
+    "Silent since 2 points ago, 2011-05": 987,
+    "Top 50 customers": 50,
+    "Top 50 value 12m": 116303.26,
+    "Net sales, 2011-11": 1427124.54,
+    "Net sales last year, 2011-11": 1394601.8,
+    "KPI baseline %": 30.03
   }
 }

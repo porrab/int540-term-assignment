@@ -176,7 +176,8 @@ o["reg"] = reg
 # ---------- monthly sales: dummy coding as in HW L12 question 1 (m - 1 dummies), but with time instead of
 # GNP and months instead of quarters. The class exercise itself has no time variable.
 ms = known.assign(m=known.InvoiceDate.dt.to_period("M")).groupby("m").LineTotal.sum()
-mr = cancels[cancels.is_product].assign(m=lambda x: x.InvoiceDate.dt.to_period("M")).groupby("m").LineTotal.sum()
+mr = (cancels[cancels.is_product & cancels["Customer ID"].notna()]
+      .assign(m=lambda x: x.InvoiceDate.dt.to_period("M")).groupby("m").LineTotal.sum())
 y = ms + mr.reindex(ms.index).fillna(0)
 o["data_last_invoice"] = str(known.InvoiceDate.max())
 y = y[(y.index >= pd.Period("2009-12")) & (y.index <= pd.Period("2011-11"))]

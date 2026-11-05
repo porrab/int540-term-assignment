@@ -79,6 +79,7 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 | [`analysis/g2d4.py`](analysis/g2d4.py) | G2-D4 regression |
 | [`analysis/g2d5.py`](analysis/g2d5.py) | G2-D5 association rules and `data/association_rules.csv` (needs g2d3 output) |
 | [`analysis/g2-class-check.py`](analysis/g2-class-check.py) | G2-D3 and G2-D4 checks against the 29 Oct and 5 Nov classes |
+| [`data/bi/`](data/bi/) | Tables for the G2-D1 Power BI dashboard, with [`powerbi-queries.pq`](data/bi/powerbi-queries.pq). Load steps are in [`g2-d1-dashboard.md`](g2-d1-dashboard.md) section 5 |
 | `analysis/*-output.json` | Raw output of each script |
 | [`data/online_retail_II.csv.zip`](data/online_retail_II.csv.zip) | Source dataset (UCI ML Repository #502, CC BY 4.0) |
 | `slides/build*.js` | pptxgenjs scripts that generate the decks |
