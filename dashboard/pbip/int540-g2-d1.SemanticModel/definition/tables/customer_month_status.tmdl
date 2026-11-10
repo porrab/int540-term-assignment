@@ -1,0 +1,66 @@
+table customer_month_status
+	lineageTag: 9a8f494f-5808-59f3-87db-c9959cc43731
+
+	column month_end
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 46cfdc35-ac59-50df-b1af-43fe9725d399
+		summarizeBy: none
+		sourceColumn: month_end
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year_month
+		dataType: string
+		lineageTag: 6c065bbf-d023-5b05-bb41-9126d1ae129f
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column customers_seen
+		dataType: int64
+		lineageTag: 775e3cec-fe2d-51b2-96ef-d5e05321f61f
+		summarizeBy: none
+		sourceColumn: customers_seen
+
+	column silent_180
+		dataType: int64
+		lineageTag: dfbc05be-3808-5198-bda4-4d933af57b0b
+		summarizeBy: none
+		sourceColumn: silent_180
+
+	column silent_180_pct
+		dataType: double
+		lineageTag: 9603bb89-f0bf-505d-80ad-7b1885f26548
+		summarizeBy: none
+		sourceColumn: silent_180_pct
+
+	column silent_regulars_6plus
+		dataType: int64
+		lineageTag: 4f0dc367-1d56-51e5-aef1-324000874784
+		summarizeBy: none
+		sourceColumn: silent_regulars_6plus
+
+	column active_customers
+		dataType: int64
+		lineageTag: ce44559c-5f9d-5101-a85a-d93ca1811fa4
+		summarizeBy: none
+		sourceColumn: active_customers
+
+	column revenue_last_12m_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: aa789293-185e-53fd-9f35-0450c2487de4
+		summarizeBy: none
+		sourceColumn: revenue_last_12m_gbp
+
+	partition customer_month_status = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "customer_month_status.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"month_end", type date}, {"year_month", type text}, {"customers_seen", Int64.Type}, {"silent_180", Int64.Type}, {"silent_180_pct", type number}, {"silent_regulars_6plus", Int64.Type}, {"active_customers", Int64.Type}, {"revenue_last_12m_gbp", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,197 @@
+table dim_customer
+	lineageTag: fd65a8cc-51f7-5961-a28e-cb4e1751363d
+
+	measure 'Silent %' = ```
+			DIVIDE(CALCULATE(COUNTROWS(dim_customer), KEEPFILTERS(dim_customer[status] = "Silent >180d")),
+			CALCULATE(COUNTROWS(dim_customer), KEEPFILTERS(dim_customer[customer_key] <> 0)))
+			```
+		formatString: 0.00%
+		lineageTag: 0716203a-3d0b-5063-9351-a653c11ce776
+
+	measure 'Flagged customers' = CALCULATE(COUNTROWS(dim_customer), KEEPFILTERS(dim_customer[risk_band] = "High"))
+		formatString: #,0
+		lineageTag: 59545360-7b38-543a-b0d9-3b72e8e4c13a
+
+	measure 'Top 50 value 12m' = CALCULATE(SUM(dim_customer[value_12m_gbp]), KEEPFILTERS(dim_customer[worklist_top50] = TRUE()))
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: bfd4e27c-8a65-5e7b-b628-d244aab5aab7
+
+	measure 'Customer share %' = DIVIDE([Customers], CALCULATE([Customers], ALL(dim_customer[segment])))
+		formatString: 0.00%
+		displayFolder: Page helpers (not in spec)
+		lineageTag: 63b83738-1619-5bce-b823-93c05cf5dd3a
+
+	measure 'Revenue share %' = DIVIDE([Revenue], CALCULATE([Revenue], ALL(dim_customer[segment])))
+		formatString: 0.00%
+		displayFolder: Page helpers (not in spec)
+		lineageTag: edf885c4-6497-5a7d-ba53-b4a6b0a8a0bb
+
+	measure 'Selected customer' = FORMAT(SELECTEDVALUE(dim_customer[customer_key]), "0")
+		displayFolder: Page helpers (not in spec)
+		lineageTag: 2f42ff8b-465e-5fd2-8acd-2de1f5008a74
+
+	measure 'Rhythm note' = ```
+			VAR f = SELECTEDVALUE(dim_customer[frequency])
+			VAR a = SELECTEDVALUE(dim_customer[avg_days_between_orders])
+			RETURN IF(f = 1, "One purchase", IF(f > 1 && a = 0, f & " orders on one day, no pattern yet", ""))
+			```
+		displayFolder: Page helpers (not in spec)
+		lineageTag: 6f5aecac-b034-5dd4-bb31-995c0678f4c4
+
+	measure 'Recency colour' = ```
+			VAR r = SELECTEDVALUE(dim_customer[recency_days])
+			VAR a = SELECTEDVALUE(dim_customer[avg_days_between_orders])
+			RETURN IF(a > 0 && r > 3 * a, "#C00000", "#404040")
+			```
+		displayFolder: Page helpers (not in spec)
+		lineageTag: e187d0b8-fc02-5040-8e4a-a3f5e2d7cf29
+
+	measure 'Customer share colour' = IF(SELECTEDVALUE(dim_customer[segment]) = "Slipping regulars", "#F4B183", "#D0D0D0")
+		displayFolder: Page helpers (not in spec)
+		lineageTag: 573bb69f-ce8a-5e5a-bb0d-ef2559e87eb0
+
+	measure 'Revenue share colour' = IF(SELECTEDVALUE(dim_customer[segment]) IN {"Loyal wholesale", "Slipping regulars"}, "#E66C37", "#8C8C8C")
+		displayFolder: Page helpers (not in spec)
+		lineageTag: 6c88b86b-ef44-50af-ab32-1fd99b20ca02
+
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 519615f6-4749-50bb-a99a-aa87363179ab
+		summarizeBy: none
+		sourceColumn: customer_key
+
+	column country
+		dataType: string
+		lineageTag: 31cc77f3-6871-5b8d-86e5-96dab58de267
+		summarizeBy: none
+		sourceColumn: country
+
+	column segment
+		dataType: string
+		lineageTag: fd8b62d7-089a-5ed2-87a8-655d5b2d6363
+		summarizeBy: none
+		sourceColumn: segment
+
+	column risk_band
+		dataType: string
+		lineageTag: e42ad76c-ea0e-5d07-9188-9d344dfc26b3
+		summarizeBy: none
+		sourceColumn: risk_band
+
+	column status
+		dataType: string
+		lineageTag: 1ef7b09b-1289-586a-986c-1656aff41357
+		summarizeBy: none
+		sourceColumn: status
+
+	column first_purchase
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 3d3ae5b0-c32a-556d-b97d-5316b44e9239
+		summarizeBy: none
+		sourceColumn: first_purchase
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_purchase
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 2569d9b7-a219-5d87-80ad-a9aee4505eb9
+		summarizeBy: none
+		sourceColumn: last_purchase
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column frequency
+		dataType: int64
+		lineageTag: 8a2d3441-0ce4-5956-b5a1-f6cc8771e712
+		summarizeBy: none
+		sourceColumn: frequency
+
+	column monetary_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: d9562868-f542-5aff-bb7d-014d8943f3c3
+		summarizeBy: none
+		sourceColumn: monetary_gbp
+
+	column recency_days
+		dataType: int64
+		lineageTag: cf177a09-f471-583f-9d49-e56b13c413ce
+		summarizeBy: none
+		sourceColumn: recency_days
+
+	column avg_days_between_orders
+		dataType: double
+		formatString: 0.0
+		lineageTag: 21319c21-90c1-5a8c-9587-6e9ee9d6cd4b
+		summarizeBy: none
+		sourceColumn: avg_days_between_orders
+
+	column R_score
+		dataType: int64
+		lineageTag: d8ed033a-e346-54a7-bc75-4a7752e7fce4
+		summarizeBy: none
+		sourceColumn: R_score
+
+	column F_score
+		dataType: int64
+		lineageTag: 647549f8-6b1e-5c9d-9749-3641d3711c0d
+		summarizeBy: none
+		sourceColumn: F_score
+
+	column M_score
+		dataType: int64
+		lineageTag: fb0766a5-0a3c-59e0-92a4-e2a4733ac1ac
+		summarizeBy: none
+		sourceColumn: M_score
+
+	column RFM_code
+		dataType: string
+		lineageTag: ead5778d-76b9-543d-9f79-a4496108dd2c
+		summarizeBy: none
+		sourceColumn: RFM_code
+
+	column p_silent_180
+		dataType: double
+		lineageTag: e8bd9120-b867-5018-915a-c9d24d1b9b17
+		summarizeBy: none
+		sourceColumn: p_silent_180
+
+	column worklist_flag
+		dataType: boolean
+		lineageTag: 7ed6b478-7337-5fc9-86b6-321d5f63bc35
+		summarizeBy: none
+		sourceColumn: worklist_flag
+
+	column worklist_rank
+		dataType: int64
+		lineageTag: d1c3a4dc-7837-5b1d-a289-0041755b5184
+		summarizeBy: none
+		sourceColumn: worklist_rank
+
+	column worklist_top50
+		dataType: boolean
+		lineageTag: ea25f8ba-ae95-50fa-b7f0-828fb7c04fa3
+		summarizeBy: none
+		sourceColumn: worklist_top50
+
+	column value_12m_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: f58402a9-36aa-5983-9579-4bf9ad4db243
+		summarizeBy: none
+		sourceColumn: value_12m_gbp
+
+	partition dim_customer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "dim_customer.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"customer_key", Int64.Type}, {"country", type text}, {"segment", type text}, {"risk_band", type text}, {"status", type text}, {"first_purchase", type date}, {"last_purchase", type date}, {"frequency", Int64.Type}, {"monetary_gbp", type number}, {"recency_days", Int64.Type}, {"avg_days_between_orders", type number}, {"R_score", Int64.Type}, {"F_score", Int64.Type}, {"M_score", Int64.Type}, {"RFM_code", type text}, {"p_silent_180", type number}, {"worklist_flag", type logical}, {"worklist_rank", Int64.Type}, {"worklist_top50", type logical}, {"value_12m_gbp", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "overview_v18",
+  "position": {
+    "x": 315,
+    "y": 570,
+    "z": 18000,
+    "height": 128,
+    "width": 145,
+    "tabOrder": 18000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Of the customers active in Jun 2011, the share who went silent within 180 days. Not the same measure as the 40.64% above.",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#404040"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

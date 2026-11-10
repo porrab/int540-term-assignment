@@ -1,0 +1,96 @@
+table fact_sales
+	lineageTag: a0cd7bb2-a605-5de6-acf8-ee39a28fd466
+
+	measure Revenue = SUM(fact_sales[line_total_gbp])
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 22f0230e-ae2c-5e0d-b1b9-5d33fcf51328
+
+	measure 'Net sales' = [Revenue] + [Returns]
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 7d96755b-2791-568a-ab39-50e0ab22b631
+
+	measure 'Net sales last year' = CALCULATE([Net sales], SAMEPERIODLASTYEAR(dim_date[date]))
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 920ebfd4-5972-5374-be55-85dd1b43ca1b
+
+	measure 'Net sales YoY %' = DIVIDE([Net sales] - [Net sales last year], [Net sales last year])
+		formatString: 0.00%
+		lineageTag: b3ff001b-9279-59a8-9bd4-69bf9ea56718
+
+	measure 'Return rate %' = DIVIDE(-[Returns], [Revenue])
+		formatString: 0.00%
+		lineageTag: 2c5091db-b8c3-50f5-85ab-e263ca3774a7
+
+	measure Customers = CALCULATE(DISTINCTCOUNT(fact_sales[customer_key]), KEEPFILTERS(dim_customer[customer_key] <> 0))
+		formatString: #,0
+		lineageTag: 62c8b3ae-be5c-5ba8-98ae-12e22ad4bcad
+
+	column invoice
+		dataType: string
+		lineageTag: 9cf3a5d7-b26d-5144-a44a-cbe85d02d9f0
+		summarizeBy: none
+		sourceColumn: invoice
+
+	column date_key
+		dataType: int64
+		lineageTag: 527ea446-3008-5f02-8ad0-f1a4620e285d
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column invoice_datetime
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: 3c2149a9-ef33-5b1c-9f50-a8fa1d36f512
+		summarizeBy: none
+		sourceColumn: invoice_datetime
+
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 229a3753-fa4a-51d2-8cb2-a672545ef6cd
+		summarizeBy: none
+		sourceColumn: customer_key
+
+	column product_key
+		dataType: string
+		lineageTag: 84c82fa2-d174-5f4e-a0fc-8b9199004e1e
+		summarizeBy: none
+		sourceColumn: product_key
+
+	column country
+		dataType: string
+		lineageTag: 0a83291b-b4da-5982-9c33-68d1382f2eed
+		summarizeBy: none
+		sourceColumn: country
+
+	column quantity
+		dataType: int64
+		lineageTag: 1a1fda20-023e-50f2-90f2-b882b14bf892
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column unit_price_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: e323ffd4-0c58-5f6e-be42-4c0f488d305b
+		summarizeBy: none
+		sourceColumn: unit_price_gbp
+
+	column line_total_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 87f8207a-06c0-5942-9f16-39d4d0226b4e
+		summarizeBy: none
+		sourceColumn: line_total_gbp
+
+	partition fact_sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "fact_sales.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"invoice", type text}, {"date_key", Int64.Type}, {"invoice_datetime", type datetime}, {"customer_key", Int64.Type}, {"product_key", type text}, {"country", type text}, {"quantity", Int64.Type}, {"unit_price_gbp", type number}, {"line_total_gbp", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

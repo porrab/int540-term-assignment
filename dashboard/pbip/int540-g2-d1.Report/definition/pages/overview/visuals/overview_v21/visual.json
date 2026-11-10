@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "overview_v21",
+  "position": {
+    "x": 10,
+    "y": 697,
+    "z": 21000,
+    "height": 23,
+    "width": 1260,
+    "tabOrder": 21000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Before Dec 2010 there is less than 12 months of history, so part of the early rise comes from the data starting. Segments and risk bands are as at 9 Dec 2011.",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#404040"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

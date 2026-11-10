@@ -1,0 +1,69 @@
+table fact_returns
+	lineageTag: 2e0b577f-9c63-53bb-96da-4800b7e7c216
+
+	measure Returns = SUM(fact_returns[line_total_gbp])
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 5b3b7fbd-411c-5451-97a5-e55329f01bff
+
+	column invoice
+		dataType: string
+		lineageTag: f089335f-57b5-5777-8d91-c47b8ed25d09
+		summarizeBy: none
+		sourceColumn: invoice
+
+	column date_key
+		dataType: int64
+		lineageTag: eee4de1f-aa70-5a75-82cc-29370ce8935b
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ebfb91c-11bf-53a6-ad40-9816277caa3f
+		summarizeBy: none
+		sourceColumn: customer_key
+
+	column product_key
+		dataType: string
+		lineageTag: 51b546e9-7b75-5b51-9d0a-6288ef5963a5
+		summarizeBy: none
+		sourceColumn: product_key
+
+	column country
+		dataType: string
+		lineageTag: 4df00cbe-b00e-584a-9900-81cd973f4a54
+		summarizeBy: none
+		sourceColumn: country
+
+	column quantity
+		dataType: int64
+		lineageTag: 93f91156-36b8-5811-aee6-bfd297df7ece
+		summarizeBy: none
+		sourceColumn: quantity
+
+	column unit_price_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 7ca0c491-86b2-5f01-9d12-41e83e1d0b1d
+		summarizeBy: none
+		sourceColumn: unit_price_gbp
+
+	column line_total_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 45b8e2cb-11d4-5587-84e2-66f6871c0b7a
+		summarizeBy: none
+		sourceColumn: line_total_gbp
+
+	partition fact_returns = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "fact_returns.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"invoice", type text}, {"date_key", Int64.Type}, {"customer_key", Int64.Type}, {"product_key", type text}, {"country", type text}, {"quantity", Int64.Type}, {"unit_price_gbp", type number}, {"line_total_gbp", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

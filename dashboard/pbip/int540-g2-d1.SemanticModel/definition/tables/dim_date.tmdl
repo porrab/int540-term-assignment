@@ -1,0 +1,100 @@
+table dim_date
+	lineageTag: 2477f2a4-1712-594e-b1bd-5473969110a8
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		lineageTag: 36d159ac-0c1f-5235-8166-179d8904e070
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		isKey
+		lineageTag: 5940d2ba-0ccb-5ffc-8899-5fb04cee6140
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: b44b2a07-d49e-529c-ab58-161af22e415c
+		summarizeBy: none
+		sourceColumn: year
+
+	column quarter
+		dataType: string
+		lineageTag: 66fa028d-f32e-502c-9310-ee70b9c19704
+		summarizeBy: none
+		sourceColumn: quarter
+
+	column year_quarter
+		dataType: string
+		lineageTag: 313c7547-b87a-533b-9efc-72e0d5a5d58b
+		summarizeBy: none
+		sourceColumn: year_quarter
+
+	column month
+		dataType: int64
+		lineageTag: 4557485e-4351-582c-a349-6f27ef8f5503
+		summarizeBy: none
+		sourceColumn: month
+
+	column year_month
+		dataType: string
+		lineageTag: 1437a671-9199-51bc-af2c-fd33955ff859
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column month_name
+		dataType: string
+		sortByColumn: month
+		lineageTag: 78893b42-03b0-51d0-964b-a686250ea01d
+		summarizeBy: none
+		sourceColumn: month_name
+
+	column iso_week
+		dataType: int64
+		lineageTag: fa42e6e8-ca15-5371-98e8-66da92632b4e
+		summarizeBy: none
+		sourceColumn: iso_week
+
+	column weekday
+		dataType: string
+		lineageTag: e35d4518-f01d-5cc2-ba1e-7e82e8a4c0c3
+		summarizeBy: none
+		sourceColumn: weekday
+
+	hierarchy 'Year - Quarter - Month - Date'
+		lineageTag: e593d223-9b0c-5e69-970c-4629fb63dfef
+
+		level year
+			lineageTag: 34261fec-4238-59b8-92a7-f4c7d5abfd68
+			column: year
+
+		level year_quarter
+			lineageTag: 0f1ea6b7-756f-598b-b29f-180cc56705b8
+			column: year_quarter
+
+		level year_month
+			lineageTag: 3b3a27b7-9b0f-5241-b2e2-97a154873bd3
+			column: year_month
+
+		level date
+			lineageTag: 170d05ae-62f5-545e-9150-904af3b6dd38
+			column: date
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "dim_date.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"date_key", Int64.Type}, {"date", type date}, {"year", Int64.Type}, {"quarter", type text}, {"year_quarter", type text}, {"month", Int64.Type}, {"year_month", type text}, {"month_name", type text}, {"iso_week", Int64.Type}, {"weekday", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

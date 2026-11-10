@@ -1,0 +1,119 @@
+table fact_customer_month
+	lineageTag: fa52ab2c-127e-5430-aa82-546ae1d58956
+
+	measure 'Silent % (as of month)' = ```
+			DIVIDE(CALCULATE(COUNTROWS(fact_customer_month), fact_customer_month[status] = "Silent >180d"),
+			COUNTROWS(fact_customer_month))
+			```
+		formatString: 0.00%
+		lineageTag: 47c924d4-576e-5b7c-a736-1f61831f52e4
+
+	measure 'Silent since 2 points ago' = ```
+			CALCULATE(COUNTROWS(fact_customer_month), fact_customer_month[status] = "Silent >180d",
+			fact_customer_month[active_2_points_ago] = TRUE())
+			```
+		formatString: #,0
+		lineageTag: 01370c9b-2a08-5ce8-9a24-5127c0d2c4d4
+
+	measure 'Silent value as of month' = CALCULATE(SUM(fact_customer_month[spend_last_12m_gbp]), fact_customer_month[status] = "Silent >180d")
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: 605e6a6f-04ff-5c6f-b323-e9e63809e3cc
+
+	measure 'Selected month' = SELECTEDVALUE(fact_customer_month[year_month])
+		displayFolder: Page helpers (not in spec)
+		lineageTag: fea24c11-e2b9-51f0-9413-db41fc654d31
+
+	column customer_key
+		dataType: int64
+		formatString: 0
+		lineageTag: dbc5c7f3-0877-51ef-981c-ee8ec11d7580
+		summarizeBy: none
+		sourceColumn: customer_key
+
+	column year_month
+		dataType: string
+		lineageTag: b59c8ed1-23a1-5f6e-a683-52e10a9a23d7
+		summarizeBy: none
+		sourceColumn: year_month
+
+	column month_end
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 0f6430f4-f6d4-5761-88b0-336eb965de0a
+		summarizeBy: none
+		sourceColumn: month_end
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column date_key
+		dataType: int64
+		lineageTag: 4d9979a3-67b0-5d62-b75c-1dce36463f47
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column first_order_month
+		dataType: string
+		lineageTag: b8f8ae39-4e95-51d9-abfd-86d0163762a4
+		summarizeBy: none
+		sourceColumn: first_order_month
+
+	column last_order_month
+		dataType: string
+		lineageTag: b4e4922e-dfd3-5eaf-9d6f-1697736b83ab
+		summarizeBy: none
+		sourceColumn: last_order_month
+
+	column days_since_last_order
+		dataType: int64
+		lineageTag: be5cf0a1-c923-5ff9-9043-135985a9df8c
+		summarizeBy: none
+		sourceColumn: days_since_last_order
+
+	column orders_so_far
+		dataType: int64
+		lineageTag: 2e68e3ca-b635-5efa-b226-5200551ce47b
+		summarizeBy: none
+		sourceColumn: orders_so_far
+
+	column spend_last_12m_gbp
+		dataType: double
+		formatString: \£#,0.00;-\£#,0.00
+		lineageTag: a6c78974-72cb-54d7-9980-c5c90d844f92
+		summarizeBy: none
+		sourceColumn: spend_last_12m_gbp
+
+	column status
+		dataType: string
+		lineageTag: 1319fa2c-d96b-5870-9ed5-575cc5e7590d
+		summarizeBy: none
+		sourceColumn: status
+
+	column regular_6plus
+		dataType: boolean
+		lineageTag: 290527f9-939e-5035-ad4a-cc171c11017f
+		summarizeBy: none
+		sourceColumn: regular_6plus
+
+	column newly_silent
+		dataType: boolean
+		lineageTag: c79032ed-0fc8-56e5-9153-d66f77311969
+		summarizeBy: none
+		sourceColumn: newly_silent
+
+	column active_2_points_ago
+		dataType: boolean
+		lineageTag: 0397cc2b-f95f-5d05-a552-5e0ad0e431cf
+		summarizeBy: none
+		sourceColumn: active_2_points_ago
+
+	partition fact_customer_month = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "fact_customer_month.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"customer_key", Int64.Type}, {"year_month", type text}, {"month_end", type date}, {"date_key", Int64.Type}, {"first_order_month", type text}, {"last_order_month", type text}, {"days_since_last_order", Int64.Type}, {"orders_so_far", Int64.Type}, {"spend_last_12m_gbp", type number}, {"status", type text}, {"regular_6plus", type logical}, {"newly_silent", type logical}, {"active_2_points_ago", type logical}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "worklist_v06",
+  "position": {
+    "x": 10,
+    "y": 692,
+    "z": 6000,
+    "height": 26,
+    "width": 1260,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Risk is a level, not a percentage: the model's scores run higher than the real rate. Days turn red past 3× the customer's usual gap. Right-click a customer to see their orders.",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#404040"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

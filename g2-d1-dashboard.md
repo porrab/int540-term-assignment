@@ -4,7 +4,7 @@
 > Script: [`analysis/g2d1.py`](analysis/g2d1.py) · ผลลัพธ์ดิบ: [`analysis/g2d1-output.json`](analysis/g2d1-output.json) ·
 > ตาราง star schema: [`data/bi/`](data/bi/) · ภาพตัวอย่างกราฟบนสุด: [`figures/g2d1-top-chart-preview.png`](figures/g2d1-top-chart-preview.png)
 > สิ่งที่อาจารย์ขอ (คาบ 8 ต.ค.): [`brief/lecturer-verbal-brief.md`](brief/lecturer-verbal-brief.md) หัวข้อ "สิ่งที่ย้ำในคาบ 8 ต.ค."
-> สถานะ: ร่างแรก 2026-10-29 · เพิ่ม `fact_customer_month` 2026-10-29 (drill ตามเดือนใช้สถานะ ณ เดือนนั้นได้) · 2026-11-05 แก้ตารางให้ผูกความสัมพันธ์ใน Power BI ได้และเติมตามมติ · **ข้อมูลพร้อมแล้ว ตัว dashboard ต้องมีคนในทีมสร้างใน Power BI** (ไฟล์ .pbix ไม่ได้สร้างให้) · ยังไม่ผ่านการตรวจของทีม
+> สถานะ: ร่างแรก 2026-10-29 · เพิ่ม `fact_customer_month` 2026-10-29 (drill ตามเดือนใช้สถานะ ณ เดือนนั้นได้) · 2026-11-05 แก้ตารางให้ผูกความสัมพันธ์ใน Power BI ได้และเติมตามมติ · 2026-11-06 สร้าง [`dashboard/int540-g2-d1.pbix`](dashboard/int540-g2-d1.pbix) ใน Power BI Desktop และเทียบตัวเลขข้อ 5.5 ครบแล้ว (ผลในข้อ 5.7) · ยังไม่ผ่านการตรวจของทีม
 
 ---
 
@@ -89,7 +89,7 @@ customer_month_status, kpi_active_to_silent  (ตารางสรุป ไม
 
 ## 5. วิธีสร้างใน Power BI
 
-> ตารางผ่านการตรวจด้วยสคริปต์แล้ว (key ครบทุกความสัมพันธ์, ยอดรวมตรง) แต่ **Power Query, ความสัมพันธ์ และ DAX ด้านล่างยังไม่ได้ลองรันใน Power BI จริง** คนสร้างต้องเทียบตัวเลขกับข้อ 5.5 ก่อนใช้
+> 2026-11-06 รัน Power Query, ความสัมพันธ์ และ DAX ด้านล่างใน Power BI Desktop 2.158 แล้ว ตัวเลขตรงข้อ 5.5 ทุกค่า (ข้อ 5.7) ไม่ต้องแก้ `.pq` หรือ measure ถ้าสร้างใหม่หรือแก้โมเดล ให้เทียบข้อ 5.5 อีกครั้ง
 
 ### 5.1 เตรียมไฟล์
 
@@ -174,6 +174,93 @@ KPI baseline % = CALCULATE(MAX(kpi_active_to_silent[pct]), kpi_active_to_silent[
    - slicer: segment, risk_band, country, ปี
 2. **หน้า 2 Worklist:** ตารางจาก `dim_customer` กรอง `worklist_top50 = True` เรียงตาม `worklist_rank` แสดงระดับความเสี่ยง, `value_12m_gbp`, `recency_days`, `avg_days_between_orders` · ใส่ drill-through จากหน้า 1
 
+### 5.7 ผลการสร้างจริง (2026-11-06)
+
+ไฟล์อยู่ใน [`dashboard/`](dashboard/): `int540-g2-d1.pbix` (บันทึก 2026-11-08 22:59), PNG ทีละหน้า (23:01), `int540-g2-d1-present.pdf` 4 หน้าสำหรับนำเสนอ (22:59) และ `int540-g2-d1.pdf` 5 หน้ารวม Checks (23:00) · สร้างจาก [`dashboard/build_pbip.py`](dashboard/build_pbip.py) ซึ่งอ่าน `.pq` ตรง ๆ เขียนเป็น Power BI Project ใน `dashboard/pbip/` แล้วให้ Power BI Desktop 2.158 refresh จาก CSV และบันทึกเป็น `.pbix`
+
+| ตรวจ (ข้อ 5.5) | ต้องได้ | บนหน้าจอ (หน้า Checks 5.5) |
+|---|---:|---:|
+| `Revenue` | £19,655,052.81 | £19,655,052.81 |
+| `Returns` | −£716,495.53 | −£716,495.53 |
+| `Customers` | 5,852 | 5,852 |
+| `Silent %` | 40.64% | 40.64% |
+| `Flagged customers` | 966 | 966 |
+| `Top 50 value 12m` | £116,303.26 | £116,303.26 |
+| `KPI baseline %` | 30.03 | 30.03% (ค่าคือ 30.03 ตั้ง format ให้มีเครื่องหมาย %) |
+| `Silent % (as of month)`, 2011-05 | 45.23% | 45.23% |
+| `Silent since 2 points ago`, 2011-05 | 987 | 987 |
+| แยกตาม `last_order_month` | 396 / 563 / 28 | 396 / 563 / 28 |
+| `Net sales`, 2011-11 | £1,427,124.54 | £1,427,124.54 |
+| `Net sales last year`, 2011-11 | £1,394,601.80 | £1,394,601.80 |
+
+ตรวจซ้ำด้วย DAX query กับ `.pbix` ที่บันทึกแล้วก็ได้ค่าเดียวกัน · แถวโหลดครบ (1,003,343 / 17,915 / 86,764 / 5,853 / 4,741 / 739 / 19 / 14) · ความสัมพันธ์ 8 เส้น many-to-one ทางเดียว ไม่มีเส้นเกิน · `dim_date` เป็น date table บนคอลัมน์ `date` · ไม่มีตาราง Auto date/time
+
+**หน้า 1 จัดใหม่ (2026-11-06 เย็น, หลังเพื่อนรีวิวว่า "สวยแต่ไม่มีอะไรเด่น"):**
+- หัวหน้าเป็นคำตอบ: "4 in 10 customers have gone silent (40.64% at 9 Dec 2011), nearly double the 21.07% of Dec 2010" และบรรทัดรอง "Loyal wholesale: 19.0% of customers, 71.6% of revenue. Losing them is the main money risk." · ข้อความคงที่ ทุกตัวเลขตรวจด้วย DAX แล้ว (21.07% = `Silent % (as of month)` เดือน 2010-12 · 19.0% / 71.6% = `Customer share %` / `Revenue share %` ของ Loyal wholesale)
+- ไม่ได้ใช้คำว่า "flat at ~45% since May 2011" ตามที่เสนอมา เพราะข้อมูลไม่เป็นอย่างนั้น: 45.23–46.78% ช่วง พ.ค.–ก.ย. 2011 แล้วลดเป็น 43.25%, 40.71%, 40.64% · ป้ายบนกราฟจึงเขียนว่า "May to Sep 2011: stuck at 45-47%, then down to 40.64%" (เป็น textbox วางบนกราฟ ไม่ใช่แรเงา)
+- การ์ดแถวบน 4 ใบใช้ measure เดิม: `Silent %` 40.64% (มีข้อความ "peak 46.78% (Aug 2011)" ซึ่งเป็นค่าสูงสุดของ `Silent % (as of month)`) · `Flagged customers` 966 · `Top 50 value 12m` £116,303.26 · `Revenue` £19,655,052.81 · ไม่ได้สร้างตัวเลข "money at risk รวม"
+- การ์ด `KPI baseline %` 30.03% ย่อลงไปอยู่ข้างกราฟ KPI แถวล่าง มีคำอธิบายว่าเป็นลูกค้า active ณ วันตัด มิ.ย. 2011 ที่เงียบใน 180 วันถัดไป คนละตัวกับ 40.64%
+- การ์ด "click a month" 3 ใบเอาออกจากหน้า 1 เพราะหน้า Month drill มีการ์ด 3 ค่าเดียวกันอยู่แล้ว measure `Clicked month ...` 3 ตัวจึงลบออก · การคลิกเดือนบนหน้า 1 ตอนนี้ไม่เปลี่ยนตัวเลขอื่น ให้คลิกขวาแล้ว Drill through ไป Month drill แทน
+- กราฟ segment แยกเป็น 2 กราฟ (ส่วนแบ่งลูกค้า · ส่วนแบ่งรายได้) เพราะ Power BI ให้ใส่สีตาม measure (fx) ได้เฉพาะกราฟที่มี measure เดียว สีมาจาก measure `Customer share colour` / `Revenue share colour`: ส้มที่รายได้ของ Loyal wholesale และทั้งสองแท่งของ Slipping regulars กลุ่มอื่นเป็นเทา
+- ลดน้ำหนักแถวล่าง: Revenue by country เหลือ Top 5 (TopN filter ตัด Unknown ออก ป้ายเป็น £M) · Net sales ย่อลงมาแถวล่างกว้าง 600 px ยังครบ 25 เดือนไม่มี scrollbar · กราฟ KPI ใช้แกนต่อเนื่อง (Scalar) ซ่อนป้ายวันที่ เพราะแกนแบบหมวดต้องการ 20 px ต่อจุดจนมี scrollbar และป้ายวันที่ของแกนต่อเนื่องตามรูปแบบภูมิภาคของ Windows (ขึ้นเป็นเดือนไทยในเครื่องนี้) ช่วง ก.ค. 2010–มิ.ย. 2011 จึงเขียนไว้ในชื่อกราฟแทน
+
+**ข้อความพร้อมนำเสนอ (2026-11-08):** ข้อความบนหน้าจอเขียนใหม่ด้วยสกิล humanizer ให้สั้นและอ่านออกเสียงได้ ตัดการอ้างเอกสารภายใน ชื่อ measure/ตาราง และคำอธิบายเรื่อง filter ออก ตัวเลขและชื่อ segment ไม่เปลี่ยน ข้อความที่ไม่อยู่ในตารางนี้ยังเหมือนเดิม (ชื่อ slicer, ชื่อกราฟส่วนแบ่ง/ประเทศ, ชื่อคอลัมน์อื่น, การ์ดหน้า Customer history)
+
+| หน้า · ตำแหน่ง | เดิม | ใหม่ |
+|---|---|---|
+| 1 · หัวเรื่อง | 4 in 10 customers have gone silent (40.64% at 9 Dec 2011), nearly double the 21.07% of Dec 2010 | 4 in 10 customers have gone silent: 40.64% at 9 Dec 2011, nearly double the 21.07% of Dec 2010 |
+| 1 · บรรทัดรอง | Loyal wholesale: 19.0% of customers, 71.6% of revenue. Losing them is the main money risk. | Loyal wholesale are 19.0% of customers but 71.6% of revenue. Losing them would cost the most. |
+| 1 · การ์ด | % silent >180 days at 9 Dec 2011 | Silent over 180 days, 9 Dec 2011 |
+| 1 · การ์ด | Customers flagged High risk | High-risk customers |
+| 1 · การ์ด | 12-month spend of the top 50 to call | Last 12 months' spend, top 50 to call |
+| 1 · วิธีใช้ | Right-click a month: Drill through to Month drill (that month's % silent, newly silent and their 12-month spend). Right-click a segment or country: Drill through to Worklist. | Right-click a month, segment or country to see the detail. |
+| 1 · กราฟบนสุด | % of customers silent >180 days, each month-end (dashed line: 40.64% at 9 Dec 2011) | Customers silent over 180 days, at each month-end (dashed line: 40.64% at 9 Dec 2011) |
+| 1 · ป้ายบนกราฟ | May to Sep 2011: stuck at 45-47%, then down to 40.64% | May–Sep 2011: stuck at 45–47%, then down to 40.64% |
+| 1 · กราฟ KPI | KPI by cut-off date, Jul 2010 to Jun 2011 (later cut-offs need 180 days ahead) | New KPI: active customers who went silent within 180 days, by start month (Jul 2010–Jun 2011) |
+| 1 · การ์ด KPI | KPI baseline | New KPI baseline |
+| 1 · คำอธิบาย KPI | Customers active at the Jun 2011 cut-off who went silent in the next 180 days. A different count from the 40.64% above. | Of the customers active in Jun 2011, the share who went silent within 180 days. Not the same measure as the 40.64% above. |
+| 1 · กราฟ Net sales | Net sales vs same month last year (Dec 2011 covers 1-9 Dec only) | Net sales vs the same month last year (Dec 2011 is 1–9 Dec only) |
+| 1 · ท้ายหน้า | Before Dec 2010 the data has under 12 months of history, so part of the early rise is the data starting, not customers leaving. Segment, risk band, Revenue and the Worklist are as at 9 Dec 2011. | Before Dec 2010 there is less than 12 months of history, so part of the early rise comes from the data starting. Segments and risk bands are as at 9 Dec 2011. |
+| 2 · หัวเรื่อง | Worklist: who to call first this week (top 50 by 12-month value among High risk) | Who to call first this week: the top 50 high-risk customers by 12-month spend |
+| 2 · การ์ด | 12-month value on this list | 12-month spend on this list |
+| 2 · คอลัมน์ | Value 12m | 12-month spend |
+| 2 · Note | N orders in one day, no rhythm yet | N orders on one day, no pattern yet |
+| 2 · ท้ายหน้า | Risk is a level, not a %: the model's probability runs higher than reality (G2-D3 section 5). Days since last order turn red past 3x the customer's own usual gap. Right-click a customer: Drill through to Customer history. | Risk is a level, not a percentage: the model's scores run higher than the real rate. Days turn red past 3× the customer's usual gap. Right-click a customer to see their orders. |
+| 3 · การ์ด | % silent at this month-end | Silent at this month-end |
+| 3 · การ์ด | Silent now, active 2 month-ends ago | Newly silent (active 2 month-ends ago) |
+| 3 · การ์ด | 12-month spend of all silent customers | Last 12 months' spend of silent customers |
+| 3 · กราฟซ้าย | Silent now, active 2 month-ends ago, by month of last order | Newly silent customers, by the month of their last order |
+| 3 · กราฟขวา | Same customers by segment (segment is as at 9 Dec 2011, not this month) | The same customers by segment (segments as at 9 Dec 2011) |
+| 3 · ท้ายหน้า | Do not add newly_silent for Apr + May on stage: that gives 1,023, ... The stage figure is 987. | (เอาออก เป็นโน้ตผู้พูด เรื่อง 987 กับ 1,023 อยู่ในหัวข้อ "ยังไม่ได้ทำ" ด้านล่าง) |
+| 4 · หัวเรื่อง | Purchase history of the selected customer, line by line | Every order line for this customer |
+| Checks · หัวเรื่อง | Check page: ... Delete before presenting. | Hidden check page: ... Not for presenting. |
+
+- หน้า Checks 5.5 ตั้งเป็น hidden page (`HiddenInViewMode`) ไม่ได้ลบ · Power BI Desktop ไม่รวม hidden page ใน Export to PDF จึงได้ `int540-g2-d1-present.pdf` 4 หน้า ส่วน `int540-g2-d1.pdf` 5 หน้า ได้จากการเปิด Checks ชั่วคราวแล้ว export ซ้ำโดยไม่บันทึก `.pbix` (ใน `.pbix` Checks ยัง hidden) · 4 หน้าแรกของสอง PDF มีข้อความตรงกันทุกหน้า
+- หมายเหตุท้ายหน้า 1 สูงขึ้นเป็น 23 px แถบเทามุมขวาล่าง (scrollbar ของกล่องข้อความ) หายแล้ว
+- ข้อความที่ยังเห็นเฉพาะตอน hover: tooltip ของกราฟแสดงชื่อ measure เช่น `Silent % (as of month)` ไม่อยู่ใน PNG/PDF
+
+**พฤติกรรมที่ทดสอบ:**
+- ก่อนจัดหน้า 1 ใหม่ (รอบ 15:49): คลิก 2011-05 บนกราฟบนสุดแล้วการ์ดที่คำนวณจาก `fact_customer_month` เปลี่ยนเป็น 45.23%, 987, £972,043 ส่วนกราฟอื่นไม่เปลี่ยน (การ์ดชุดนี้เอาออกแล้วในรอบ 17:36)
+- Drill through จากเดือนไป Month drill: 2011-05 ได้ 396 / 563 / 28 · 2011-08 ได้ 46.78%, 338, £994,326.80 ตรงกับ DAX (ทดสอบ 2011-08 ซ้ำกับหน้า 1 ใหม่แล้ว)
+- Drill through จากกลุ่ม Slipping regulars ไป Worklist ได้ £46,931.34 ตรงกับ 18 ราย ใน DAX · จาก United Kingdom ได้ £85,904.68 ตรงกับ 39 ราย · จากลูกค้าไป Customer history ได้ £3,859.82 / −£13.08 · ปุ่ม Back ทำงาน · หน้า 1 ใหม่ทดสอบซ้ำแล้ว: Loyal wholesale (กราฟรายได้) ไป Worklist ได้ 4 ราย £22,570.30 และ United Kingdom (Top 5) ได้ £85,904.68
+- Slicer Slipping regulars: กราฟบนสุดได้ 12.90%, 38.65%, 45.10% ตรงกับที่คำนวณจาก CSV · slicer ปี 2011 จำกัดกราฟบนสุดและยอดขายถูกต้อง
+- ไม่ได้ทดสอบกรณีที่ไม่ mark date table จึงยืนยันเฉพาะว่า mark แล้ว `Net sales last year` ได้ค่าถูกต้อง
+
+**สิ่งที่เพิ่มจากข้อ 5.4 และ 5.6 (ไม่กระทบตัวเลขข้อ 5.5):**
+- measure ช่วยในโฟลเดอร์ `Page helpers (not in spec)` เพราะข้อ 5.4 ไม่มี measure ส่วนแบ่งลูกค้า/รายได้ และสีของกราฟ segment
+- หน้า Month drill เพราะหน้า 1 ไม่มีที่แสดงตัวเลข 987 แยกตามเดือน · หน้า Customer history ตาม `g2-c-ux-ui.md` ข้อ 3 · หน้า Checks 5.5 ใช้ตรวจเท่านั้น ซ่อนไว้ (hidden page) ไม่แสดงตอนนำเสนอ
+
+**จุดที่สเปกไม่ได้ระบุ หรือคนสร้างควรรู้:**
+- ข้อ 5.6 ไม่ได้บอกว่ากราฟประเทศใช้ measure ไหน จึงใช้ `Revenue`
+- `Silent % (as of month)`, `Silent since 2 points ago` และ `Silent value as of month` ถ้าไม่กรองเดือนจะรวมทั้ง 19 จุดเวลา (ได้ 32.64%, 7,166, £10,926,742.20) ซึ่งไม่มีความหมาย จึงต้องกรองเดือนเสมอ
+- เดือนสุดท้ายใน `fact_customer_month[year_month]` เขียนว่า `2011-12 (to 9 Dec)` แต่ใน `dim_date[year_month]` เขียนว่า `2011-12`
+- `avg_days_between_orders` ใน Top 50 ว่าง 19 ราย (ซื้อครั้งเดียว) และเป็น 0 อีก 1 ราย จึงเพิ่มคอลัมน์ Note: กรณีซื้อครั้งเดียวทำตาม `g2-c-ux-ui.md` ข้อ 2 ส่วนกรณีค่า 0 (ซื้อหลายใบในวันเดียว) เพิ่มเอง
+- measure ที่คืนค่าว่างทำให้ Power BI ซ่อนแถวในตาราง คอลัมน์ Note จึงต้องคืนข้อความว่าง
+- `KPI baseline %` และกราฟ KPI ไม่ตาม slicer เพราะ `kpi_active_to_silent` ไม่ผูกความสัมพันธ์ · เส้น 40.64% เป็นค่าคงที่ของลูกค้าทั้งฐาน เมื่อเลือก segment แล้วเส้นนี้ไม่ใช่ baseline ของกลุ่มนั้น
+- Desktop ที่ตั้งภาษาไทยจะสร้างโมเดลเป็น `th-TH` ไฟล์นี้ตั้งเป็น `en-US` · คำในโปรแกรม เช่น "All" ของ slicer และ "Total" ของตาราง ตามภาษาของ Windows ไม่ใช่ไฟล์ · 2026-11-06 การตั้ง Application language เป็น English (United States) ใน Options ของ Power BI Desktop รุ่น Store ไม่คงอยู่หลังเปิดโปรแกรมใหม่ สิ่งที่แก้ได้คือผู้ใช้ย้าย English ขึ้นก่อนไทยในรายการภาษาของ Windows (`en-US, th`) แล้วเปิดไฟล์ใหม่ โดยไม่ต้องบันทึก `.pbix` ซ้ำ · PNG ทั้ง 5 หน้าส่งออกใหม่ 2026-11-08 23:01 (`.pbix` บันทึก 22:59) ไม่มีคำไทย · เครื่องอื่นที่ตั้งไทยเป็นภาษาแรกจะยังเห็นคำไทยเมื่อเปิดไฟล์นี้
+- กราฟ Net sales หน้า 1 แสดงครบ 2009-12 ถึง 2011-12 โดยไม่มี scrollbar เพราะแกน Y แสดงเป็นหลักล้าน (`£1M`) Power BI กำหนดความกว้างขั้นต่ำต่อเดือนไว้ 20 px ป้ายแกนแบบเต็ม `£1,000,000` จึงทำให้ 25 เดือนไม่พอดี กราฟนี้ต้องกว้างอย่างน้อยราว 600 px (ที่ 575 px มี scrollbar) · การ์ดตัวเลขสูงน้อยกว่าราว 82 px ตัดหางของจุลภาคจนดูเหมือนจุด (£116.303.26) · คำว่า "M" ตามภาษาของโปรแกรม เครื่องที่ตั้งไทยอาจขึ้นเป็นคำไทย
+- `BiFolder` เก็บ path ของเครื่องนี้ เปิดดูเครื่องอื่นได้เพราะข้อมูลอยู่ในไฟล์แล้ว แต่ถ้าจะ refresh ต้องแก้ parameter นี้ก่อน
+
 ## 6. ข้อจำกัดที่ต้องพูดเอง
 
 - `fact_sales` มีรายการปรับปรุงหนี้ `A563185` (รหัส `B`, "Adjust bad debt", +£11,062.06, ไม่มี Customer ID) ซึ่งไม่ใช่การขายสินค้า ยอดขายฐาน £19,655,052.81 รวมแถวนี้ ตัวเลขระดับลูกค้าไม่กระทบ
@@ -184,6 +271,6 @@ KPI baseline % = CALCULATE(MAX(kpi_active_to_silent[pct]), kpi_active_to_silent[
 
 ## ยังไม่ได้ทำ
 
-- [ ] สร้าง dashboard จริงใน Power BI ตามข้อ 5 (ต้องเป็นคนในทีม) เทียบตัวเลขข้อ 5.5 แล้วเก็บภาพหน้าจอไว้ใน `figures/`
-- [ ] drill ใน Power BI ให้ได้ตัวเลขข้อ 2.2 ตรงกับสคริปต์ — ระวังนิยาม: "เงียบ ณ สิ้น พ.ค. แต่ยัง active ณ สิ้น มี.ค." = **987** ราย ส่วนผลรวม `newly_silent` ของ เม.ย. + พ.ค. = 432 + 591 = **1,023** ราย (มากกว่าเพราะนับคนที่เพิ่งเงียบเดือน เม.ย. แล้วกลับมาซื้อก่อนสิ้น พ.ค. ด้วย) · มติ 2026-11-05: ใช้ 987 ราย
-- [x] เครื่องมือ: Power BI (มติ 2026-11-05) · ยังไม่ได้เลือกคนสร้าง
+- [x] สร้าง dashboard จริงใน Power BI ตามข้อ 5 เทียบตัวเลขข้อ 5.5 แล้ว ภาพแต่ละหน้าอยู่ใน `dashboard/` (2026-11-06, ผลในข้อ 5.7) · ทีมยังไม่ได้ตรวจ
+- [x] drill ใน Power BI ได้ 987 = 396 + 563 + 28 ตรงกับสคริปต์ (2026-11-06) · ยังไม่ได้ตรวจตัวเลข 440 ราย (ลูกค้าใหม่ ต.ค.–พ.ย. 2010) ใน Power BI — ระวังนิยาม: "เงียบ ณ สิ้น พ.ค. แต่ยัง active ณ สิ้น มี.ค." = **987** ราย ส่วนผลรวม `newly_silent` ของ เม.ย. + พ.ค. = 432 + 591 = **1,023** ราย (มากกว่าเพราะนับคนที่เพิ่งเงียบเดือน เม.ย. แล้วกลับมาซื้อก่อนสิ้น พ.ค. ด้วย) · มติ 2026-11-05: ใช้ 987 ราย
+- [x] เครื่องมือ: Power BI (มติ 2026-11-05) · ไฟล์สร้างแล้ว 2026-11-06 ยังไม่ได้ตกลงว่าใครในทีมดูแลและสาธิตบนเวที

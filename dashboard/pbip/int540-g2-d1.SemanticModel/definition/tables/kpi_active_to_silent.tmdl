@@ -1,0 +1,63 @@
+table kpi_active_to_silent
+	lineageTag: 509f914e-c0bf-5200-858a-ea45ee56f837
+
+	measure 'KPI baseline %' = CALCULATE(MAX(kpi_active_to_silent[pct]), kpi_active_to_silent[kind] = "G2-D3 test (baseline)")
+		formatString: 0.00\%
+		lineageTag: 03edc7a3-bda7-5574-9d06-e3bbd4112ceb
+
+	column cutoff_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 6858739a-0042-52f6-996a-d22926060e5d
+		summarizeBy: none
+		sourceColumn: cutoff_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column date_key
+		dataType: int64
+		lineageTag: 5d7855e6-00f2-518d-871d-ee73d9222626
+		summarizeBy: none
+		sourceColumn: date_key
+
+	column kind
+		dataType: string
+		lineageTag: 02c2332e-dec2-5573-a91d-3f5c46bc4644
+		summarizeBy: none
+		sourceColumn: kind
+
+	column active_customers
+		dataType: int64
+		lineageTag: 35e95ee8-b45a-5b11-ab2c-ed7fe08dc05e
+		summarizeBy: none
+		sourceColumn: active_customers
+
+	column became_silent
+		dataType: int64
+		lineageTag: cf393d7e-69dd-527c-9760-3f0553cddbca
+		summarizeBy: none
+		sourceColumn: became_silent
+
+	column pct
+		dataType: double
+		lineageTag: 8a5a0d0b-7bf8-56fb-bd1c-ea21b5e6dfe4
+		summarizeBy: none
+		sourceColumn: pct
+
+	column history_under_12m
+		dataType: boolean
+		lineageTag: 8ef69d40-9eb1-5fa5-ac30-208a80db77ea
+		summarizeBy: none
+		sourceColumn: history_under_12m
+
+	partition kpi_active_to_silent = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(BiFolder & "kpi_active_to_silent.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"cutoff_date", type date}, {"date_key", Int64.Type}, {"kind", type text}, {"active_customers", Int64.Type}, {"became_silent", Int64.Type}, {"pct", type number}, {"history_under_12m", type logical}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

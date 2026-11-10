@@ -1,0 +1,5 @@
+expression BiFolder = "E:\studyWorkspace\courses\int540-data-analytics\term-assignment\data\bi\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: e1be4ada-88cf-5322-a147-fb9da4123cb0
+
+	annotation PBI_ResultType = Text
+

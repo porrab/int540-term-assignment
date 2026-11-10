@@ -44,8 +44,13 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 
 ### Goal 2
 
+**Read first for Goal 2:** [`explainer-goal2/index.html`](explainer-goal2/index.html) (download and open in a browser) — one page, in Thai, covering what Goal 2 did, where each number comes from and how the models were built. Then the deck and the script below.
+
 | File | What it is |
 |---|---|
+| [`explainer-goal2/index.html`](explainer-goal2/index.html) | Reading guide to all of Goal 2 with interactive figures — download, then open locally |
+| [`slides/G2-presentation.pptx`](slides/G2-presentation.pptx) · [`presentation-script-g2.md`](presentation-script-g2.md) | The Goal 2 deck (14 main slides + appendix A1–A5) and the Thai speaking script, demo steps and Q&A. Rebuild with `node slides/build-g2-presentation.js` |
+| [`dashboard/int540-g2-d1.pbix`](dashboard/int540-g2-d1.pbix) | The Power BI dashboard (Power BI Desktop). [`int540-g2-d1-present.pdf`](dashboard/int540-g2-d1-present.pdf) = the 4 presentation pages; `int540-g2-d1.pdf` also has the Checks page; `*.png` = one image per page; `pbip/` + `build_pbip.py` = the source the file was built from |
 | [`dedup-recheck.md`](dedup-recheck.md) | All figures recomputed after removing duplicate rows — old vs new |
 | [`g2-a-system-components.md`](g2-a-system-components.md) | G2-A: decision improvement vs process redesign, as-is vs to-be, where each model plugs in, inputs/outputs/users |
 | [`g2-b-data-treatment.md`](g2-b-data-treatment.md) | G2-B: cleansing log, RFM feature engineering, transformation, business impact of each treatment, data dictionary |
