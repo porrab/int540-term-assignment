@@ -572,20 +572,20 @@ appendixDivider();
   const s = pres.addSlide();
   s.background = { color: BG_LIGHT };
   sectionTag(s, "APPENDIX A4");
-  slideTitle(s, "G2-D5 · Association rules: a talking point for calls", "594 rules, mostly the same product in another colour");
-  const rows = tableOf(["If the customer bought", "Offer", "Confidence", "Lift", "Support"], [
-    ["GREEN REGENCY TEACUP AND SAUCER", "ROSES REGENCY TEACUP AND SAUCER", "79.70%", "25.7", "2.19%"],
-    ["SWEETHEART CERAMIC TRINKET BOX", "STRAWBERRY CERAMIC TRINKET BOX", "73.19%", "13.3", "2.48%"],
-    ["RED HANGING HEART T-LIGHT HOLDER", "WHITE HANGING HEART T-LIGHT HOLDER", "70.82%", "5.0", "3.35%"],
-    ["ALARM CLOCK BAKELIKE GREEN", "ALARM CLOCK BAKELIKE RED", "67.44%", "20.3", "2.03%"],
-    ["CHARLOTTE BAG PINK POLKADOT", "RED RETROSPOT CHARLOTTE BAG", "63.45%", "14.6", "2.04%"],
+  slideTitle(s, "G2-D5 · Association rules: a talking point for calls", "525 rules, mostly the same product in another colour");
+  const rows = tableOf(["If the customer bought", "Offer", "Confidence", "Lift", "Support", "Conviction"], [
+    ["GREEN REGENCY TEACUP AND SAUCER", "ROSES REGENCY TEACUP AND SAUCER", "79.70%", "27.3", "2.06%", "4.78"],
+    ["SWEETHEART CERAMIC TRINKET BOX", "STRAWBERRY CERAMIC TRINKET BOX", "73.19%", "14.1", "2.34%", "3.54"],
+    ["RED HANGING HEART T-LIGHT HOLDER", "WHITE HANGING HEART T-LIGHT HOLDER", "70.82%", "5.3", "3.16%", "2.97"],
+    ["JUMBO BAG STRAWBERRY", "JUMBO BAG RED RETROSPOT", "62.88%", "7.1", "2.60%", "2.45"],
+    ["JUMBO BAG PINK POLKADOT", "JUMBO BAG RED RETROSPOT", "60.22%", "6.8", "2.91%", "2.29"],
   ], 11.5);
-  s.addTable(rows, { ...TBL, x: 0.6, y: 1.65, w: 12.1, colW: [3.9, 3.9, 1.5, 1.2, 1.6], rowH: 0.5 });
+  s.addTable(rows, { ...TBL, x: 0.6, y: 1.65, w: 12.1, colW: [3.5, 3.5, 1.4, 1.1, 1.3, 1.3], rowH: 0.5 });
   noteBar(s, 0.6, 5.0, 12.1, 1.3, [
     { text: "Setup: ", options: { bold: true } },
-    { text: "36,594 baskets of identified customers, items in ≥ 1% of baskets, FP-growth, confidence ≥ 30% and lift > 1. Rules show what sells together; they do not show that an offer brings a customer back.", options: {} },
+    { text: "36,594 baskets of identified customers, items in ≥ 1% of baskets, FP-growth, confidence ≥ 30% and lift > 1. Lift is the same both ways; conviction is not, and each rule shown is the direction with the higher conviction. Rules show what sells together; they do not show that an offer brings a customer back.", options: {} },
   ]);
-  addFooter(s, "Kept as backup (team decision 5 Nov); terms to be checked against the 12 Nov class");
+  addFooter(s, "Kept as backup (team decision 5 Nov); terms checked against the 12 Nov class (support, confidence, lift, conviction)");
 }
 
 // A5 BI model and checks

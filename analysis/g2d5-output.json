@@ -3,93 +3,24 @@
   "min_confidence": 0.3,
   "all": {
     "baskets": 36594,
+    "basket_rows_used": 36594,
     "products_total": 4620,
     "products_kept_support_ge_1pct": 562,
-    "frequent_itemsets": 916,
-    "rules": 594,
+    "frequent_itemsets": 873,
+    "rules": 525,
     "top10_by_lift": [
       {
         "if_bought": [
           "22746 POPPY'S PLAYHOUSE LIVINGROOM"
         ],
         "then_also": [
-          "22745 POPPY'S PLAYHOUSE BEDROOM",
-          "22748 POPPY'S PLAYHOUSE KITCHEN"
-        ],
-        "support": 0.0103,
-        "confidence": 0.7696,
-        "lift": 56.263
-      },
-      {
-        "if_bought": [
-          "22745 POPPY'S PLAYHOUSE BEDROOM",
-          "22748 POPPY'S PLAYHOUSE KITCHEN"
-        ],
-        "then_also": [
-          "22746 POPPY'S PLAYHOUSE LIVINGROOM"
-        ],
-        "support": 0.0103,
-        "confidence": 0.75,
-        "lift": 56.263
-      },
-      {
-        "if_bought": [
-          "22746 POPPY'S PLAYHOUSE LIVINGROOM",
-          "22748 POPPY'S PLAYHOUSE KITCHEN"
-        ],
-        "then_also": [
           "22745 POPPY'S PLAYHOUSE BEDROOM"
         ],
-        "support": 0.0103,
-        "confidence": 0.8676,
-        "lift": 53.8503
-      },
-      {
-        "if_bought": [
-          "22745 POPPY'S PLAYHOUSE BEDROOM"
-        ],
-        "then_also": [
-          "22746 POPPY'S PLAYHOUSE LIVINGROOM",
-          "22748 POPPY'S PLAYHOUSE KITCHEN"
-        ],
-        "support": 0.0103,
-        "confidence": 0.6367,
-        "lift": 53.8503
-      },
-      {
-        "if_bought": [
-          "22745 POPPY'S PLAYHOUSE BEDROOM",
-          "22746 POPPY'S PLAYHOUSE LIVINGROOM"
-        ],
-        "then_also": [
-          "22748 POPPY'S PLAYHOUSE KITCHEN"
-        ],
-        "support": 0.0103,
-        "confidence": 0.9267,
-        "lift": 51.9133
-      },
-      {
-        "if_bought": [
-          "22748 POPPY'S PLAYHOUSE KITCHEN"
-        ],
-        "then_also": [
-          "22745 POPPY'S PLAYHOUSE BEDROOM",
-          "22746 POPPY'S PLAYHOUSE LIVINGROOM"
-        ],
-        "support": 0.0103,
-        "confidence": 0.5747,
-        "lift": 51.9133
-      },
-      {
-        "if_bought": [
-          "22746 POPPY'S PLAYHOUSE LIVINGROOM"
-        ],
-        "then_also": [
-          "22745 POPPY'S PLAYHOUSE BEDROOM"
-        ],
-        "support": 0.0111,
+        "support": 0.0104,
         "confidence": 0.8304,
-        "lift": 51.5407
+        "lift": 54.6563,
+        "conviction": 5.8078,
+        "reverse_conviction": 3.1552
       },
       {
         "if_bought": [
@@ -98,9 +29,11 @@
         "then_also": [
           "22746 POPPY'S PLAYHOUSE LIVINGROOM"
         ],
-        "support": 0.0111,
+        "support": 0.0104,
         "confidence": 0.6871,
-        "lift": 51.5407
+        "lift": 54.6563,
+        "conviction": 3.1552,
+        "reverse_conviction": 5.8078
       },
       {
         "if_bought": [
@@ -109,9 +42,11 @@
         "then_also": [
           "22748 POPPY'S PLAYHOUSE KITCHEN"
         ],
-        "support": 0.0118,
+        "support": 0.0111,
         "confidence": 0.887,
-        "lift": 49.6868
+        "lift": 52.6904,
+        "conviction": 8.6972,
+        "reverse_conviction": 2.9243
       },
       {
         "if_bought": [
@@ -120,9 +55,89 @@
         "then_also": [
           "22746 POPPY'S PLAYHOUSE LIVINGROOM"
         ],
-        "support": 0.0118,
+        "support": 0.0111,
         "confidence": 0.6623,
-        "lift": 49.6868
+        "lift": 52.6904,
+        "conviction": 2.9243,
+        "reverse_conviction": 8.6972
+      },
+      {
+        "if_bought": [
+          "22745 POPPY'S PLAYHOUSE BEDROOM"
+        ],
+        "then_also": [
+          "22748 POPPY'S PLAYHOUSE KITCHEN"
+        ],
+        "support": 0.0129,
+        "confidence": 0.8489,
+        "lift": 50.4309,
+        "conviction": 6.5076,
+        "reverse_conviction": 4.2128
+      },
+      {
+        "if_bought": [
+          "22748 POPPY'S PLAYHOUSE KITCHEN"
+        ],
+        "then_also": [
+          "22745 POPPY'S PLAYHOUSE BEDROOM"
+        ],
+        "support": 0.0129,
+        "confidence": 0.7662,
+        "lift": 50.4309,
+        "conviction": 4.2128,
+        "reverse_conviction": 6.5076
+      },
+      {
+        "if_bought": [
+          "21239 PINK  SPOTTY CUP"
+        ],
+        "then_also": [
+          "21240 BLUE  SPOTTY CUP"
+        ],
+        "support": 0.0106,
+        "confidence": 0.7042,
+        "lift": 45.3672,
+        "conviction": 3.3279,
+        "reverse_conviction": 3.108
+      },
+      {
+        "if_bought": [
+          "21240 BLUE  SPOTTY CUP"
+        ],
+        "then_also": [
+          "21239 PINK  SPOTTY CUP"
+        ],
+        "support": 0.0106,
+        "confidence": 0.6831,
+        "lift": 45.3672,
+        "conviction": 3.108,
+        "reverse_conviction": 3.3279
+      },
+      {
+        "if_bought": [
+          "21899 KEY FOB , GARAGE DESIGN"
+        ],
+        "then_also": [
+          "21900 KEY FOB , SHED"
+        ],
+        "support": 0.0112,
+        "confidence": 0.782,
+        "lift": 43.7576,
+        "conviction": 4.5057,
+        "reverse_conviction": 2.6312
+      },
+      {
+        "if_bought": [
+          "21900 KEY FOB , SHED"
+        ],
+        "then_also": [
+          "21899 KEY FOB , GARAGE DESIGN"
+        ],
+        "support": 0.0112,
+        "confidence": 0.6254,
+        "lift": 43.7576,
+        "conviction": 2.6312,
+        "reverse_conviction": 4.5057
       }
     ],
     "top10_by_confidence_support_ge_2pct": [
@@ -133,9 +148,11 @@
         "then_also": [
           "22699 ROSES REGENCY TEACUP AND SAUCER"
         ],
-        "support": 0.0219,
+        "support": 0.0206,
         "confidence": 0.797,
-        "lift": 25.7049
+        "lift": 27.2588,
+        "conviction": 4.783,
+        "reverse_conviction": 3.2985
       },
       {
         "if_bought": [
@@ -144,9 +161,11 @@
         "then_also": [
           "21232 STRAWBERRY CERAMIC TRINKET BOX"
         ],
-        "support": 0.0248,
+        "support": 0.0234,
         "confidence": 0.7319,
-        "lift": 13.3411
+        "lift": 14.1476,
+        "conviction": 3.5364,
+        "reverse_conviction": 1.7687
       },
       {
         "if_bought": [
@@ -155,9 +174,11 @@
         "then_also": [
           "85123A WHITE HANGING HEART T-LIGHT HOLDER"
         ],
-        "support": 0.0335,
+        "support": 0.0316,
         "confidence": 0.7082,
-        "lift": 4.9922
+        "lift": 5.294,
+        "conviction": 2.9681,
+        "reverse_conviction": null
       },
       {
         "if_bought": [
@@ -166,31 +187,11 @@
         "then_also": [
           "22697 GREEN REGENCY TEACUP AND SAUCER"
         ],
-        "support": 0.0219,
+        "support": 0.0206,
         "confidence": 0.7047,
-        "lift": 25.7049
-      },
-      {
-        "if_bought": [
-          "22726 ALARM CLOCK BAKELIKE GREEN"
-        ],
-        "then_also": [
-          "22727 ALARM CLOCK BAKELIKE RED"
-        ],
-        "support": 0.0203,
-        "confidence": 0.6744,
-        "lift": 20.3414
-      },
-      {
-        "if_bought": [
-          "22356 CHARLOTTE BAG PINK POLKADOT"
-        ],
-        "then_also": [
-          "20724 RED RETROSPOT CHARLOTTE BAG"
-        ],
-        "support": 0.0204,
-        "confidence": 0.6345,
-        "lift": 14.6452
+        "lift": 27.2588,
+        "conviction": 3.2985,
+        "reverse_conviction": 4.783
       },
       {
         "if_bought": [
@@ -199,20 +200,11 @@
         "then_also": [
           "85099B JUMBO BAG RED RETROSPOT"
         ],
-        "support": 0.0276,
+        "support": 0.026,
         "confidence": 0.6288,
-        "lift": 6.656
-      },
-      {
-        "if_bought": [
-          "22727 ALARM CLOCK BAKELIKE RED"
-        ],
-        "then_also": [
-          "22726 ALARM CLOCK BAKELIKE GREEN"
-        ],
-        "support": 0.0203,
-        "confidence": 0.6136,
-        "lift": 20.3414
+        "lift": 7.0584,
+        "conviction": 2.454,
+        "reverse_conviction": null
       },
       {
         "if_bought": [
@@ -221,9 +213,11 @@
         "then_also": [
           "85099B JUMBO BAG RED RETROSPOT"
         ],
-        "support": 0.0308,
+        "support": 0.0291,
         "confidence": 0.6022,
-        "lift": 6.3739
+        "lift": 6.7592,
+        "conviction": 2.2896,
+        "reverse_conviction": 1.4128
       },
       {
         "if_bought": [
@@ -232,9 +226,50 @@
         "then_also": [
           "82494L WOODEN FRAME ANTIQUE WHITE"
         ],
-        "support": 0.0288,
+        "support": 0.0271,
         "confidence": 0.5989,
-        "lift": 11.6567
+        "lift": 12.3613,
+        "conviction": 2.3724,
+        "reverse_conviction": 2.1701
+      },
+      {
+        "if_bought": [
+          "82494L WOODEN FRAME ANTIQUE WHITE"
+        ],
+        "then_also": [
+          "82482 WOODEN PICTURE FRAME WHITE FINISH"
+        ],
+        "support": 0.0271,
+        "confidence": 0.5601,
+        "lift": 12.3613,
+        "conviction": 2.1701,
+        "reverse_conviction": 2.3724
+      },
+      {
+        "if_bought": [
+          "85099C JUMBO  BAG BAROQUE BLACK WHITE"
+        ],
+        "then_also": [
+          "85099B JUMBO BAG RED RETROSPOT"
+        ],
+        "support": 0.022,
+        "confidence": 0.5549,
+        "lift": 6.2284,
+        "conviction": 2.0464,
+        "reverse_conviction": null
+      },
+      {
+        "if_bought": [
+          "22384 LUNCH BAG PINK POLKADOT"
+        ],
+        "then_also": [
+          "20725 LUNCH BAG RED RETROSPOT"
+        ],
+        "support": 0.0279,
+        "confidence": 0.5539,
+        "lift": 7.8598,
+        "conviction": 2.0838,
+        "reverse_conviction": 1.5729
       }
     ]
   },
@@ -242,99 +277,33 @@
     "customers": 966,
     "baskets": 1749,
     "products_kept_support_ge_2pct": 181,
-    "rules": 29,
+    "rules": 10,
     "top10_by_lift": [
       {
         "if_bought": [
-          "23504 PLAYING CARDS JUBILEE UNION JACK"
-        ],
-        "then_also": [
-          "23503 PLAYING CARDS KEEP CALM & CARRY ON"
-        ],
-        "support": 0.0207,
-        "confidence": 0.8108,
-        "lift": 24.0265
-      },
-      {
-        "if_bought": [
-          "23503 PLAYING CARDS KEEP CALM & CARRY ON"
-        ],
-        "then_also": [
-          "23504 PLAYING CARDS JUBILEE UNION JACK"
-        ],
-        "support": 0.0207,
-        "confidence": 0.6122,
-        "lift": 24.0265
-      },
-      {
-        "if_bought": [
-          "22698 PINK REGENCY TEACUP AND SAUCER"
-        ],
-        "then_also": [
-          "22697 GREEN REGENCY TEACUP AND SAUCER"
-        ],
-        "support": 0.0255,
-        "confidence": 0.9024,
-        "lift": 22.9884
-      },
-      {
-        "if_bought": [
           "22697 GREEN REGENCY TEACUP AND SAUCER"
         ],
         "then_also": [
           "22698 PINK REGENCY TEACUP AND SAUCER"
         ],
-        "support": 0.0255,
+        "support": 0.0212,
         "confidence": 0.6491,
-        "lift": 22.9884
+        "lift": 27.6906,
+        "conviction": 2.7832,
+        "reverse_conviction": 9.916
       },
       {
         "if_bought": [
-          "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
+          "22698 PINK REGENCY TEACUP AND SAUCER"
         ],
         "then_also": [
-          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN",
-          "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
+          "22697 GREEN REGENCY TEACUP AND SAUCER"
         ],
-        "support": 0.022,
-        "confidence": 0.5,
-        "lift": 20.7429
-      },
-      {
-        "if_bought": [
-          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN",
-          "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
-        ],
-        "then_also": [
-          "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
-        ],
-        "support": 0.022,
-        "confidence": 0.9143,
-        "lift": 20.7429
-      },
-      {
-        "if_bought": [
-          "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
-        ],
-        "then_also": [
-          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN",
-          "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
-        ],
-        "support": 0.022,
-        "confidence": 0.64,
-        "lift": 19.7719
-      },
-      {
-        "if_bought": [
-          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN",
-          "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
-        ],
-        "then_also": [
-          "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
-        ],
-        "support": 0.022,
-        "confidence": 0.6809,
-        "lift": 19.7719
+        "support": 0.0212,
+        "confidence": 0.9024,
+        "lift": 27.6906,
+        "conviction": 9.916,
+        "reverse_conviction": 2.7832
       },
       {
         "if_bought": [
@@ -343,9 +312,11 @@
         "then_also": [
           "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
         ],
-        "support": 0.0296,
+        "support": 0.0246,
         "confidence": 0.86,
-        "lift": 19.5113
+        "lift": 23.5022,
+        "conviction": 6.8815,
+        "reverse_conviction": 2.9605
       },
       {
         "if_bought": [
@@ -354,11 +325,91 @@
         "then_also": [
           "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
         ],
-        "support": 0.0296,
+        "support": 0.0246,
         "confidence": 0.6719,
-        "lift": 19.5113
+        "lift": 23.5022,
+        "conviction": 2.9605,
+        "reverse_conviction": 6.8815
+      },
+      {
+        "if_bought": [
+          "22699 ROSES REGENCY TEACUP AND SAUCER"
+        ],
+        "then_also": [
+          "22697 GREEN REGENCY TEACUP AND SAUCER"
+        ],
+        "support": 0.0206,
+        "confidence": 0.6792,
+        "lift": 20.8421,
+        "conviction": 3.016,
+        "reverse_conviction": 2.632
+      },
+      {
+        "if_bought": [
+          "22697 GREEN REGENCY TEACUP AND SAUCER"
+        ],
+        "then_also": [
+          "22699 ROSES REGENCY TEACUP AND SAUCER"
+        ],
+        "support": 0.0206,
+        "confidence": 0.6316,
+        "lift": 20.8421,
+        "conviction": 2.632,
+        "reverse_conviction": 3.016
+      },
+      {
+        "if_bought": [
+          "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
+        ],
+        "then_also": [
+          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN"
+        ],
+        "support": 0.0269,
+        "confidence": 0.7344,
+        "lift": 18.8886,
+        "conviction": 3.6183,
+        "reverse_conviction": 3.1196
+      },
+      {
+        "if_bought": [
+          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN"
+        ],
+        "then_also": [
+          "22578 WOODEN STAR CHRISTMAS SCANDINAVIAN"
+        ],
+        "support": 0.0269,
+        "confidence": 0.6912,
+        "lift": 18.8886,
+        "conviction": 3.1196,
+        "reverse_conviction": 3.6183
+      },
+      {
+        "if_bought": [
+          "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
+        ],
+        "then_also": [
+          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN"
+        ],
+        "support": 0.02,
+        "confidence": 0.7,
+        "lift": 18.0044,
+        "conviction": 3.2037,
+        "reverse_conviction": 2.0017
+      },
+      {
+        "if_bought": [
+          "22577 WOODEN HEART CHRISTMAS SCANDINAVIAN"
+        ],
+        "then_also": [
+          "22579 WOODEN TREE CHRISTMAS SCANDINAVIAN"
+        ],
+        "support": 0.02,
+        "confidence": 0.5147,
+        "lift": 18.0044,
+        "conviction": 2.0017,
+        "reverse_conviction": 3.2037
       }
     ]
   },
-  "flagged_rules_also_in_all_pct": 58.6207
+  "flagged_rules_also_in_all_pct": 60.0
 }

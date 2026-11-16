@@ -65,7 +65,7 @@ column, the vocabulary the team uses, and the figures everyone should know by he
 | [`data/customer_features_backtest.csv`](data/customer_features_backtest.csv) | Features at an earlier cut-off with a churn label (4,282 customers) |
 | [`data/customer_segments.csv`](data/customer_segments.csv) | Segment of each customer from G2-D2 |
 | [`data/worklist_scored.csv`](data/worklist_scored.csv) | Every active customer at the data end with churn score, flag and rank (G2-D3) |
-| [`data/association_rules.csv`](data/association_rules.csv) | All 594 association rules (G2-D5) |
+| [`data/association_rules.csv`](data/association_rules.csv) | All 525 association rules with support, confidence, lift and conviction (G2-D5) |
 | [`data/bi/`](data/bi/) | Star-schema tables for Power BI (G2-D1); unzip the three `fact_*.csv.zip` files first; `fact_customer_month` holds each customer's status as of every month-end, for drill-down from the top chart |
 | [`figures/`](figures/) | Charts for the slides, written by the G2 scripts |
 
