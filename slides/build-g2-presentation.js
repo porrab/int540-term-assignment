@@ -1,5 +1,5 @@
 // G2 PRESENTATION deck — English slides, Thai speech, ~15-minute talk + Q&A.
-// Main deck 14 slides; appendix = backup for questions (not in the 15 minutes).
+// Main deck 20 slides (14 + 5 demo-clip slides after 11 and 12 + a strategy map before the BSC); appendix = backup for questions (not in the 15 minutes).
 // Same palette and helpers as build-g1-presentation.js so Goal 1 and Goal 2 look alike.
 // Every figure comes from the Goal 2 .md deliverables (g2-a … g2-e, solution-outline)
 // and data/bi/*.csv; this deck only condenses, it adds no new numbers.
@@ -98,6 +98,26 @@ function img(slide, file, x, y, w) {
   slide.addShape(pres.shapes.RECTANGLE, { x: x - 0.04, y: y - 0.04, w: w + 0.08, h: h + 0.08, fill: { color: WHITE }, line: { color: "D7E1F5", width: 1 }, shadow: freshShadow() });
   slide.addImage({ path: path.join(DASH, file), x, y, w, h });
   return h;
+}
+// Demo clip slide: video on the left (16:9, poster frame shown in PDF/print),
+// a card on the right saying what the clip shows. Clips: dashboard/demo-clips/,
+// recorded and zoomed by dashboard/record_demo.py + zoom_clips.py (silent, narrated live).
+const CLIPS = path.join(DASH, "demo-clips");
+function videoSlide(kicker, title, clip, points) {
+  const s = pres.addSlide();
+  s.background = { color: BG_LIGHT };
+  sectionTag(s, "8 · DASHBOARD");
+  slideTitle(s, kicker, title);
+  const x = 0.6, y = 1.65, w = 8.7, h = w * 9 / 16;
+  s.addShape(pres.shapes.RECTANGLE, { x: x - 0.04, y: y - 0.04, w: w + 0.08, h: h + 0.08, fill: { color: WHITE }, line: { color: "D7E1F5", width: 1 }, shadow: freshShadow() });
+  const poster = "data:image/png;base64," + require("fs").readFileSync(path.join(CLIPS, "posters", clip + ".png")).toString("base64");
+  s.addMedia({ type: "video", path: path.join(CLIPS, clip + ".mp4"), cover: poster, x, y, w, h });
+  card(s, 9.6, y, 3.1, h);
+  s.addText([
+    { text: "In this clip", options: { bold: true, color: GOLD, breakLine: true } },
+    ...points.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < points.length - 1, paraSpaceBefore: 6 } })),
+  ], { x: 9.78, y: y + 0.12, w: 2.78, h: h - 0.24, fontFace: FONT_BODY, fontSize: 13, color: TEXT_DARK, lineSpacingMultiple: 1.15, valign: "top", margin: 0 });
+  addFooter(s, "Screen recording of int540-g2-d1.pbix in Power BI Desktop, 17 Nov 2026 · silent, narrated live");
 }
 function appendixDivider() {
   const s = pres.addSlide();
@@ -405,7 +425,7 @@ function appendixDivider() {
   const h = img(s, "int540-g2-d1-page1-overview.png", 0.6, 1.6, 7.9);
   card(s, 8.8, 1.6, 3.9, h);
   s.addText([
-    { text: "Live demo path", options: { bold: true, color: GOLD, breakLine: true } },
+    { text: "Demo path", options: { bold: true, color: GOLD, breakLine: true } },
     { text: "1  Read the top chart: 21% (Dec 2010) → 30% (Mar 2011)", options: { breakLine: true } },
     { text: "2  May 2011 jumps to 45.23%: right-click → drill through", options: { breakLine: true } },
     { text: "3  Slice: Segment = Slipping regulars", options: { breakLine: true } },
@@ -415,6 +435,18 @@ function appendixDivider() {
   noteBar(s, 0.6, 6.35, 12.1, 0.55, [{ text: "Star schema: fact_sales, fact_returns, fact_customer_month + 3 dims. Every card matched the Python results before use.", options: {} }]);
   addFooter(s, "Data covers Dec 2009 – 9 Dec 2011: the monthly update is simulated by moving the cut-off");
 }
+
+// ---- 11a–11b. Demo clips 1–2 (then slide 12 frames the decision) ----
+videoSlide("G2-D1 · Demo 1 of 5 · Read the overview", "Silent customers nearly doubled in a year: 21.07% → 40.64%", "clip1-overview", [
+  "Cards: 40.64% silent at 9 Dec 2011; 966 customers at high risk (from the model)",
+  "Top chart: 21.07% (Dec 2010) → 29.67% (Mar 2011) → 45.23% (May 2011)",
+  "Segments: Loyal wholesale are 19.0% of customers but 71.6% of revenue",
+]);
+videoSlide("G2-D1 · Demo 2 of 5 · Drill through", "May 2011: 987 customers went silent, most last ordered Oct–Nov 2010", "clip2-drill-may-2011", [
+  "Right-click 2011-05 → Drill through → Month drill",
+  "987 = silent at end of May, still active at end of March",
+  "Last order: 396 in Oct, 563 in Nov, 28 in Dec 2010",
+]);
 
 // ---- 12. Drill: month ----
 {
@@ -437,6 +469,69 @@ function appendixDivider() {
   ], { x: 8.5, y: 4.95, w: 4.05, h: 1.25, fontFace: FONT_BODY, fontSize: 12.5, color: TEXT_DARK, valign: "middle", margin: 0 });
   s.addText("Month-drill page after right-clicking 2011-05 on the top chart", { x: 0.6, y: 1.65 + h + 0.08, w: 7.4, h: 0.35, fontFace: FONT_BODY, fontSize: 11.5, italic: true, color: TEXT_MUTED, margin: 0 });
   addFooter(s, "987 = silent at end of May but active two month-ends earlier; not the sum of monthly newly_silent (1,023)");
+}
+
+// ---- 12a–12c. Demo clips 3–5: slice, dice, one customer ----
+videoSlide("G2-D1 · Demo 3 of 5 · Slice", "Slipping regulars: 45.10% silent, 52 at high risk", "clip3-segment-slicer", [
+  "Segment slicer = Slipping regulars",
+  "Every card and chart on the page follows the slicer",
+]);
+videoSlide("G2-D1 · Demo 4 of 5 · Dice", "18 of the top 50 high-risk customers are Slipping regulars", "clip4-drill-worklist", [
+  "Right-click the segment bar → Drill through → Worklist",
+  "Worklist = top 50 High-risk customers by 12-month spend",
+  "Days since last order turn red past 3× the customer's usual gap",
+]);
+videoSlide("G2-D1 · Demo 5 of 5 · One customer", "Customer 18073 ordered every 7.5 days, now silent for 114", "clip5-customer-18073", [
+  "Right-click a customer → Drill through → Customer history",
+  "Last order 17 Aug 2011: the caller sees what they bought before phoning",
+]);
+
+// ---- 12d. Strategy map (asked for by the lecturer, class 19 Nov) ----
+// Same four BSC objectives, KPIs and baselines as the next slide, drawn as cause and effect.
+// Read bottom-up. The gold row is where the Goal 2 model acts; the rows above are expected, not yet tested.
+{
+  const s = pres.addSlide();
+  s.background = { color: BG_LIGHT };
+  sectionTag(s, "9 · STRATEGY");
+  slideTitle(s, "G2-E · Strategy map", "The model acts at Internal Process; the gains above it need a pilot");
+  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.6, y: 1.55, w: 12.1, h: 0.5, rectRadius: 0.08, fill: { color: NAVY }, line: { type: "none" } });
+  s.addText([
+    { text: "Strategy: ", options: { bold: true, color: GOLD } },
+    { text: "cost leadership: keep frequent wholesale buyers without cutting prices (our interpretation, no cost data)", options: { color: WHITE } },
+  ], { x: 0.8, y: 1.55, w: 11.7, h: 0.5, fontFace: FONT_BODY, fontSize: 14, valign: "middle", margin: 0 });
+  // top (Financial) to bottom (Learning & Growth)
+  const layers = [
+    { p: "Financial", obj: "Keep revenue from frequent buyers", kpi: "Spend of silent regulars at risk · baseline £781,671",
+      g2: "The 15 truly silent customers in our top 50 hold £112,332 (rule: £99,596); recovering it needs the pilot", st: "Found, not yet recovered", stc: GOLD },
+    { p: "Customer", obj: "Fewer active customers go silent", kpi: "% of active customers silent within 180 days · baseline 30.03%",
+      g2: "Depends on how many called customers come back", st: "Needs pilot", stc: GOLD },
+    { p: "Internal Process", obj: "Call high-risk customers before 180 days", kpi: "% of high-risk customers contacted within 30 days · baseline 0%",
+      g2: "Flagged list (1,194 customers) caught 594 of the 791 who went silent (75.09%)", st: "Proven: detection", stc: GREEN, hot: true },
+    { p: "Learning & Growth", obj: "Staff review the list every week", kpi: "% of weeks the list is reviewed · baseline 0%",
+      g2: "The weekly Worklist screen makes this review measurable; no usage data yet", st: "Measured in use", stc: GOLD },
+  ];
+  const y0 = 2.25, rh = 0.9, gap = 0.22;
+  layers.forEach((L, i) => {
+    const y = y0 + i * (rh + gap);
+    const fill = L.hot ? "FFF4E0" : CARD_BG;
+    s.addText(L.p, { x: 0.6, y, w: 1.9, h: rh, fontFace: FONT_HEAD, fontSize: 14, bold: true, color: NAVY, valign: "middle", margin: 0 });
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 2.55, y, w: 4.75, h: rh, rectRadius: 0.08, fill: { color: fill }, line: L.hot ? { color: GOLD, width: 2 } : { type: "none" }, shadow: freshShadow() });
+    s.addText([
+      { text: L.obj, options: { bold: true, color: TEXT_DARK, fontSize: 14, breakLine: true } },
+      { text: L.kpi, options: { color: TEXT_MUTED, fontSize: 11 } },
+    ], { x: 2.72, y, w: 4.45, h: rh, fontFace: FONT_BODY, valign: "middle", margin: 0 });
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 7.55, y, w: 5.15, h: rh, rectRadius: 0.08, fill: { color: L.hot ? "FFF4E0" : "EAF0FC" }, line: L.hot ? { color: GOLD, width: 2 } : { type: "none" } });
+    s.addText([
+      { text: L.hot ? "Goal 2 model acts here: " : "Goal 2: ", options: { bold: true, color: L.hot ? GOLD : NAVY } },
+      { text: L.g2, options: { color: TEXT_DARK } },
+    ], { x: 7.72, y: y + 0.06, w: 3.45, h: rh - 0.12, fontFace: FONT_BODY, fontSize: 12, valign: "middle", margin: 0 });
+    s.addText(L.st, { x: 11.15, y, w: 1.45, h: rh, fontFace: FONT_BODY, fontSize: 11.5, bold: true, color: L.stc, align: "center", valign: "middle", margin: 0 });
+    if (i < layers.length - 1) {
+      // arrow points up: from the lower box (row i+1) to this one
+      s.addShape(pres.shapes.UP_ARROW, { x: 4.75, y: y + rh + 0.02, w: 0.35, h: gap - 0.04, fill: { color: GOLD }, line: { type: "none" } });
+    }
+  });
+  addFooter(s, "Read bottom-up · KPIs and baselines as in the Balanced Scorecard on the next slide");
 }
 
 // ---- 13. BSC interpretation ----
