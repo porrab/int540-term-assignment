@@ -84,18 +84,25 @@ class Clip:
 def clip1():  # Overview: headline cards -> trend line -> who matters
     with Clip("clip1-overview") as c:
         c.move(120, 500, 0.01); c.hold(2.0)
+        # Never cross the slicer row (y 255-300) on the way: a slicer's header icons
+        # pop up over the 40.64% card and stay there. Travel in the grey left margin.
         c.focus(186, 120, 1030, 250)            # title + KPI cards
-        c.move(360, 224, 1.0); c.hold(3.0)      # 40.64% now
+        c.move(150, 224, 0.8); c.hold(0.2)      # up the grey margin
+        c.move(360, 224, 0.8); c.hold(3.0)      # 40.64% now
         c.move(950, 137, 1.0); c.hold(2.5)      # 21.07% a year earlier (title)
         c.move(670, 224, 1.0); c.hold(3.0)      # 966 high-risk (model output)
         # line chart: point at axis labels, hovering the line opens a sticky tooltip
         c.focus(190, 305, 925, 545)
-        c.move(447, 492, 1.2); c.hold(2.5)      # 2010-12  21.07%
+        c.move(150, 224, 0.9); c.hold(0.1)      # back to the margin, past the slicers
+        c.move(150, 492, 0.7); c.hold(0.1)
+        c.move(447, 492, 0.9); c.hold(2.5)      # 2010-12  21.07%
         c.move(554, 492, 1.0); c.hold(2.5)      # 2011-03  29.67%
         c.move(626, 492, 0.8); c.hold(3.0)      # 2011-05  45.23% jump
         c.focus(930, 305, 1350, 545)            # segment share bars
         c.move(1081, 377, 1.2); c.hold(2.5)     # Loyal wholesale 19.0% of customers
-        c.move(1272, 377, 1.0); c.hold(3.0)     # ... but 71.6% of revenue
+        # just right of the bar: the 71.6% label sits inside the bar, and hovering
+        # the bar opens a tooltip that covers it
+        c.move(1314, 377, 1.0); c.hold(3.0)     # ... but 71.6% of revenue
         c.full()
         c.move(120, 500, 1.0); c.hold(1.5)      # grey margin: closes any tooltip
 
