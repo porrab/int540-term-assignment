@@ -99,9 +99,10 @@ function img(slide, file, x, y, w) {
   slide.addImage({ path: path.join(DASH, file), x, y, w, h });
   return h;
 }
-// Demo clip slide: video on the left (16:9, poster frame shown in PDF/print),
-// a card on the right saying what the clip shows. Clips: dashboard/demo-clips/,
-// recorded and zoomed by dashboard/record_demo.py + zoom_clips.py (silent, narrated live).
+// Demo clip slide: a still frame of the clip on the left (16:9), a card on the right
+// saying what the clip shows. The clips themselves (dashboard/demo-clips/*.mp4, made by
+// dashboard/record_demo.py + zoom_clips.py) are played from Canva, so this deck carries
+// only the poster frames (dashboard/demo-clips/posters/, tracked) and stays small.
 const CLIPS = path.join(DASH, "demo-clips");
 function videoSlide(kicker, title, clip, points) {
   const s = pres.addSlide();
@@ -110,14 +111,13 @@ function videoSlide(kicker, title, clip, points) {
   slideTitle(s, kicker, title);
   const x = 0.6, y = 1.65, w = 8.7, h = w * 9 / 16;
   s.addShape(pres.shapes.RECTANGLE, { x: x - 0.04, y: y - 0.04, w: w + 0.08, h: h + 0.08, fill: { color: WHITE }, line: { color: "D7E1F5", width: 1 }, shadow: freshShadow() });
-  const poster = "data:image/png;base64," + require("fs").readFileSync(path.join(CLIPS, "posters", clip + ".png")).toString("base64");
-  s.addMedia({ type: "video", path: path.join(CLIPS, clip + ".mp4"), cover: poster, x, y, w, h });
+  s.addImage({ path: path.join(CLIPS, "posters", clip + ".png"), x, y, w, h });
   card(s, 9.6, y, 3.1, h);
   s.addText([
     { text: "In this clip", options: { bold: true, color: GOLD, breakLine: true } },
     ...points.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < points.length - 1, paraSpaceBefore: 6 } })),
   ], { x: 9.78, y: y + 0.12, w: 2.78, h: h - 0.24, fontFace: FONT_BODY, fontSize: 13, color: TEXT_DARK, lineSpacingMultiple: 1.15, valign: "top", margin: 0 });
-  addFooter(s, "Screen recording of int540-g2-d1.pbix in Power BI Desktop, 17 Nov 2026 · silent, narrated live");
+  addFooter(s, "Still from the screen recording of int540-g2-d1.pbix (17 Nov 2026); the clip plays in the presentation");
 }
 function appendixDivider() {
   const s = pres.addSlide();
