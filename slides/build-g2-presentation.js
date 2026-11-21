@@ -426,24 +426,24 @@ function appendixDivider() {
   card(s, 8.8, 1.6, 3.9, h);
   s.addText([
     { text: "Demo path", options: { bold: true, color: GOLD, breakLine: true } },
-    { text: "1  Read the top chart: 21% (Dec 2010) → 30% (Mar 2011)", options: { breakLine: true } },
-    { text: "2  May 2011 jumps to 45.23%: right-click → drill through", options: { breakLine: true } },
+    { text: "1  Read the top chart: 21% in Dec 2010, about 30% by Mar 2011", options: { breakLine: true } },
+    { text: "2  Drill through: right-click May 2011, where it jumps to 45.23%", options: { breakLine: true } },
     { text: "3  Slice: Segment = Slipping regulars", options: { breakLine: true } },
-    { text: "4  Dice: right-click segment or country → Worklist", options: { breakLine: true } },
-    { text: "5  Filter: Risk = High → one customer's orders", options: {} },
+    { text: "4  Dice: open the Worklist for one segment or country", options: { breakLine: true } },
+    { text: "5  Filter: high-risk customers only, then one customer's orders", options: {} },
   ], { x: 9.0, y: 1.7, w: 3.55, h: h - 0.2, fontFace: FONT_BODY, fontSize: 12.5, color: TEXT_DARK, lineSpacingMultiple: 1.25, valign: "top", margin: 0 });
   noteBar(s, 0.6, 6.35, 12.1, 0.55, [{ text: "Star schema: fact_sales, fact_returns, fact_customer_month + 3 dims. Every card matched the Python results before use.", options: {} }]);
   addFooter(s, "Data covers Dec 2009 – 9 Dec 2011: the monthly update is simulated by moving the cut-off");
 }
 
 // ---- 11a–11b. Demo clips 1–2 (then slide 12 frames the decision) ----
-videoSlide("G2-D1 · Demo 1 of 5 · Read the overview", "Silent customers nearly doubled in a year: 21.07% → 40.64%", "clip1-overview", [
-  "Cards: 40.64% silent at 9 Dec 2011; 966 customers at high risk (from the model)",
-  "Top chart: 21.07% (Dec 2010) → 29.67% (Mar 2011) → 45.23% (May 2011)",
+videoSlide("G2-D1 · Demo 1 of 5 · Read the overview", "Silent customers nearly doubled in a year, from 21.07% to 40.64%", "clip1-overview", [
+  "Cards: 40.64% silent at 9 Dec 2011, and 966 customers at high risk (from the model)",
+  "Top chart: 21.07% in Dec 2010, 29.67% in Mar 2011, then 45.23% in May 2011",
   "Segments: Loyal wholesale are 19.0% of customers but 71.6% of revenue",
 ]);
 videoSlide("G2-D1 · Demo 2 of 5 · Drill through", "May 2011: 987 customers went silent, most last ordered Oct–Nov 2010", "clip2-drill-may-2011", [
-  "Right-click 2011-05 → Drill through → Month drill",
+  "Right-click 2011-05 and drill through to the Month drill page",
   "987 = silent at end of May, still active at end of March",
   "Last order: 396 in Oct, 563 in Nov, 28 in Dec 2010",
 ]);
@@ -464,8 +464,8 @@ videoSlide("G2-D1 · Demo 2 of 5 · Drill through", "May 2011: 987 customers wen
   ], { x: 8.5, y: 3.15, w: 4.05, h: 1.5, fontFace: FONT_BODY, fontSize: 13, color: TEXT_DARK, valign: "middle", margin: 0 });
   card(s, 8.3, 4.9, 4.4, 1.35);
   s.addText([
-    { text: "Aug → Dec 2011: ", options: { bold: true } },
-    { text: "the total falls 46.78% → 40.64%, but silent regulars (6+ orders) rise 201 → 205. One headline number hides this.", options: {} },
+    { text: "Aug to Dec 2011: ", options: { bold: true } },
+    { text: "the total falls from 46.78% to 40.64%, yet silent regulars (6+ orders) rise from 201 to 205. One headline number hides this.", options: {} },
   ], { x: 8.5, y: 4.95, w: 4.05, h: 1.25, fontFace: FONT_BODY, fontSize: 12.5, color: TEXT_DARK, valign: "middle", margin: 0 });
   s.addText("Month-drill page after right-clicking 2011-05 on the top chart", { x: 0.6, y: 1.65 + h + 0.08, w: 7.4, h: 0.35, fontFace: FONT_BODY, fontSize: 11.5, italic: true, color: TEXT_MUTED, margin: 0 });
   addFooter(s, "987 = silent at end of May but active two month-ends earlier; not the sum of monthly newly_silent (1,023)");
@@ -477,12 +477,12 @@ videoSlide("G2-D1 · Demo 3 of 5 · Slice", "Slipping regulars: 45.10% silent, 5
   "Every card and chart on the page follows the slicer",
 ]);
 videoSlide("G2-D1 · Demo 4 of 5 · Dice", "18 of the top 50 high-risk customers are Slipping regulars", "clip4-drill-worklist", [
-  "Right-click the segment bar → Drill through → Worklist",
+  "Right-click the segment bar and drill through to the Worklist",
   "Worklist = top 50 High-risk customers by 12-month spend",
   "Days since last order turn red past 3× the customer's usual gap",
 ]);
 videoSlide("G2-D1 · Demo 5 of 5 · One customer", "Customer 18073 ordered every 7.5 days, now silent for 114", "clip5-customer-18073", [
-  "Right-click a customer → Drill through → Customer history",
+  "Right-click a customer and drill through to Customer history",
   "Last order 17 Aug 2011: the caller sees what they bought before phoning",
 ]);
 
